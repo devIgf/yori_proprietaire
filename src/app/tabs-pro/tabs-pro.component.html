@@ -1,0 +1,69 @@
+    <div class="tab-container">
+      <mat-tab-group [(selectedIndex)]="activeTabIndex" (selectedTabChange)="onTabChange($event)">
+        <mat-tab>
+          <ng-template mat-tab-label class="ng-template">
+            <div class="circle-container">
+              <div class="circle" ><mat-icon>home</mat-icon></div>
+              <div class="circle-title">Accueil</div>
+            </div>
+          </ng-template>
+          <app-accueil-pro></app-accueil-pro>
+        </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label class="ng-template">
+        <div class="circle-container">
+          <div class="circle"><mat-icon> description</mat-icon></div>
+          <div class="circle-title">Comptes propriétaires</div>
+        </div>
+      </ng-template>
+      <app-compte-proprietaire></app-compte-proprietaire>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label class="ng-template">
+        <div class="circle-container">
+          <div class="circle">
+            <mat-icon>mail_outline</mat-icon>
+          </div>
+          <div class="circle-title">Boite de reception</div>
+        </div>
+      </ng-template>
+      <app-messages></app-messages>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label class="ng-template">
+        <div class="circle-container">
+          <div class="circle">
+            <mat-icon>notifications_active</mat-icon>
+          </div>
+          <div class="circle-title">Notifications</div>
+        </div>
+      </ng-template>
+      <app-notifications></app-notifications>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label class="ng-template">
+        <div class="circle-container">
+          <div class="circle"><mat-icon>receipt_long</mat-icon></div>
+          <div class="circle-title">Factures</div>
+        </div>
+      </ng-template>
+      <app-facture-pro></app-facture-pro>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label class="ng-template">
+        <div class="circle-container">
+          <div class="circle"><mat-icon>trending_up</mat-icon></div>
+          <div class="circle-title">Analyse</div>
+        </div>
+      </ng-template>
+      <app-analyse-pro></app-analyse-pro>
+    </mat-tab>
+  </mat-tab-group>
+  <div>
+    <app-footer-pro></app-footer-pro>
+  </div>
+</div>

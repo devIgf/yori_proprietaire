@@ -1,0 +1,160 @@
+.container-mat {
+  justify-content: center;
+  text-align: center;
+  padding: 25px 100px 50px 100px;
+
+  background-color: rgba(250, 250, 250, 1);
+}
+
+.haut,
+.milieu,
+.graphique {
+  /* background-color: white; */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.milieu {
+  margin: 20px 0;
+}
+
+.haut {
+  padding-top: 20px;
+}
+
+.text {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.jr1 {
+  background-color: #afd75c;
+}
+
+.jr2 {
+  background-color: #ff4d50;
+}
+
+.jr3 {
+  background-color: #f9c620;
+}
+
+.jr4 {
+  background-color: #4e71cb;
+}
+
+label {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.gauche,
+.droit {
+  width: 500px;
+  height: 200px;
+}
+
+.gauche {
+  margin-right: 20px;
+}
+
+.argent {
+  display: inline;
+  text-align: center;
+  justify-content: center;
+}
+
+.argent p {
+  color: white;
+  font-size: 20px;
+}
+
+.image {
+  background-color: aliceblue;
+  width: 50px;
+  text-align: center;
+  margin-left: 45%;
+  border-radius: 90%;
+  padding: 5px;
+}
+
+.graphique .jours {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  margin: 0 3px;
+}
+
+.jours button {
+  border-radius: 15px;
+  border: 0.2px solid rgba(13, 13, 197, 0.8);
+  color: rgba(13, 13, 197, 0.8);
+  background-color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.jours button:hover {
+  background-color: rgba(13, 13, 197, 0.8);
+  color: white;
+}
+
+.bars button {
+  border: none;
+  height: 4px;
+  width: 20px;
+  border-radius: 5px;
+}
+
+/* Container for the select elements */
+.filter-container {
+  display: flex;
+  gap: 20px; /* Space between the selects */
+  padding: 50px 0px 25px 100px; /* Margin around the container */
+  background-color: rgba(250, 250, 250, 1);
+}
+
+/* Style for the custom select elements */
+.custom-select {
+  padding: 10px; /* Padding inside the select */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  background-color: #f9f9f9; /* Light background color */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Change border color on focus */
+.custom-select:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Style for the options in the select dropdown */
+.custom-select option {
+  padding: 10px; /* Padding for options (not always supported) */
+}
+
+/* Optional: Style for the placeholder option */
+.custom-select option[value=""] {
+  color: #999; /* Gray color for placeholder option */
+}
+
+/* view-graph.component.css */
+#container {
+  width: 100%;
+  height: auto; /* ou une hauteur fixe comme "400px" */
+}
+.jr1,
+.jr2,
+.jr3,
+.jr4 {
+  width: 48%;
+  height: 250px;
+  margin: auto;
+}

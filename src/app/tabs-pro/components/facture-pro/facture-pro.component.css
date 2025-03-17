@@ -1,0 +1,684 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 100px 50px 100px;
+  background-color: rgba(250, 250, 250, 1);
+}
+.first {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  /* text-align: center; */
+}
+.filtre {
+  display: flex;
+  flex-direction: column; /* Les labels et inputs sont en colonnes */
+  align-items: flex-start; /* Aligne les éléments au début */
+  /* Espacement sous le filtre */
+  /* margin-left: 15px; */
+}
+.titre {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: px;
+}
+.inputs {
+  margin-left: 0px;
+  display: flex; /* Aligne les inputs sur la même ligne */
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  gap: 20px; /* Espacement entre les inputs */
+  margin-top: 10px; /* Espacement au-dessus des inputs */
+  width: 100%;
+}
+.labels {
+  text-align: left;
+}
+.style-5 {
+  color: rgba(13, 13, 197, 0.8);
+}
+#statut2 {
+  border: solid rgba(13, 13, 197, 0.8);
+  color: rgba(13, 13, 197, 0.8);
+}
+.voir {
+  background-color: rgba(13, 13, 197, 0.8);
+  color: white;
+  border: solid rgba(13, 13, 197, 0.8);
+  height: 30px;
+}
+.table {
+  border-collapse: collapse;
+  margin-left: 0px;
+  margin-top: 10px;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
+  border: 2px solid lightgray;
+  background-color: white;
+  width: 100%; /* Utiliser 100% pour prendre toute la largeur disponible */
+  height: auto;
+  overflow-x: auto;
+  table-layout: auto; /* Utiliser auto pour permettre aux colonnes de s'ajuster */
+}
+.table2 {
+  border: 1px solid #000000;
+  border-collapse: collapse; /* Pour éviter les espaces entre les cellules */
+  width: 100%; /* Si vous voulez que le tableau prenne toute la largeur */
+  margin-left: 30px;
+  margin-top: 10px;
+  background-color: white;
+}
+.table2 td {
+  padding: 5px; /* Réduire le padding des cellules */
+  padding-left: 20px;
+  font-size: 12px; /* Réduire la taille de la police */
+  line-height: 1.2; /* Ajuster la hauteur des lignes */
+  vertical-align: top; /* Aligner le contenu en haut de la cellule */
+}
+.table2 tr {
+  height: 20px; /* Définir une hauteur spécifique pour les lignes */
+}
+.retour {
+  margin-left: 30px;
+}
+.span {
+  margin-left: 420px;
+}
+.printPage,
+.printPage2 {
+  display: inline-flex; /* Utilise flexbox pour aligner horizontalement */
+  align-items: center; /* Aligne verticalement l'icône et le texte */
+  background-color: initial; /* Exemple de couleur de fond pour le bouton */
+  padding: 8px 16px; /* Espacement interne du bouton */
+  border: none; /* Enlève la bordure du bouton */
+  cursor: pointer; /* Change le curseur lorsque la souris est dessus */
+  text-decoration: underline;
+}
+.printPage mat-icon,
+.printPage2 mat-icon {
+  font-size: 20px; /* Taille de l'icône */
+  margin-right: 5px; /* Espace entre l'icône et le texte */
+}
+.revenir {
+  border: none;
+  text-decoration: underline;
+}
+.fact-annulee {
+  background-color: #ffeded;
+  border: 1px solid #ff9797;
+  width: 100%;
+  margin-left: 30px;
+  margin-top: 10px;
+  padding: 5px 0;
+  padding-left: 15px;
+  font-weight: bold;
+}
+.table th,
+.table td {
+  padding: 10px; /* Ajoute un espacement interne */
+  text-align: left; /* Aligne le texte à gauche */
+}
+.table th {
+  width: 130px; /* Ajustez la largeur selon vos besoins */
+}
+.table tr {
+  border: 1px solid #000000;
+}
+.table-responsive {
+  overflow-x: auto; /* Permet le défilement horizontal */
+  width: 100%; /* Assure que le conteneur prend toute la largeur */
+}
+.open-div2 {
+  color: rgba(13, 13, 197, 0.8);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.resultats-info {
+  display: flex;
+  gap: 820px;
+  margin-left: 15px;
+  width: 100%;
+}
+.totaux {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  gap: 160px;
+  justify-content: center;
+}
+.btn-pag {
+  color: rgba(13, 13, 197, 0.8);
+  border: none;
+  background-color: initial;
+}
+.btn-pag [disabled] {
+  color: lightgray;
+}
+#itemsPerPage {
+  height: 25px;
+  margin-left: 800px;
+}
+.td-pag {
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+}
+.button {
+  cursor: pointer;
+  width: 101px;
+  height: 15px;
+  color: rgba(13, 13, 197, 0.8);
+}
+a {
+  color: rgba(13, 13, 197, 0.8);
+}
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+}
+.checkbox-item {
+  display: flex; /* Utilise flex pour aligner les checkboxes avec leur texte */
+  align-items: center; /* Aligne verticalement l'input et le texte */
+  margin-bottom: 10px; /* Espacement entre chaque checkbox */
+}
+.select {
+  border: 0.5px solid rgba(13, 13, 197, 0.8);
+  color: rgba(13, 13, 197, 0.8);
+  background-color: white;
+  width: 129px;
+  height: 30px;
+}
+.select1 {
+  width: 129px;
+  height: 30px;
+}
+.checkbox {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  background-color: white;
+}
+.title {
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.checkbox-container {
+  background-color: initial;
+  display: block;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  gap: 15px; /* Espacement entre les cases à cocher */
+  justify-content: flex-start;
+  width: 100%;
+  margin: 15px;
+}
+.all-search {
+  margin-top: 15px;
+  padding-left: 100px;
+  display: block;
+  text-align: left;
+}
+.checkbox-item {
+  display: flex;
+  align-items: center; /* Aligne les cases et les labels au même niveau */
+  font-size: 14px;
+}
+.checkbox-item input[type="checkbox"] {
+  margin-right: 8px; /* Espacement entre la case à cocher et le texte */
+}
+/* <<<<<<< HEAD */
+/* ======= */
+.table2 {
+  width: 95%;
+}
+.fact-annulee {
+  background-color: #ffeded;
+  border: 1px solid #ff9797;
+  width: 93.5%;
+  margin-left: 30px;
+  margin-top: 10px;
+  padding: 5px 0;
+  padding-left: 15px;
+  font-weight: bold;
+}
+.section {
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+}
+.image-gallery {
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px;
+  max-height: calc(
+    5 * (100px + 16px)
+  ); /* Exemple avec une hauteur de ligne de 100px */
+  overflow-y: auto; /* Active le défilement vertical */
+}
+.image-gallery1 img {
+  margin: 15px;
+  width: 95%;
+  height: 100%;
+}
+.image-item {
+  position: relative;
+  display: inline-block;
+}
+.image-item img {
+  width: 100%;
+  height: 100%;
+}
+.containerAvis {
+  background-color: white;
+  padding: 50px 80px 50px 50px;
+}
+.comment {
+  width: 100%;
+  background-color: white;
+}
+.comment-rating {
+  margin-top: 5px;
+}
+.circle {
+  width: 10px; /* Ajustez la taille selon vos besoins */
+  height: 10px; /* Ajustez la taille selon vos besoins */
+  border-radius: 50%;
+  margin-right: 5px; /* Espacement entre les cercles */
+}
+.filled {
+  background-color: green; /* Couleur verte pour les cercles remplis */
+}
+.outline {
+  background-color: rgb(
+    255,
+    255,
+    255
+  ); /* Fond blanc pour les cercles non remplis */
+  border: 2px solid green; /* Contour vert pour les cercles non remplis */
+}
+.rating-text {
+  margin-top: 5px; /* Ajoute un espacement entre les cercles et le texte */
+  font-size: 14px; /* Ajustez la taille de la police selon vos besoins */
+  font-weight: 500;
+  font-size: 16.85px;
+  color: rgba(13, 13, 197, 0.8);
+}
+/* moa */
+.comment-content {
+  position: relative;
+  margin: 20px 0;
+}
+.commentaire {
+  background-color: rgb(224, 224, 224);
+  width: 100%;
+  height: auto; /* Hauteur automatique */
+  display: inline-block; /* Permet à la div de s'ajuster à son contenu */
+  padding: 10px; /* Ajoute de l'espace intérieur */
+  margin: 5px; /* Ajoute un espacement vertical entre les commentaires */
+  border: 1px solid #ccc; /* Optionnel : ajoute une bordure pour visualiser la div */
+  border-radius: 5px; /* Optionnel : arrondit les coins de la bordure */
+  word-wrap: break-word; /* Permet au texte de revenir à la ligne si trop long */
+}
+.profile-icon {
+  width: 30px; /* Ajustez la taille selon vos besoins */
+  height: 30px; /* Ajustez la taille selon vos besoins */
+  border-radius: 50%; /* Pour rendre l'icône ronde */
+}
+.comment-header {
+  display: flex;
+  align-items: center;
+}
+.comment-rating {
+  display: flex;
+  align-items: center;
+}
+/* >>>>>>> c4ac7772730d4c60d311f9664c7efbc8e1c37c5b */
+@media (max-width: 768px) {
+  .inputs {
+    flex-direction: column; /* Empile les éléments sur les petits écrans */
+  }
+  .resultats-info {
+    gap: 0;
+    flex-direction: column; /* Empile les informations sur les petits écrans */
+    align-items: flex-start; /* Aligne à gauche */
+    margin: 0;
+  }
+  .table th:nth-child(5), /* Cacher la colonne "Réservé le" */
+    .table td:nth-child(5) {
+    display: none;
+  }
+  .table th:nth-child(7), /* Cacher la colonne "Tarif" */
+    .table td:nth-child(7) {
+    display: none;
+  }
+  .table th:nth-child(8), /* Cacher la colonne "Commission" */
+    .table td:nth-child(8) {
+    display: none;
+  }
+  .resultats-info {
+    display: flex;
+  }
+  .printPage {
+    margin-left: 20rem;
+  }
+  .printPage2 {
+    padding-left: 30px;
+    padding-top: 30px;
+  }
+  .span {
+    margin: 0;
+  }
+  .table2 {
+    width: 90%;
+  }
+  .bloquage {
+    display: flex;
+  }
+}
+/* ---------------- */
+.discuter {
+  display: flex;
+  justify-content: space-between;
+  width: 35%;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+#input-container {
+  position: relative;
+}
+#input-container input {
+  padding-right: 10px;
+}
+#input-container mat-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.envoi {
+  padding: 10px;
+}
+#bloquer {
+  padding: 10px;
+  cursor: pointer;
+}
+.supprimer-btn {
+  padding: 10px;
+  background-color: rgba(13, 13, 197, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.dialogueMessage {
+  position: absolute;
+  width: 801px;
+  height: 470px;
+  margin-top: -50px;
+  margin-left: 290px;
+  border: none;
+  background-color: #ffffff;
+  z-index: 20;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+.entete-message {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: rgba(13, 13, 197, 0.8);
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.fermerMessage {
+  cursor: pointer;
+}
+.corpsMessage {
+  padding: 20px;
+}
+.ligne {
+  border-bottom: 2px solid lightgray;
+}
+.destinataire {
+  width: 100%;
+  height: 30px;
+  margin: 10px 10px 10px 0px;
+  border: none;
+  background-color: transparent;
+}
+.objectif {
+  display: flex;
+  padding: 10px 10px 10px 0px;
+  gap: 15px;
+}
+.zoneMessage {
+  margin-top: 10px;
+  width: 100%;
+  height: 150px;
+  border: none;
+  background-color: #ffffff;
+}
+.soummettreMessage {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  align-items: center;
+  margin-right: 10px;
+}
+#envoi-btn {
+  border-radius: 5px;
+}
+.dialogueMessageEnvoye {
+  position: absolute;
+  width: 701px;
+  height: 250px;
+  margin-top: -50px;
+  margin-left: 390px;
+  border: none;
+  background-color: #ffffff;
+  /* <<<<<<< HEAD */
+  z-index: 50;
+  /* =======
+    z-index: 20; */
+  /* >>>>>>> master */
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  padding: 15px;
+}
+.fermerMessageEnvoye {
+  text-align: end;
+  cursor: pointer;
+}
+.containerSuccesMesssage {
+  text-align: center;
+}
+#logoCheck {
+  font-size: 50px;
+  color: rgba(13, 13, 197, 0.8);
+}
+/* <<<<<<< HEAD */
+.bloquage {
+  display: flex;
+  width: 90%;
+  background-color: #f3f3f3;
+  padding-left: 30px;
+  margin-left: 30px;
+}
+.radioBloquer {
+  display: flex;
+  gap: 10px;
+}
+#btnBloquer {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+#confirmerSuppr {
+  text-align: center;
+}
+.boutonValiderAnnulerSuppression {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 15px;
+}
+.annuler-btn {
+  padding: 10px;
+  background-color: white;
+  color: rgba(13, 13, 197, 0.8);
+  border: 1px solid rgba(13, 13, 197, 0.8);
+  cursor: pointer;
+  border-radius: 10px;
+}
+#valider-suppr {
+  border-radius: 10px;
+}
+.notificationBlocage {
+  background-color: white;
+  margin-top: 10px;
+  margin-left: 30px;
+  width: 95%;
+  height: 50px;
+  padding: 5px;
+  align-items: center;
+  display: flex;
+  gap: 30px;
+}
+/***********************************/
+/* juste monace  */
+.div2 {
+  background: #fff;
+}
+.sidenav {
+  background: #fff;
+  z-index: 1;
+  top: 0;
+  width: 17rem;
+}
+.container-sid {
+  border-right: 0.1px solid #d2d2d2;
+}
+.sidenav-nav {
+  list-style-type: none;
+  padding: 0.938rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100% - 3.65rem);
+}
+.sidenav-nav .sidenav-nav-item {
+  width: 100%;
+  margin-bottom: 0.625rem;
+}
+ul {
+  list-style-type: none; /* Retire les puces */
+  padding: 0; /* Supprime le remplissage par défaut */
+  margin: 0; /* Supprime la marge par défaut */
+}
+.sidenav-nav .sidenav-nav-item .sidenav-nav-link {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: #000;
+  border-radius: 0.625rem;
+  transition: all 0.3s ease;
+}
+.sidenav-nav .sidenav-nav-item .sidenav-nav-link .sidenav-link-icon {
+  font-size: 15px;
+  width: 1rem;
+  text-align: center;
+  padding: 10px;
+}
+.sidenav-nav .sidenav-nav-item .sidenav-nav-link .sidenav-link-text {
+  margin-left: 10px;
+}
+.sidenav-nav .sidenav-nav-item:hover .sidenav-nav-link {
+  background-color: #898989;
+  color: #000;
+}
+.sidenav-nav-link:hover {
+  cursor: pointer;
+  background-color: #f0f0f0; /* Couleur de fond au survol */
+}
+.sidenav-nav-link.active {
+  background-color: #bebebe; /* Couleur de fond pour l'élément actif */
+  color: white; /* Couleur du texte pour l'élément actif */
+}
+.sidenav-link-icon {
+  margin-right: 10px; /* Espacement entre l'icône et le texte */
+}
+.active {
+  background-color: #d30f0f;
+}
+.active .sidenav-link-icon,
+.active .sidenav-link-text {
+  color: #000;
+}
+#logoChrono {
+  font-size: 25px;
+  color: gray;
+}
+#logoExclamation {
+  font-size: 20px;
+  color: red;
+}
+#notifSuppr {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid red;
+  padding-left: 10px;
+}
+#logoLien {
+  font-size: 25px;
+  color: gray;
+}
+.container_facture {
+  background-color: white;
+  width: 55%;
+  height: auto;
+  padding: 10px 30px 10px 30px;
+  margin-top: 30px;
+  border: 2px solid lightgray;
+}
+.entete1 {
+  display: flex;
+  align-items: center;
+  gap: 85px;
+}
+.contenu_facture {
+  display: flex;
+  justify-content: space-between;
+}
+.aPayer {
+  display: flex;
+  justify-content: flex-end;
+}
+.payement {
+  display: flex;
+  justify-content: space-between;
+}
+.totalPayeText {
+  text-align: center;
+  background-color: white;
+  margin-top: 50px;
+  padding: 20px;
+  font-weight: bold;
+}
+.rouge {
+  color: red;
+}
+.td1,
+.head1 {
+  height: 50px; /* Ajuste la hauteur des cellules */
+  line-height: 50px; /* Centrer verticalement le texte si nécessaire */
+  text-align: center; /* Centrer le contenu horizontalement */
+}

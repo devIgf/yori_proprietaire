@@ -1,0 +1,596 @@
+<div class="container">
+  <div class="first" *ngIf="!showDetails">
+    <div>
+      <h2 class="titre">Compte Propriétaire</h2>
+      <div class="filtre">
+        <div class="inputs">
+          <div class="labels">
+            <label for="statut">Aperçu</label><br />
+            <select
+              id="statut"
+              class="select1"
+              [(ngModel)]="selectedStatut"
+              (change)="onStatutChange()"
+            >
+              <option *ngFor="let statut of statutsFiltres" [value]="statut">
+                {{ statut }}
+              </option>
+            </select>
+            <br />
+
+            <select
+              id="sousStatut"
+              *ngIf="selectedStatut !== 'Vue d\'ensemble'"
+              [(ngModel)]="selectedSousStatut"
+            >
+              <option
+                *ngFor="let sousStatut of sousStatuts[selectedStatut]"
+                [value]="sousStatut"
+              >
+                {{ sousStatut }}
+              </option>
+              <option *ngIf="!sousStatuts[selectedStatut]?.length" disabled>
+                Sélectionnez d'abord un statut
+              </option>
+            </select>
+          </div>
+          <div class="labels">
+            <label for="pays">Région</label><br />
+            <select id="pays" class="select1" [(ngModel)]="selectedPays">
+              <option *ngFor="let pays of paysFiltres" [value]="pays">
+                {{ pays }}
+              </option>
+            </select>
+          </div>
+          <!-- <div class="labels">
+            <label for="evaluation">Evaluation</label><br />
+            <select
+              id="evaluation"
+              class="select1"
+              [(ngModel)]="selectedEvaluation"
+            >
+              <option
+                *ngFor="let evaluation of evaluationsFiltres"
+                [value]="evaluation"
+              >
+                {{ evaluation }}
+              </option>
+            </select>
+          </div> -->
+          <div class="labels">
+            <label for="duree">Filtre par année</label><br />
+            <select id="duree" class="select1" [(ngModel)]="selectedDuree">
+              <option *ngFor="let duree of dureesFiltres" [value]="duree">
+                {{ duree }}
+              </option>
+            </select>
+          </div>
+          <div class="labels">
+            <label for="plus_filtre" class="style-5">Filtre</label><br />
+            <button
+              type="button"
+              id="plus_filtre"
+              class="select"
+              (click)="afficherFiltre()"
+            >
+              Plus de filtres
+            </button>
+          </div>
+          <div class="labels">
+            <label for=""></label><br />
+            <button type="button" class="voir">Voir les résultats</button>
+          </div>
+        </div>
+        <div *ngIf="openFiltre" class="checkbox">
+          <div class="checkbox-container">
+            <div class="title">
+              <label for="">Statut des établissements</label>
+            </div>
+            <label class="checkbox-item">
+              <input type="checkbox" id="tous" /> Nouveau(x)
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="reservation" /> Ancien(s)
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="arrivees" /> Suspendu(s) temporairement
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="departures" /> Supprimé(s)
+              définitivement
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" id="sejour-en-cours" /> Fermé(s)
+            </label>
+          </div>
+          <div class="all-search">
+            <div>
+              <label for="search" class="lab-search">Mots-clés</label>
+            </div>
+            <div>
+              <input
+                type="search"
+                name="search"
+                class="input-search"
+                placeholder="Mots-clés (facultatif)"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resultats-info">
+        <div>
+          {{ selectedStatut }}
+          ({{ getClientsFiltres().length }})
+        </div>
+        <button class="printPage" (click)="printPage()">
+          <mat-icon> print </mat-icon>
+          Imprimer la liste des comptes propriétaires
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="head1">Nom structure</th>
+            <th class="head1">Pays/region</th>
+            <th class="head1">Contact</th>
+            <th class="head1">Adresse e-mail</th>
+            <th class="head1">Nombre de structure inscrite(s)</th>
+            <th class="head1">Durée du compte</th>
+            <th class="head1">Plus d'infos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of paginatedClients">
+            <td class="td1" style="color: #77b5fe">{{ client.nom }}</td>
+            <td class="td1" class="pays_structure">
+              {{ client.pays }}
+              <img
+                [src]="'assets/flags/' + client.pays + '.png'"
+                alt="{{ client.pays }} flag"
+                class="pays"
+              />
+            </td>
+            <td class="td1">{{ client.contact }}</td>
+            <td class="td1">{{ client.email }}</td>
+            <td class="td1">
+              <b>{{ client.nombre_structure }}</b>
+            </td>
+            <td class="td1">{{ client.duree }} an(s)</td>
+            <td class="td1">
+              <a class="open-div2" (click)="afficherDetails(client)">
+                <!-- {{ client.id }} -->
+                voir plus
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="td1" colspan="10" class="td-pag">
+              <div>
+                <button
+                  class="btn-pag"
+                  (click)="goToPage(currentPage - 1)"
+                  [disabled]="currentPage === 1"
+                >
+                  &lt; Précédent</button
+                >|
+                <span>Page</span>
+                |<button
+                  class="btn-pag"
+                  (click)="goToPage(currentPage + 1)"
+                  [disabled]="currentPage === totalPages"
+                >
+                  Suivant &gt;
+                </button>
+                <select
+                  id="itemsPerPage"
+                  (change)="onItemsPerPageChange($event)"
+                >
+                  <option
+                    *ngFor="let option of itemsPerPageOptions"
+                    [value]="option"
+                  >
+                    Afficher {{ option }} réservations
+                  </option>
+                </select>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="showDetails">
+    <div class="retour">
+      <h2 class="">Détails du compte propriétaire</h2>
+      <b>&lt;</b
+      ><button class="revenir" (click)="revenir()">
+        Revenir à la synthèse des comptes propriétaires
+      </button>
+    </div>
+
+    <div class="discuter">
+      <!-- <div> -->
+      <!-- <div>Discuter</div>
+        <div id="input-container">
+          <input
+            type="text"
+            (click)="toogleMessage()"
+            placeholder="Envoyer un message"
+            class="envoi"
+          />
+          <mat-icon>send</mat-icon>
+        </div>
+      </div> -->
+
+      <!-- <div *ngIf="dialogueMessage" class="dialogueMessage">
+        <div class="entete-message">
+          <div>Nouveau message</div>
+          <div class="fermerMessage" (click)="toogleMessage()">X</div>
+        </div>
+        <div class="corpsMessage">
+          <div class="ligne"></div>
+          <input
+            type="text"
+            placeholder="À  Hotel luis viton de sotéga"
+            class="destinataire"
+          />
+          <div class="ligne"></div>
+          <div class="objectif">
+            <p>Objectif</p>
+            <input type="text" placeholder="" class="destinataire" />
+          </div>
+          <div class="ligne"></div>
+          <Textarea
+            class="zoneMessage"
+            placeholder=" Bonjour comment vous allez..."
+          >
+          </Textarea>
+        </div>
+        <div class="soummettreMessage">
+          <div><i class="fa-solid fa-link" id="logoLien"></i></div>
+
+          <button
+            class="supprimer-btn"
+            id="envoi-btn"
+            (click)="messageenvoye()"
+          >
+            Envoyer
+          </button>
+        </div>
+      </div> -->
+
+      <div>
+        <div>Bloquer</div>
+        <div>
+          <select
+            name="bloquer"
+            id="bloquer"
+            (click)="estBloqueEtablissement()"
+          >
+            <option value="Temporairement">Temporairement</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div>Définitivement</div>
+        <div>
+          <button class="supprimer-btn" (click)="estSupprimeEtablissement()">
+            Supprimer le compte
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bloquage" *ngIf="estBloque">
+      <div>
+        <p>Délai de blocage</p>
+        <div class="radioBloquer">
+          <div>
+            <input
+              type="radio"
+              name="delai"
+              value="1 semaine"
+              (change)="onRadioChange($event)"
+            />
+          </div>
+          <div>1 semaine</div>
+        </div>
+        <div class="radioBloquer">
+          <div>
+            <input
+              type="radio"
+              name="delai"
+              value="2 semaines"
+              (change)="onRadioChange($event)"
+            />
+          </div>
+          <div>2 semaines</div>
+        </div>
+        <div class="radioBloquer">
+          <div>
+            <input
+              type="radio"
+              name="delai"
+              value="1 mois"
+              (change)="onRadioChange($event)"
+            />
+          </div>
+          <div>1 mois</div>
+        </div>
+        <div class="radioBloquer">
+          <div>
+            <input
+              type="radio"
+              name="delai"
+              value="2 mois"
+              (change)="onRadioChange($event)"
+            />
+          </div>
+          <div>2 mois</div>
+        </div>
+        <div class="radioBloquer">
+          <div>
+            <input
+              type="radio"
+              name="delai"
+              value="3 mois"
+              (change)="onRadioChange($event)"
+            />
+          </div>
+          <div>3 mois</div>
+        </div>
+      </div>
+
+      <div>
+        <button
+          class="supprimer-btn"
+          id="btnBloquer"
+          (click)="onEnregisterClick()"
+        >
+          Enregister
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="messagebloque" class="notificationBlocage" id="message">
+      <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
+      <p class="notificationBlocageContent">{{ messagebloque }}</p>
+    </div>
+
+    <div *ngIf="dialogueMessageEnvoye" class="dialogueMessageEnvoye">
+      <div class="fermerMessageEnvoye" (click)="fermerMessageenvoye()">X</div>
+      <div class="containerSuccesMesssage">
+        <div><i class="fa-regular fa-circle-check" id="logoCheck"></i></div>
+        <h3>Message envoyé .</h3>
+        <p>Votre message a été envoyé avec succès</p>
+      </div>
+    </div>
+
+    <div class="dialogueMessageEnvoye" *ngIf="estSupprimer" id="confirmerSuppr">
+      <div><i class="fa-solid fa-trash-can" id="logoCheck"></i></div>
+      <h3>SUPPRIMER</h3>
+      <p>
+        « Voulez-vous supprimer cet compte propriétaire ? Si oui, appuyez sur
+        "Valider". »
+      </p>
+      <br /><br />
+      <div class="boutonValiderAnnulerSuppression">
+        <div>
+          <button class="annuler-btn" (click)="estSupprimeEtablissement()">
+            Annuler
+          </button>
+        </div>
+        <div>
+          <button
+            class="supprimer-btn"
+            id="valider-suppr"
+            (click)="afficherNotifSuppr()"
+          >
+            Valider
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="notificationBlocage" id="notifSuppr" *ngIf="validerSuppr">
+      <i class="fa-solid fa-trash-can" id="logoExclamation"></i>
+      <p>
+        <b>Compte propriétaire supprimé</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        le
+        {{ dateAujourdhui }}
+      </p>
+    </div>
+
+    <div>
+      <span class="span">
+        <div style="display: flex; justify-content: end; margin-right: 50px">
+          <button class="printPage2" (click)="printPage()">
+            <mat-icon> print </mat-icon>
+            Imprimer cette page
+          </button>
+        </div>
+
+        <div>
+          <mat-tab-group class="fixed-width" id="menu-comptes">
+            <mat-tab label="Information sur le compte">
+              <div
+                *ngIf="selectedClient.evaluation == 'Mauvais'"
+                class="fact-annulee"
+              >
+                <mat-icon style="color: brown"> error </mat-icon>
+                Fermeture de l'établissement
+              </div>
+
+              <table class="table2">
+                <tr>
+                  <td>Nom du propriétaire</td>
+                  <td>Nombre de structure supprimée(s)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <b class="bold">{{ selectedClient.nom }}</b>
+                  </td>
+                  <td>
+                    <b class="bold">1</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Conctact:</td>
+                  <td>Nombre de structure fermée(s) :</td>
+                </tr>
+                <tr>
+                  <td>
+                    <b class="bold">+241 76131948</b>
+                  </td>
+                  <td>
+                    <b class="bold">0</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Adresse E-mail</td>
+                </tr>
+                <tr>
+                  <td><b class="bold">olokosamagmail.com</b></td>
+                </tr>
+                <tr>
+                  <td>Durée du compte</td>
+                </tr>
+                <tr>
+                  <td>
+                    <b class="bold">{{ selectedClient.duree }} an(s)</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Pays/Region</td>
+                </tr>
+                <tr>
+                  <td class="pays_structure">
+                    {{ selectedClient.pays }}
+                    <img
+                      [src]="'assets/flags/' + selectedClient.pays + '.png'"
+                      alt="{{ selectedClient.pays }} flag"
+                      class="pays"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Nombre de structure inscrite(s)</td>
+                </tr>
+                <tr>
+                  <td><b class="bold">4</b></td>
+                </tr>
+                <tr>
+                  <td>Nombre de structure actif(s)</td>
+                </tr>
+                <tr>
+                  <td><b class="bold">3</b></td>
+                </tr>
+              </table>
+            </mat-tab>
+
+            <mat-tab label="Liste des structures">
+              <div class="table-responsive">
+                <table class="table" id="table-structure">
+                  <thead>
+                    <tr>
+                      <th class="head1">Nom structure</th>
+                      <th class="head1">Pays/region</th>
+                      <th class="head1">statut</th>
+                      <th class="head1">Statut de la structure</th>
+                      <th class="head1">Durée d'inscription</th>
+                      <th class="head1">Evaluation</th>
+                      <th class="head1">Plus d'infos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let client of paginatedClients">
+                      <td class="td1" style="color: #77b5fe">
+                        {{ client.nom }}
+                      </td>
+                      <td class="td1" class="pays_structure" id="pays">
+                        {{ client.pays }}
+                        <img
+                          [src]="'assets/flags/' + client.pays + '.png'"
+                          alt="{{ client.pays }} flag"
+                          class="pays"
+                        />
+                      </td>
+                      <td class="td1">
+                        {{ client.statut }}
+                      </td>
+                      <td
+                        class="td1"
+                        [ngStyle]="{
+                          color:
+                            client.statut_structure === 'Fermé' ||
+                            client.statut_structure === 'Supprimé'
+                              ? 'red'
+                              : 'black'
+                        }"
+                      >
+                        {{ client.statut_structure }}
+                      </td>
+                      <td class="td1">{{ client.duree }}</td>
+                      <td
+                        class="td1"
+                        [ngStyle]="{
+                          color:
+                            client.evaluation === 'Mauvais' ? 'red' : 'black'
+                        }"
+                      >
+                        <b>{{ client.evaluation }}</b>
+                      </td>
+                      <td class="td1">
+                        <a class="open-div2" (click)="afficherDetails(client)">
+                          <!-- {{ client.id }} -->
+                          voir plus
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="td1" colspan="10" class="td-pag">
+                        <div>
+                          <button
+                            class="btn-pag"
+                            (click)="goToPage(currentPage - 1)"
+                            [disabled]="currentPage === 1"
+                          >
+                            &lt; Précédent</button
+                          >|
+                          <span>Page</span>
+                          |<button
+                            class="btn-pag"
+                            (click)="goToPage(currentPage + 1)"
+                            [disabled]="currentPage === totalPages"
+                          >
+                            Suivant &gt;
+                          </button>
+                          <select
+                            id="itemsPerPage"
+                            (change)="onItemsPerPageChange($event)"
+                          >
+                            <option
+                              *ngFor="let option of itemsPerPageOptions"
+                              [value]="option"
+                            >
+                              Afficher {{ option }} réservations
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>

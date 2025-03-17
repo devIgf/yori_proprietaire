@@ -1,0 +1,66 @@
+.container {
+  margin-top: 0px;
+  background-color: rgba(13, 13, 197, 0.8);
+  height: 100%;
+  padding: 20px; /* Ajout d'un padding pour éviter que le contenu touche les bords */
+}
+
+.card {
+  padding: 20px; /* Padding interne pour la carte */
+}
+
+.top {
+  display: flex;
+  gap: 100px; /* Espace entre les éléments */
+  margin-left: 50px;
+}
+button {
+  cursor: pointer;
+}
+
+.button {
+  margin-top: 15px;
+  margin-left: 150px;
+}
+
+.button button {
+  background-color: rgba(13, 13, 197, 0.8);
+  padding: 10px;
+  border: none;
+  font-size: 15px;
+  color: white;
+  border-radius: 5px; /* Coins arrondis pour le bouton */
+}
+
+.Copyright {
+  margin-left: 45px;
+}
+
+p {
+  color: white;
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+  .top {
+    flex-direction: column; /* Empile les éléments en colonne sur petits écrans */
+    align-items: center; /* Centre les éléments horizontalement */
+    margin-left: 0; /* Supprime la marge gauche sur petits écrans */
+    gap: 20px; /* Réduit l'espace entre les éléments */
+  }
+
+  .button {
+    margin-left: 0; /* Supprime la marge gauche sur petits écrans */
+    text-align: center; /* Centre le bouton sur petits écrans */
+  }
+
+  .button button {
+    width: 100%; /* Rendre le bouton responsive */
+    max-width: 200px; /* Limite la largeur maximale du bouton */
+  }
+
+  .Copyright {
+    text-align: center; /* Centre le texte de copyright sur petits écrans */
+    margin-left: 0; /* Supprime la marge gauche sur petits écrans */
+  }
+}

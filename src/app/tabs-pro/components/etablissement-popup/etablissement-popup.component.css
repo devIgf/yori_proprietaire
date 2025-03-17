@@ -1,0 +1,94 @@
+.container {
+  height: auto;
+  margin: px;
+  padding: 30px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  max-height: 220px; /* Limite la hauteur à 2 lignes */
+}
+
+.photo-item {
+  position: relative;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.last-photo {
+  position: relative;
+}
+
+.last-photo .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.gras {
+  font-weight: bold;
+}
+.popup-actions {
+  width: 100%;
+  margin-top: 47px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.btn-notif {
+  width: 99px;
+  height: 40px;
+}
+#btn-decline {
+  border: 1px solid #f90808;
+  color: #f90808;
+  border-radius: 5px;
+}
+
+#btn-approuve {
+  border: none;
+  color: white;
+  background-color: rgba(13, 13, 197, 0.8);
+  border-radius: 5px;
+}
+
+.custom-dialog-container {
+  border-radius: 8px; /* Coins arrondis */
+  padding: 20px; /* Espacement interne */
+}
+
+.custom-dialog-container .mat-dialog-title {
+  font-size: 24px; /* Taille du titre */
+}
+
+.custom-dialog-container .mat-dialog-content {
+  font-size: 16px; /* Taille du contenu */
+}
+
+.approved {
+  color: blue; /* Couleur bleue pour "Approuvé" */
+  font-weight: bold; /* Gras */
+}
+
+.declined {
+  color: red; /* Couleur rouge pour "Décliné" */
+  font-weight: bold; /* Gras */
+}

@@ -1,0 +1,78 @@
+.container {
+  padding: 25px 100px 150px 100px;
+  background-color: rgba(250, 250, 250, 1);
+}
+.etablissement-container {
+  margin: 1px 0; /* Espacement entre les établissements */
+  padding: 5px;
+}
+
+.etablissement-preview {
+  display: flex; /* Utilisation de flexbox pour l'alignement */
+  justify-content: space-between; /* Espace entre les éléments */
+  align-items: center; /* Alignement vertical centré */
+  padding: 17px; /* Espacement interne */
+  border: 1px solid #ccc; /* Bordure autour de l'élément */
+  border-radius: 5px; /* Coins arrondis */
+  background-color: #f9f9f9; /* Couleur de fond */
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.examiner-button {
+  margin-left: 20px; /* Espacement à gauche du bouton pour éloigner de la date */
+  background-color: rgba(13, 13, 197, 0.8); /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte du bouton */
+  border: none; /* Pas de bordure */
+  padding: 5px 10px; /* Espacement interne du bouton */
+  border-radius: 4px; /* Coins arrondis du bouton */
+  cursor: pointer; /* Curseur en main au survol */
+}
+
+.examiner-button:hover {
+  background-color: #0056b3; /* Couleur de fond au survol */
+}
+
+.approved {
+  color: rgba(13, 13, 197, 0.8); /* Couleur bleue pour approuvé */
+  font-weight: 400; /* Texte en gras */
+}
+
+.declined {
+  color: red; /* Couleur rouge pour décliné */
+  font-weight: 400; /* Texte en gras */
+}
+.logoSearch {
+  position: absolute;
+  z-index: 20;
+  color: gray;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+.champSearch {
+  position: relative;
+}
+#textSearch {
+  padding-left: 40px;
+  width: 270px;
+  height: 30px;
+}
+
+.custom-dialog .mat-dialog-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%; /* Prend toute la largeur */
+  max-width: 900px; /* Limite la largeur */
+  margin: 0 auto; /* Centre horizontalement */
+  border-radius: 0px; /* Ajoute des coins arrondis (optionnel) */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ajoute une ombre (optionnel) */
+}
+#logoChrono {
+  font-size: 25px;
+  color: gray;
+  margin-right: 10px;
+  align-items: center;
+}
+.etablissement-date {
+  align-items: center;
+}

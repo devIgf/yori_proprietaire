@@ -1,0 +1,14 @@
+  .dialog-content {
+    display: flex;
+    flex-direction: column; /* Alignement vertical */
+    align-items: center;    /* Centrer horizontalement */
+    justify-content: center; /* Centrer verticalement */
+    text-align: center;      /* Centrer le texte */
+    padding: 10px;          /* Espacement interne */
+  }
+  
+  
+  
+  .dialog-actions {
+    justify-content: center; /* Centrer les boutons */
+  }

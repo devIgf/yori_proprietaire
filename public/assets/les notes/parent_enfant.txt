@@ -1,0 +1,58 @@
+Côté enfant
+dans le .ts
+export class EnfantComponent {
+  @Input() nom: string = '';
+  @Input() prenom: string = '';
+  @Input() email: string = '';
+  @Input() telephone: string = '';
+}
+
+template du Composant
+<div>
+  <label for="nom">Nom:</label>
+  <input id="nom" [(ngModel)]="nom" placeholder="Entrez votre nom" />
+
+  <label for="prenom">Prénom:</label>
+  <input id="prenom" [(ngModel)]="prenom" placeholder="Entrez votre prénom" />
+
+  <label for="email">E-mail:</label>
+  <input id="email" type="email" [(ngModel)]="email" placeholder="Entrez votre e-mail" />
+
+  <label for="telephone">Téléphone:</label>
+  <input id="telephone" type="tel" [(ngModel)]="telephone" placeholder="Entrez votre téléphone" />
+</div>
+
+
+
+
+
+
+côté Parant
+export class ParentComponent {
+  nom: string = '';
+  prenom: string = '';
+  email: string = '';
+  telephone: string = '';
+
+  onSubmit() {
+    console.log('Données du formulaire :', {
+      nom: this.nom,
+      prenom: this.prenom,
+      email: this.email,
+      telephone: this.telephone,
+    });
+    // Vous pouvez également effectuer d'autres actions avec les données ici
+  }
+}
+
+template du Composant
+<form (ngSubmit)="onSubmit()">
+  <app-enfant 
+    [(nom)]="nom" 
+    [(prenom)]="prenom" 
+    [(email)]="email" 
+    [(telephone)]="telephone">
+  </app-enfant>
+
+  <button type="submit">Soumettre</button>
+</form>

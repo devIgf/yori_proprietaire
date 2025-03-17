@@ -1,0 +1,266 @@
+<div class="container">
+  <div class="filter-container">
+    <select
+      class="custom-select"
+      [(ngModel)]="selectedStatut"
+      (change)="onFilterChange()"
+    >
+      <option value="">Tous les statuts</option>
+      <option *ngFor="let statut of statuts" [value]="statut">
+        {{ statut }}
+      </option>
+    </select>
+
+    <select
+      class="custom-select"
+      [(ngModel)]="selectedPays"
+      (change)="onFilterChange()"
+    >
+      <option value="">Tous les pays</option>
+      <option *ngFor="let pays of paysList" [value]="pays">{{ pays }}</option>
+    </select>
+    <br /><br />
+  </div>
+
+  <div class="container-mat" style="background-color: rgb(255, 255, 255)">
+    <br />
+    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+      <div>
+        <mat-tab label="Nombre de Réservations">
+          <div class="haut">
+            <div class="gauche jr1">
+              <div class="text">
+                <label>JOUR</label>
+                <label>07</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #3cb51280">
+                  <img src="assets/img/user_icon.png" alt="" />
+                </div>
+                <p>{{ totalReservationsJour }}</p>
+                <!-- <p>{{ (totalMontantJour | currency:'CFA') }}</p> -->
+              </div>
+            </div>
+            <div class="droit jr2">
+              <div class="text">
+                <label>SEMAINE </label>
+                <label>02</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #c2060680">
+                  <img src="assets/img/user_icon.png" alt="" />
+                </div>
+                <p>{{ totalReservationsSemaine }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="milieu">
+            <div class="gauche jr3">
+              <div class="text">
+                <label>MOIS</label>
+                <label>AOÛT</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #ffde7480">
+                  <img src="assets/img/user_icon.png" alt="" />
+                </div>
+                <p>{{ totalReservationsMois }}</p>
+              </div>
+            </div>
+            <div class="droit jr4">
+              <div class="text">
+                <label>ANNEE</label>
+                <label>2024</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #0547f180">
+                  <img src="assets/img/user_icon.png" alt="" />
+                </div>
+                <p>{{ totalReservationsAnnee }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="reservation" style="width: auto; height: auto"></div>
+        </mat-tab>
+
+        <mat-tab label="Réservations Annulées">
+          <div class="haut">
+            <div class="gauche jr1">
+              <div class="text">
+                <label>JOUR</label>
+                <label>07</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #3cb51280">
+                  <img src="assets/img/user_sup.png" alt="" />
+                </div>
+                <p>{{ totalAnnuleeJour }}</p>
+              </div>
+            </div>
+            <div class="droit jr2">
+              <div class="text">
+                <label>SEMAINE</label>
+                <label>02</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #c2060680">
+                  <img src="assets/img/user_sup.png" alt="" />
+                </div>
+                <p>{{ totalAnnuleeSemaine }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="milieu">
+            <div class="gauche jr3">
+              <div class="text">
+                <label>MOIS</label>
+                <label>AOÛT</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #ffde7480">
+                  <img src="assets/img/user_sup.png" alt="" />
+                </div>
+                <p>{{ totalAnnuleetMois }}</p>
+              </div>
+            </div>
+            <div class="droit jr4">
+              <div class="text">
+                <label>ANNEE</label>
+                <label>2024</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #0547f180">
+                  <img src="assets/img/user_sup.png" alt="" />
+                </div>
+                <p>{{ totalAnnuleeAnnee }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="reservation-annulee" style="width: auto; height: auto"></div>
+        </mat-tab>
+
+        <mat-tab label="Montant des Réservations">
+          <div class="haut">
+            <div class="gauche jr1">
+              <div class="text">
+                <label>JOUR</label>
+                <label>07</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #3cb51280">
+                  <img src="assets/img/argent.png" alt="" />
+                </div>
+                <p>{{ totalMontantJour | currency : "CFA" }}</p>
+              </div>
+            </div>
+            <div class="droit jr2">
+              <div class="text">
+                <label>SEMAINE</label>
+                <label>07</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #c2060680">
+                  <img src="assets/img/argent.png" alt="" />
+                </div>
+                <p>{{ totalMontantSemaine | currency : "CFA" }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="milieu">
+            <div class="gauche jr3">
+              <div class="text">
+                <label>MOIS</label>
+                <label>AOÛT</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #ffde7480">
+                  <img src="assets/img/argent.png" alt="" />
+                </div>
+                <p>{{ totalMontantMois | currency : "CFA" }}</p>
+              </div>
+            </div>
+            <div class="droit jr4">
+              <div class="text">
+                <label>ANNEE</label>
+                <label>2024</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #0547f180">
+                  <img src="assets/img/argent.png" alt="" />
+                </div>
+                <p>{{ totalMontantAnnee | currency : "CFA" }}</p>
+              </div>
+            </div>
+          </div>
+          <div id="montant-reservation" style="width: auto; height: auto"></div>
+        </mat-tab>
+
+        <mat-tab label="Montant des Commissions">
+          <div class="haut">
+            <div class="gauche jr1">
+              <div class="text">
+                <label>JOUR</label>
+                <label>07</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #3cb51280">
+                  <img src="assets/img/argent_recev.png" alt="" />
+                </div>
+                <p>{{ totalCommissionJour | currency : "CFA" }}</p>
+              </div>
+            </div>
+            <div class="droit jr2">
+              <div class="text">
+                <label>SEMAINE</label>
+                <label>02</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #c2060680">
+                  <img src="assets/img/argent_recev.png" alt="" />
+                </div>
+                <p>{{ totalCommissionSemaine | currency : "CFA" }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="milieu">
+            <div class="gauche jr3">
+              <div class="text">
+                <label>MOIS</label>
+                <label>AOÛT</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #ffde7480">
+                  <img src="assets/img/argent_recev.png" alt="" />
+                </div>
+                <p>{{ totalCommissiontMois | currency : "CFA" }}</p>
+              </div>
+            </div>
+            <div class="droit jr4">
+              <div class="text">
+                <label>ANNEE</label>
+                <label>2024</label>
+              </div>
+              <div class="argent">
+                <div class="image" style="background-color: #0547f180">
+                  <img src="assets/img/argent_recev.png" alt="" />
+                </div>
+                <p>{{ totalCommissionAnnee | currency : "CFA" }}</p>
+              </div>
+            </div>
+          </div>
+          <div id="montant-commission" style="width: auto; height: auto"></div>
+        </mat-tab>
+
+        <mat-tab label="Performances">
+          <div id="performances" style="width: auto; height: auto"></div>
+        </mat-tab>
+      </div>
+    </mat-tab-group>
+  </div>
+</div>

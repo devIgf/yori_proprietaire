@@ -1,0 +1,129 @@
+<div class="container">
+  <h2>Notifications</h2>
+  <div class="rechercher">
+    <div class="logoSearch">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <div class="champSearch">
+      <input
+        type="text"
+        id="textSearch"
+        placeholder="Rechercher dans un message"
+      />
+    </div>
+  </div>
+  <div>
+    <br /><br />
+    <mat-tab-group>
+      <mat-tab label="Tout">
+        <div
+          *ngFor="let etablissement of newEtablissement"
+          class="etablissement-container"
+        >
+          <div
+            class="etablissement-preview"
+            (click)="openPopup(etablissement)"
+            style="cursor: pointer"
+          >
+            <div class="etablissement-content">
+              <strong>{{ etablissement.title }}</strong>
+            </div>
+            <span class="etablissement-date">
+              <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
+              {{ etablissement.date | date : "dd MMMM yyyy à HH:mm" }}</span
+            >
+
+            <!-- Afficher le bouton si l'état est 'pending' -->
+            <ng-container
+              *ngIf="
+                etablissement.examStatus === 'pending';
+                else approvedOrDeclined
+              "
+            >
+              <button class="examiner-button">
+                {{ etablissement.buttonText }}
+              </button>
+            </ng-container>
+
+            <!-- Template pour les états approuvé, décliné ou en attente -->
+            <ng-template #approvedOrDeclined>
+              <ng-container *ngIf="etablissement.examStatus === 'waiting'">
+                <button class="examiner-button">En attente d'examen</button>
+              </ng-container>
+
+              <ng-container *ngIf="etablissement.examStatus === 'approved'">
+                <span class="approved">{{ etablissement.buttonText }}</span>
+              </ng-container>
+
+              <ng-container *ngIf="etablissement.examStatus === 'declined'">
+                <span class="declined">{{ etablissement.buttonText }}</span>
+              </ng-container>
+            </ng-template>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Non lu">
+        <div
+          *ngFor="let etablissement of newEtablissement"
+          class="etablissement-container"
+        >
+          <div
+            *ngIf="etablissement.examStatus === 'pending'"
+            class="etablissement-preview"
+            (click)="openPopup(etablissement)"
+            style="cursor: pointer"
+          >
+            <div class="etablissement-content">
+              <strong>{{ etablissement.title }}</strong>
+            </div>
+            <span class="etablissement-date">
+              <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
+              {{ etablissement.date | date : "dd MMMM yyyy à HH:mm" }}</span
+            >
+
+            <button class="examiner-button">
+              {{ etablissement.buttonText }}
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Lu">
+        <div
+          *ngFor="let etablissement of newEtablissement"
+          class="etablissement-container"
+        >
+          <div
+            *ngIf="etablissement.examStatus !== 'pending'"
+            class="etablissement-preview"
+            (click)="openPopup(etablissement)"
+            style="cursor: pointer"
+          >
+            <div class="etablissement-content">
+              <strong>{{ etablissement.title }}</strong>
+            </div>
+            <span class="etablissement-date">
+              <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
+              {{ etablissement.date | date : "dd MMMM yyyy à HH:mm" }}</span
+            >
+
+            <!-- Afficher le texte du statut comme un texte brut ou un bouton cliquable -->
+            <ng-container *ngIf="etablissement.examStatus === 'waiting'">
+              <button class="examiner-button">En attente d'examen</button>
+            </ng-container>
+
+            <!-- Afficher le texte brut si approuvé ou décliné -->
+            <ng-container *ngIf="etablissement.examStatus === 'approved'">
+              <span class="approved">{{ etablissement.buttonText }}</span>
+            </ng-container>
+
+            <ng-container *ngIf="etablissement.examStatus === 'declined'">
+              <span class="declined">{{ etablissement.buttonText }}</span>
+            </ng-container>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

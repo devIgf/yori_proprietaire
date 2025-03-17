@@ -1,0 +1,292 @@
+.container {
+  padding: 25px 100px 130px 100px;
+  background-color: rgba(250, 250, 250, 1);
+}
+
+.fixed-width {
+  width: 100%; /* Largeur fixe ou souhaitée */
+}
+
+.mat-tab-group {
+  display: flex; /* Utilise Flexbox */
+  flex-wrap: wrap; /* Permet aux onglets de revenir à la ligne */
+  width: 100%; /* Assure que le tab group utilise toute la largeur du conteneur */
+}
+
+.mat-tab {
+  flex: 1 1 auto; /* Permet aux onglets de s'ajuster automatiquement */
+  min-width: 150px; /* Largeur minimale pour chaque onglet */
+}
+
+.send-message {
+  background-color: white;
+  border: 2px solid lightgray;
+  margin-top: 5px;
+  height: 30px;
+  display: flex;
+  gap: 5px;
+}
+
+.send-message span {
+  padding-top: 5px;
+}
+
+.btn-send2 {
+  background-color: rgba(
+    13,
+    13,
+    197,
+    0.8
+  ); /* Couleur de fond bleu pour le bouton "Envoyer" */
+  color: white; /* Texte blanc pour le bouton "Envoyer" */
+  margin: 0 20px 0 5px;
+  border-radius: 5px;
+}
+
+.btn-send2:hover {
+  background-color: #0056b3; /* Couleur plus foncée au survol du bouton "Envoyer" */
+}
+
+.message-preview {
+  display: flex; /* Utilise flexbox pour aligner les éléments sur la même ligne */
+  justify-content: space-between; /* Espace entre le contenu du message et la date */
+  align-items: center; /* Aligne verticalement au centre */
+  padding: 15px;
+  border: 1px solid #ddd;
+  /* border-radius: 5px; */
+  /* margin-bottom: 10px; */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.message-preview:hover {
+  background-color: #d1cfcf; /* Change la couleur d'arrière-plan au survol */
+}
+
+.message-content {
+  flex-grow: 1; /* Permet au contenu du message de prendre tout l'espace disponible */
+}
+
+.message-date {
+  font-size: 0.9em; /* Taille de police plus petite pour la date */
+  color: gray; /* Couleur grise pour la date */
+}
+
+.message-details {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9; /* Couleur de fond pour les détails */
+}
+
+.message-date {
+  font-size: 0.8em; /* Taille de police plus petite pour la date */
+  color: #666; /* Couleur grise pour la date */
+}
+
+.message-text {
+  border: 0.5px solid #ccc;
+  margin: 5px;
+  padding: 5px;
+}
+
+.reply-popup {
+  position: fixed; /* Position fixe pour la superposition */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajuste la position pour centrer */
+  border: 1px solid #ccc;
+  background-color: #ffffff; /* Fond blanc pour le pop-up */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombre pour l'effet pop-up */
+  z-index: 1000; /* Assure que le pop-up est au-dessus des autres éléments */
+  border-radius: 8px; /* Coins arrondis */
+  width: 700px; /* Largeur du pop-up */
+  height: 400px;
+}
+
+.reply-popup2 {
+  text-align: center;
+  position: fixed; /* Position fixe pour la superposition */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajuste la position pour centrer */
+  border: 1px solid #ccc;
+  background-color: #ffffff; /* Fond blanc pour le pop-up */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Ombre pour l'effet pop-up */
+  z-index: 1000; /* Assure que le pop-up est au-dessus des autres éléments */
+  border-radius: 8px; /* Coins arrondis */
+  width: 700px; /* Largeur du pop-up */
+  height: 200px;
+}
+
+.reply-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5em;
+  color: #ffffff;
+  background-color: rgba(13, 13, 197, 0.8);
+  width: 100%;
+  height: 45px;
+  border-radius: 8px 8px 0 0;
+}
+
+.reply-title2 {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  font-size: 1.5em;
+  color: #000000;
+  background-color: white;
+  width: 100%;
+  height: 45px;
+  border-radius: 8px 8px 0 0;
+}
+
+.reply-title p,
+.reply-title2 p {
+  padding: 10px;
+}
+
+.reply-section {
+  margin-bottom: 15px; /* Espace en dessous de la section de réponse */
+  padding: 20px;
+}
+
+.reply-section label {
+  display: block; /* Affiche chaque label sur une nouvelle ligne */
+  margin-bottom: 5px; /* Espace entre le label et le champ */
+  font-weight: bold; /* Met le texte en gras */
+}
+
+.reply-textarea {
+  width: calc(100% - 20px); /* Largeur complète en tenant compte du padding */
+  padding: 10px; /* Padding interne */
+  margin-top: 20px; /* Espace au-dessus des champs */
+  border: none; /* Bordure grise */
+  box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+}
+
+.reply-input {
+  border: none;
+  border-bottom: 0.2px solid #ccc;
+  border-top: 0.2px solid #ccc;
+  width: calc(100% - 20px); /* Largeur complète en tenant compte du padding */
+  padding: 10px; /* Padding interne */
+  margin-top: 20px; /* Espace au-dessus des champs */
+  box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
+  /* text-decoration: line-through; */
+}
+
+.reply-textarea {
+  height: 100px; /* Hauteur fixe pour la zone de texte */
+}
+
+.reply-file-input {
+  margin-bottom: 0;
+}
+
+.reply-buttons {
+  justify-content: flex-end;
+  display: flex;
+  margin-top: 80px;
+  gap: 10px;
+}
+
+.btn {
+  padding: 5px 10px; /* Padding interne des boutons */
+  cursor: pointer; /* Curseur pointeur sur hover */
+  border: none; /* Pas de bordure par défaut */
+}
+
+.btn-send {
+  background-color: rgba(
+    13,
+    13,
+    197,
+    0.8
+  ); /* Couleur de fond bleu pour le bouton "Envoyer" */
+  color: white; /* Texte blanc pour le bouton "Envoyer" */
+}
+
+.btn-send:hover {
+  background-color: #0056b3; /* Couleur plus foncée au survol du bouton "Envoyer" */
+}
+
+.btn-cancel {
+  color: white;
+  background-color: initial;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-cancel2 {
+  color: rgb(0, 0, 0);
+  background-color: initial;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  z-index: 999; /* Juste en dessous du pop-up */
+}
+
+@media (max-width: 768px) {
+  .group {
+    width: 100%;
+  }
+}
+
+.plusMessage {
+  border: none;
+  color: gray;
+  font-size: 20px;
+  cursor: pointer;
+}
+.filtreMessage {
+  display: flex;
+  position: absolute;
+  margin-right: 10px;
+  margin-top: -50px;
+  height: 100px;
+}
+.filtreContainer {
+  border: 0.5px solid gray;
+  list-style-type: none; /* Supprime les puces */
+  font-size: small;
+  width: 150px;
+  height: 35px;
+  padding: 10px;
+  margin-top: 0px;
+  background-color: white;
+}
+.filtresCheckboxes {
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid gray;
+  padding: 10px;
+  background-color: white;
+}
+.listeFiltre {
+  margin: 5px;
+  position: relative;
+  padding-right: 20px; /* Espace pour le triangle */
+  cursor: pointer;
+}
+.listeFiltre::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid black; /* Couleur du triangle */
+}

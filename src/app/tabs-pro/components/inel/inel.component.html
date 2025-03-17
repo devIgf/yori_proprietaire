@@ -1,0 +1,75 @@
+
+<div class="container">
+    <div class="haut">
+        <div class="gauche jr1">
+            <div class="text">
+                <label>JOUR</label>
+                <label>07</label>
+             </div>
+             <div class="argent">
+                <div class="image" style="background-color: #3CB51280;">
+                    <img src="assets/img/argent_recev.png" alt="">
+                </div>
+                <p>13.000 F CFA</p>
+             </div>
+        </div>
+        <div class="droit jr2">
+            <div class="text">
+                <label>SEMAINE</label>
+                <label>02</label>
+             </div>
+             <div class="argent">
+                <div class="image" style="background-color: #C2060680;">
+                    <img src="assets/img/argent_recev.png" alt="">
+                </div>
+                <p>55.000 F CFA</p>
+             </div>
+        </div>
+    </div>
+    <div class="milieu">
+        <div class="gauche jr3">
+            <div class="text">
+               <label>MOIS</label>
+               <label>AOUT</label>
+            </div>
+            <div class="argent">
+                <div class="image" style="background-color: #FFDE7480;">
+                    <img src="assets/img/argent_recev.png" alt="">
+                </div>
+                <p>175.000 F CFA</p>
+            </div>
+        </div>
+        <div class="droit jr4">
+            <div class="text">
+                <label>ANNEE</label>
+                <label>2024</label>
+             </div>
+             <div class="argent">
+                <div class="image" style="background-color: #0547F180;">
+                    <img src="assets/img/argent_recev.png" alt="">
+                </div>
+                <p>1.225.000 F CFA</p>
+             </div>
+        </div>
+    </div>
+    <div class="bas">
+        <div class="graphique">
+            <div class="jours">
+               
+            </div>
+            <div class="bars">
+                <button type="button" class="jr1"></button>
+                <button type="button" class="jr2"></button>
+                <button type="button" class="jr3"></button>
+                <button type="button" class="jr4"></button>
+            </div>
+        </div>
+        <div class="graph">
+            <highcharts-chart 
+                [Highcharts]="Highcharts" 
+                [options]="options" 
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart>
+        </div>
+    </div>
+</div> 

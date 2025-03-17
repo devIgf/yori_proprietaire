@@ -1,0 +1,7 @@
+<h2>Galerie de photos restantes</h2>
+<div class="photo-grid">
+  <div class="photo-item" *ngFor="let photo of photos">
+    <img [src]="photo" alt="Photo de l'établissement" />
+  </div>
+</div>
+<button mat-button (click)="closeDialog()">Fermer</button>
