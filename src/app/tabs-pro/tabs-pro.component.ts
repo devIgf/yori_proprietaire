@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatTab, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { FooterProComponent } from '../layouts/footer-pro/footer-pro.component';
@@ -30,7 +30,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     AnalyseProComponent
 ],
   templateUrl: './tabs-pro.component.html',
-  styleUrl: './tabs-pro.component.css'
+  styleUrl: './tabs-pro.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class TabsProComponent{
 
