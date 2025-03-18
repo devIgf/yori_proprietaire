@@ -1,7 +1,6 @@
 .tab-container {
   position: relative;
   width: 100%;
-  height: 50px;
   padding-top: 20px;
   background-color: rgba(13, 13, 197, 0.8);
   display: flex;
@@ -10,93 +9,27 @@
 }
 
 
-.tab-navigation {
-  padding-bottom: 10px;
-}
-
-.tab-navigation-buttons {
-  display: flex;
-  /* justify-content: center; */
-  justify-content: space-between;
-  gap: 10px; /* Espacement entre les boutons */
-  margin-top: 5px; /* Espace au-dessus des boutons */
-}
-
-.tab-navigation-buttons button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Espacement entre l'icône et le texte */
-}
-
-mat-tab {
-  margin-bottom: 20px;
-}
-
-.tab-navigation-buttons button:first-child {
-  background-color: #fff; /* Couleur de fond du bouton "Précédent" */
-  color: rgba(13, 13, 197, 0.8); /* Couleur du texte du bouton "Précédent" */
-  border: 2px solid rgba(13, 13, 197, 0.8); /* Bordure pour le bouton "Précédent" */
-}
-
-.tab-navigation-buttons button:last-child {
-  background-color: rgba(
-    13,
-    13,
-    197,
-    0.8
-  ); /* Couleur de fond du bouton "Suivant" */
-  color: #fff; /* Couleur du texte du bouton "Suivant" */
-}
-
-.tab-navigation-buttons button:hover {
-  opacity: 0.8;
-}
-
-.tab-navigation-buttons button:active {
-  transform: scale(0.95);
-}
-
-.chevron {
-  font-size: 20px; /* Taille des chevrons */
-}
-
 .circle-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 5px;
 }
 
-.circle.active {
-  background-color: rgba(197, 13, 13, 0.8);;
+
+.circle-container.active {
+  background-color: rgba(5, 5, 95, 0.8); 
 }
 
-.mat-form-field {
-  position: absolute; /* Positionne le champ de formulaire par rapport à son conteneur */
-  top: 100%; /* Positionne juste en dessous de la circle-container */
-  left: 0; /* Aligne à gauche */
-  z-index: 1000; /* Assure que le select est au-dessus */
-}
 
-mat-icon {
-  width: 50px;
-  height: 30px;
-}
 
 .circle {
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* font-size: 16px; */
   transition: background-color 0.3s ease;
 }
 
@@ -105,22 +38,4 @@ mat-icon {
   font-size: 12px;
   color: #ffffff;
   text-align: center;
-}
-
-.tab-navigation.style1,
-.tab-navigation.style3,
-.tab-navigation.style4,
-.tab-navigation.style5 {
-  margin-right: 460px;
-  margin-left: 350px;
-}
-
-.tab-navigation.style2,
-.tab-navigation.style6 {
-  margin-right: 395px;
-  margin-left: 400px;
-}
-
-.tab-navigation.style0 {
-  margin-left: 450px;
 }

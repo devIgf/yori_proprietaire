@@ -5,6 +5,10 @@
   background-color: rgba(250, 250, 250, 1);
 }
 
+.top{
+  width: 93%;
+}
+
 .first {
   display: flex;
   flex-direction: column;
@@ -13,29 +17,18 @@
   text-align: center;
 }
 
-.filtre {
-  display: flex;
-  flex-direction: column; /* Les labels et inputs sont en colonnes */
-  align-items: flex-start; /* Aligne les éléments au début */
-  /* margin-bottom: 20px;  */
-  /* Espacement sous le filtre */
-  margin-left: 30px;
-}
+
 
 .titre {
-  display: flex;
-  flex-direction: column;
   text-align: left;
-  /* margin-left: 15px; */
+  width: 100%;
 }
 
 .inputs {
-  margin-left: -30px;
-  display: flex; /* Aligne les inputs sur la même ligne */
-  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
-  gap: 20px; /* Espacement entre les inputs */
-  margin-top: 10px; /* Espacement au-dessus des inputs */
-  width: 100%;
+  display: flex; 
+  gap: 20px; 
+  margin-top: 10px; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .labels {
@@ -56,22 +49,22 @@
   color: white;
   border: solid rgba(13, 13, 197, 0.8);
   height: 30px;
+  cursor: pointer;
+}
+
+.voir:hover{
+  background-color: rgb(255, 255, 255);
+  color: rgba(13, 13, 197, 0.8);
 }
 
 .table {
   border-collapse: collapse;
-  margin-left: 35px;
-  margin-top: 0px;
+  /* margin-left: 35px; */
   font-size: 0.9em;
-  font-family: sans-serif;
-  min-width: 400px;
-  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
   border: 2px solid lightgray;
   background-color: white;
-  width: 95%; /* Utiliser 100% pour prendre toute la largeur disponible */
-  height: auto;
-  overflow-x: auto;
-  table-layout: auto; /* Utiliser auto pour permettre aux colonnes de s'ajuster */
+  /* overflow-x: auto; */
+  /* table-layout: auto; */
 }
 
 .table2 {
@@ -108,7 +101,7 @@
   display: inline-flex; /* Utilise flexbox pour aligner horizontalement */
   align-items: center; /* Aligne verticalement l'icône et le texte */
   background-color: initial; /* Exemple de couleur de fond pour le bouton */
-  padding: 8px 16px; /* Espacement interne du bouton */
+  padding: 8px 10px; /* Espacement interne du bouton */
   border: none; /* Enlève la bordure du bouton */
   cursor: pointer; /* Change le curseur lorsque la souris est dessus */
   text-decoration: underline;
@@ -138,12 +131,12 @@
 
 .table th,
 .table td {
-  padding: 10px; /* Ajoute un espacement interne */
+  padding-left: 0.5%; /* Ajoute un espacement interne */
   text-align: left; /* Aligne le texte à gauche */
 }
 
 .table th {
-  width: 130px; /* Ajustez la largeur selon vos besoins */
+  width: 15%; /* Ajustez la largeur selon vos besoins */
 }
 
 .table tr {
@@ -152,7 +145,7 @@
 
 .table-responsive {
   overflow-x: auto; /* Permet le défilement horizontal */
-  width: 100%; /* Assure que le conteneur prend toute la largeur */
+  width: 93%; 
 }
 
 .open-div2 {
@@ -163,24 +156,17 @@
 
 .resultats-info {
   display: flex;
-  gap: 920px;
+  justify-content: space-between;
   margin-left: 0px;
   margin-top: 30px;
-  width: 100%;
-}
-
-.totaux {
-  width: 100%;
-  background-color: white;
-  display: flex;
-  gap: 160px;
-  justify-content: center;
 }
 
 .btn-pag {
   color: rgba(13, 13, 197, 0.8);
   border: none;
   background-color: initial;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .btn-pag [disabled] {
@@ -217,9 +203,9 @@ a {
 }
 
 .checkbox-item {
-  display: flex; /* Utilise flex pour aligner les checkboxes avec leur texte */
-  align-items: center; /* Aligne verticalement l'input et le texte */
-  margin-bottom: 10px; /* Espacement entre chaque checkbox */
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 10px; 
   justify-content: flex-start;
 }
 
@@ -229,6 +215,12 @@ a {
   background-color: white;
   width: 129px;
   height: 30px;
+  cursor: pointer;
+}
+
+.select:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgba(13, 13, 197, 0.8);
 }
 
 .select1 {
@@ -243,7 +235,6 @@ a {
   width: 100%;
   background-color: white;
   border: 2px solid lightgray;
-  margin-left: -30px;
 }
 
 .title {
@@ -255,8 +246,8 @@ a {
 .checkbox-container {
   background-color: initial;
   display: block;
-  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
-  gap: 15px; /* Espacement entre les cases à cocher */
+  flex-wrap: wrap; 
+  gap: 15px;
   justify-content: flex-start;
   width: 20%;
   margin: 15px;
@@ -271,16 +262,13 @@ a {
 
 .checkbox-item {
   display: flex;
-  align-items: center; /* Aligne les cases et les labels au même niveau */
+  align-items: center;
   font-size: 14px;
 }
 
 .checkbox-item input[type="checkbox"] {
-  margin-right: 8px; /* Espacement entre la case à cocher et le texte */
+  margin-right: 8px; 
 }
-
-/* <<<<<<< HEAD */
-/* ======= */
 
 .table2 {
   width: 95%;
@@ -312,8 +300,8 @@ a {
   padding: 16px;
   max-height: calc(
     5 * (100px + 16px)
-  ); /* Exemple avec une hauteur de ligne de 100px */
-  overflow-y: auto; /* Active le défilement vertical */
+  ); 
+  overflow-y: auto; 
 }
 
 .image-gallery1 img {
@@ -422,59 +410,6 @@ a {
   display: flex;
   align-items: center;
 }
-
-@media (max-width: 768px) {
-  .inputs {
-    flex-direction: column; /* Empile les éléments sur les petits écrans */
-  }
-
-  .resultats-info {
-    gap: 0;
-    flex-direction: column; /* Empile les informations sur les petits écrans */
-    align-items: flex-start; /* Aligne à gauche */
-    margin: 0;
-  }
-
-  .table th:nth-child(5), /* Cacher la colonne "Réservé le" */
-  .table td:nth-child(5) {
-    display: none;
-  }
-
-  .table th:nth-child(7), /* Cacher la colonne "Tarif" */
-  .table td:nth-child(7) {
-    display: none;
-  }
-
-  .table th:nth-child(8), /* Cacher la colonne "Commission" */
-  .table td:nth-child(8) {
-    display: none;
-  }
-
-  .resultats-info {
-    display: flex;
-  }
-
-  .printPage {
-    margin-left: 20rem;
-  }
-
-  .printPage2 {
-    padding-left: 30px;
-    padding-top: 30px;
-  }
-
-  .span {
-    margin: 0;
-  }
-
-  .table2 {
-    width: 90%;
-  }
-  .bloquage {
-    display: flex;
-  }
-}
-
 
 .fas{
   font-size: 15px;color: yellow
@@ -585,11 +520,7 @@ a {
   margin-left: 390px;
   border: none;
   background-color: #ffffff;
-  /* <<<<<<< HEAD */
   z-index: 50;
-  /* =======
-  z-index: 20; */
-  /* >>>>>>> master */
   border-radius: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -610,7 +541,6 @@ a {
   color: rgba(13, 13, 197, 0.8);
 }
 
-/* <<<<<<< HEAD */
 
 .bloquage {
   display: flex;
@@ -659,9 +589,6 @@ a {
   gap: 30px;
 }
 
-/***********************************/
-
-/* juste monace  */
 .div2 {
   background: #fff;
   width: 80%;
@@ -730,7 +657,7 @@ ul {
 }
 
 .sidenav-link-icon {
-  margin-right: 10px; /* Espacement entre l'icône et le texte */
+  margin-right: 10px; 
 }
 
 .active {
@@ -780,7 +707,9 @@ ul {
   text-align: center; /* Centrer le contenu horizontalement */
 }
 .pagination {
-  gap: 500px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
 }
 #onglet1 {
   width: 96%;
@@ -789,4 +718,66 @@ ul {
 }
 .geo {
   margin-top: 30px;
+}
+
+
+.gauche{
+  display: flex;
+}
+
+
+
+@media (max-width: 768px) {
+
+  .top{
+    width: 103%;
+  }
+
+  .table-responsive {
+    overflow-x: auto; /* Permet le défilement horizontal */
+    width: 103%; 
+  }  
+
+  .table{
+    width: 100%;
+    font-size: 12px;
+  }
+
+
+  .btn-pag{
+    font-size: 10px;
+  }
+
+
+  .table th,
+  .table td {
+    padding-left: 2%; /* Ajoute un espacement interne */
+  }
+
+  .inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+
+  .printPage2 {
+    padding-left: 30px;
+    padding-top: 30px;
+  }
+
+  .span {
+    margin: 0;
+  }
+
+  .table2 {
+    width: 90%;
+  }
+  .bloquage {
+    display: flex;
+  }
+
+  .droit{
+    margin-right: 25px;
+  }
+
 }

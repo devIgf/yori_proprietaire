@@ -1,8 +1,8 @@
-    <div class="tab-container">
+    <div class="tab-container"> 
       <mat-tab-group [(selectedIndex)]="activeTabIndex" (selectedTabChange)="onTabChange($event)">
         <mat-tab>
           <ng-template mat-tab-label class="ng-template">
-            <div class="circle-container">
+            <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 0 }">
               <div class="circle" ><mat-icon>home</mat-icon></div>
               <div class="circle-title">Accueil</div>
             </div>
@@ -12,7 +12,7 @@
 
     <mat-tab>
       <ng-template mat-tab-label class="ng-template">
-        <div class="circle-container">
+        <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 1 }">
           <div class="circle"><mat-icon> description</mat-icon></div>
           <div class="circle-title">Comptes propriétaires</div>
         </div>
@@ -22,7 +22,7 @@
 
     <mat-tab>
       <ng-template mat-tab-label class="ng-template">
-        <div class="circle-container">
+        <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 2 }">
           <div class="circle">
             <mat-icon>mail_outline</mat-icon>
           </div>
@@ -34,7 +34,7 @@
 
     <mat-tab>
       <ng-template mat-tab-label class="ng-template">
-        <div class="circle-container">
+        <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 3 }">
           <div class="circle">
             <mat-icon>notifications_active</mat-icon>
           </div>
@@ -46,7 +46,7 @@
 
     <mat-tab>
       <ng-template mat-tab-label class="ng-template">
-        <div class="circle-container">
+        <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 4 }">
           <div class="circle"><mat-icon>receipt_long</mat-icon></div>
           <div class="circle-title">Factures</div>
         </div>
@@ -55,7 +55,7 @@
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label class="ng-template">
-        <div class="circle-container">
+        <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 5 }">
           <div class="circle"><mat-icon>trending_up</mat-icon></div>
           <div class="circle-title">Analyse</div>
         </div>

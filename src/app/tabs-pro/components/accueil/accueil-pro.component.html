@@ -1,8 +1,7 @@
 <div class="container">
   <div class="first" *ngIf="!showDetails">
-    <div>
+    <div class="top">
       <h2 class="titre">Accueil</h2>
-      <div class="filtre">
         <div class="inputs">
           <div class="labels">
             <label for="statut">Aperçu</label><br />
@@ -19,20 +18,16 @@
             <br />
 
             <select
-              id="sousStatut"
-              *ngIf="selectedStatut !== 'Vue d\'ensemble'"
-              [(ngModel)]="selectedSousStatut"
-            >
-              <option
-                *ngFor="let sousStatut of sousStatuts[selectedStatut]"
-                [value]="sousStatut"
-              >
-                {{ sousStatut }}
-              </option>
-              <option *ngIf="!sousStatuts[selectedStatut]?.length" disabled>
-                Sélectionnez d'abord un statut
-              </option>
-            </select>
+            id="sousStatut"
+            *ngIf="selectedStatut !== 'Vue d\'ensemble'"
+            [(ngModel)]="selectedSousStatut"
+          >
+            <!-- <option value="Tous les types">Tous les types</option> -->
+            <option *ngFor="let sousStatut of sousStatuts[selectedStatut]" [value]="sousStatut">
+              {{ sousStatut }}
+            </option>
+          </select>
+          
           </div>
           <div class="labels">
             <label for="pays">Région</label><br />
@@ -81,26 +76,20 @@
             <button type="button" class="voir">Voir les résultats</button>
           </div>
         </div>
+
         <div *ngIf="openFiltre" class="checkbox">
           <div class="checkbox-container">
             <div class="title">
               <label for="">Statut des établissements</label>
             </div>
-            <label class="checkbox-item">
-              <input type="checkbox" id="tous" /> Nouveau(x)
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" id="reservation" /> Ancien(s)
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" id="arrivees" /> Suspendu(s) temporairement
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" id="departures" /> Supprimé(s)
-              définitivement
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" id="sejour-en-cours" /> Fermé(s)
+            <label class="checkbox-item" *ngFor="let statut of statutsOptions">
+              <input 
+                type="checkbox" 
+                [id]="statut.id" 
+                [checked]="selectedStatuts.includes(statut.id)"
+                (change)="toggleStatut(statut.id)"
+              />
+              {{ statut.label }}
             </label>
           </div>
           <div class="all-search">
@@ -117,16 +106,19 @@
             </div>
           </div>
         </div>
-      </div>
+       
+
       <div class="resultats-info">
         <div>
           {{ selectedStatut }}
           ({{ getClientsFiltres().length }})
         </div>
-        <button class="printPage" (click)="printPage()">
-          <mat-icon> print </mat-icon>
-          Imprimer la liste des réservations
-        </button>
+        <div>
+          <button class="printPage" (click)="printPage()">
+            <mat-icon> print </mat-icon>
+            Imprimer 
+          </button>
+        </div>
       </div>
     </div>
 
@@ -145,7 +137,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let client of paginatedClients">
-            <td class="td1" style="color: #77b5fe">{{ client.nom }}</td>
+            <td class="td1 style-5">{{ client.nom }}</td>
             <td class="td1" id="pays_structure">
               {{ client.pays }}
               <img
@@ -166,7 +158,6 @@
             </td>
             <td>
               <a class="open-div2" (click)="afficherDetails(client)">
-                <!-- {{ client.id }} -->
                 voir plus
               </a>
             </td>
@@ -174,12 +165,13 @@
           <tr>
             <td colspan="10" class="td-pag">
               <div class="pagination">
-                <button
+                <div class="gauche">
+                  <button
                   class="btn-pag"
                   (click)="goToPage(currentPage - 1)"
                   [disabled]="currentPage === 1"
                 >
-                  &lt; Précédent</button
+                  Précédent</button
                 >|
                 <span>Page</span>
                 |<button
@@ -187,9 +179,12 @@
                   (click)="goToPage(currentPage + 1)"
                   [disabled]="currentPage === totalPages"
                 >
-                  Suivant &gt;
+                  Suivant
                 </button>
-                <select
+                </div>
+
+                <div class="droit">
+                  <select
                   id="itemsPerPage"
                   (change)="onItemsPerPageChange($event)"
                 >
@@ -200,6 +195,7 @@
                     Afficher {{ option }} réservations
                   </option>
                 </select>
+                </div>
               </div>
             </td>
           </tr>

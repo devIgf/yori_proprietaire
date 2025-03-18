@@ -9,25 +9,10 @@ import { InelComponent } from '../inel/inel.component';
 import { AmourComponent } from '../amour/amour.component';
 import { ClaudelComponent } from '../claudel/claudel.component';
 import { FransdaComponent } from '../fransda/fransda.component';
+import { Client } from '../../../interfaces/Client';
+import { Comment } from '../../../interfaces/Comment';
 
-interface Client {
-  id: number;
-  nom: string;
-  pays: string;
-  statut: string;
-  type_propriete: string;
-  duree: string;
-  evaluation: string;
-}
 
-export interface Comment {
-  id: number;
-  userId: string; // Identifiant de l'utilisateur
-  content: string;
-  createdDate: Date;
-  rating: number; // Appréciation entre 1 et 5
-  replies: Comment[];
-}
 
 @Component({
   selector: 'app-accueil-pro',
@@ -196,6 +181,24 @@ export class AccueilProComponent implements OnInit {
     },
   ];
 
+  statutsOptions = [
+    { id: 'tous', label: 'Nouveau(x)' },
+    { id: 'reservation', label: 'Ancien(s)' },
+    { id: 'arrivees', label: 'Suspendu(s) temporairement' },
+    { id: 'departures', label: 'Supprimé(s) définitivement' },
+    { id: 'sejour-en-cours', label: 'Fermé(s)' }
+  ];
+
+  toggleStatut(statutId: string): void {
+    if (this.selectedStatuts.includes(statutId)) {
+      this.selectedStatuts = this.selectedStatuts.filter(id => id !== statutId);
+    } else {
+      this.selectedStatuts.push(statutId);
+    }
+  }
+  
+  
+
   statutsFiltres: string[] = ["Vue d'ensemble", 'Hotellerrie', 'Tourisme'];
   selectedStatut: string = "Vue d'ensemble"; // Valeur par défaut
   showMap = false;
@@ -276,9 +279,9 @@ export class AccueilProComponent implements OnInit {
   }
 
   sousStatuts: { [key: string]: string[] } = {
-    Hotellerrie: ['Hotel (s)', 'Motel (s)', 'Appartement (s)'],
+    Hotellerrie: ['Tous les types','Hotel', 'Motel', 'Appartement'],
     Tourisme: [
-      'Autres',
+      'Tous les types',
       'Randonnés',
       'Parcs',
       'Campings',
@@ -317,11 +320,14 @@ export class AccueilProComponent implements OnInit {
     this.initializeDurationFilters();
   }
 
-  onStatutChange() {
-    // Réinitialiser la sélection du sous-statut lorsque le statut change
-    this.selectedSousStatut = this.sousStatuts[this.selectedStatut]?.[0] || '';
+  onStatutChange(): void {
+    if (this.selectedStatut === "Vue d'ensemble") {
+      this.selectedSousStatut = "";
+    } else {
+      this.selectedSousStatut = "Tous les types"; // Valeur par défaut
+    }
   }
-
+  
   initializeCountryFilters() {
     const uniqueCountries = new Set(this.clients.map((client) => client.pays));
     this.paysFiltres.push(...Array.from(uniqueCountries));
@@ -335,21 +341,30 @@ export class AccueilProComponent implements OnInit {
   get filteredClients() {
     return this.clients.filter((client) => {
       const matchesPays =
-        this.selectedPays === 'Tous les pays' ||
-        client.pays === this.selectedPays;
+        this.selectedPays === 'Tous les pays' || client.pays === this.selectedPays;
       const matchesEvaluation =
-        this.selectedEvaluation === 'Tout grouper' ||
-        client.evaluation === this.selectedEvaluation;
+        this.selectedEvaluation === 'Tout grouper' || client.evaluation === this.selectedEvaluation;
       const matchesDuree =
-        this.selectedDuree === 'Tous les années' ||
-        client.duree === this.selectedDuree;
-
-      return matchesPays && matchesEvaluation && matchesDuree;
-      // return matchesPays && matchesEvaluation;
+        this.selectedDuree === 'Tous les années' || client.duree === this.selectedDuree;
+      
+       // Filtre par statut
+      const matchesStatut = 
+        this.selectedStatut === "Vue d'ensemble" || 
+        client.statut === this.selectedStatut;
+  
+      // Filtre par sous-statut (UNIQUEMENT si un statut spécifique est sélectionné)
+      const matchesSousStatut = 
+        this.selectedStatut === "Vue d'ensemble" || // Ignore si "Vue d'ensemble"
+        this.selectedSousStatut === "Tous les types" || 
+        client.type_propriete === this.selectedSousStatut;
+  
+      return matchesPays && matchesEvaluation && matchesDuree && matchesStatut && matchesSousStatut;
     });
   }
+  
 
-  selectedSousStatut: string = ''; // Initialiser comme une chaîne vide
+
+  selectedSousStatut: string ="";  // Initialiser comme une chaîne vide
   filterPays: string = ''; // Propriété pour le filtre
   dateDebut: string = '';
   dateFin: string = '';
@@ -512,3 +527,19 @@ export class AccueilProComponent implements OnInit {
     }
   }
 }
+
+
+
+
+// get filteredClients() {
+//   return this.clients.filter((client) => {
+//     // ... Autres conditions de filtre ...
+
+//     // Filtre par statut
+//     const matchesStatut = 
+//       this.selectedStatuts.length === 0 || // Si aucun statut n'est sélectionné
+//       this.selectedStatuts.includes(client.statut); // Sinon, vérifie si le statut est dans la liste
+
+//     return matchesPays && matchesEvaluation && matchesDuree && matchesStatut;
+//   });
+// }
