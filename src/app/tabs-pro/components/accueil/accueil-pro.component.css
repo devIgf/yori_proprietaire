@@ -846,4 +846,14 @@ ul {
     flex-direction: column;
   }
 
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 8px;
+    max-height: calc(
+      3 * (100px + 16px)
+    ); 
+    overflow-y: auto; 
+  }
+
 }
