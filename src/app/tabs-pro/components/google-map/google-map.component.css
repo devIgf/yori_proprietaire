@@ -1,0 +1,6 @@
+#map {
+    display: block; /* Assurez que le composant occupe tout l'espace */
+    height: 43vh;
+    width: 100%;
+    border-radius: 5px;
+}

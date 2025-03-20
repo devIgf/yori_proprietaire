@@ -411,9 +411,9 @@
         </div>
 
         <div class="container-mat-group">
-          <mat-tab-group
+          <mat-tab-group (selectedTabChange)="onTabChange($event)"
            class="tab-group"
-            (selectedTabChange)="onTabChange($event)"
+            
           >
             <mat-tab label="Information sur l'établissements" class="container-info">
               <div
@@ -559,9 +559,9 @@
             </mat-tab>
 
             <mat-tab label="Géolocalisation">
-              <div class="geo">
-                <app-map *ngIf="!showMap"></app-map>
-              </div>
+              <div>
+                 <app-google-map></app-google-map>
+               </div>
             </mat-tab>
 
             <mat-tab label="Avis">
