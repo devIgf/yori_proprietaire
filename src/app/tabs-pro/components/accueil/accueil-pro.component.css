@@ -67,13 +67,18 @@
   /* table-layout: auto; */
 }
 
+.container-table2{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .table2 {
-  border: 2px solid lightgray;
-  border-collapse: collapse; /* Pour éviter les espaces entre les cellules */
-  width: 100%; /* Si vous voulez que le tableau prenne toute la largeur */
-  height: 518px;
-  margin-top: 30px;
-  background-color: white;
+  border: 1px solid rgb(0, 0, 0);
+  border-collapse: collapse; 
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgb(255, 255, 255);
 }
 
 .table2 td {
@@ -270,9 +275,6 @@ a {
   margin-right: 8px; 
 }
 
-.table2 {
-  width: 95%;
-}
 
 .fact-annulee {
   background-color: #ffeded;
@@ -419,8 +421,7 @@ a {
 .discuter {
   display: flex;
   justify-content: space-between;
-  width: 38%;
-  margin-left: 30px;
+  width: 40%;
   margin-top: 20px;
 }
 #input-container {
@@ -436,13 +437,26 @@ a {
   transform: translateY(-50%);
   cursor: pointer;
 }
+
+
 .envoi {
-  padding: 10px;
-}
-#bloquer {
-  padding: 10px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  background-color:white;
+  border: 0.5px solid black;
   cursor: pointer;
 }
+
+.envoi:hover{
+  background-color: rgba(13, 13, 197, 0.8);
+  color: white;
+}
+
+.envoi mat-icon {
+  margin-left: 5px; /* Ajuste l'espace entre le texte et l'icône */
+}
+
 .supprimer-btn {
   padding: 10px;
   background-color: rgba(13, 13, 197, 0.8);
@@ -450,15 +464,22 @@ a {
   border: none;
   cursor: pointer;
 }
+
+.supprimer-btn:hover{
+  color: rgba(13, 13, 197, 0.8);
+  background-color: white;
+  border: 0.5px solid rgba(13, 13, 197, 0.8);
+}
+
 .dialogueMessage {
   position: absolute;
-  width: 701px;
-  height: 488px;
-  margin-top: -100px;
-  margin-left: 290px;
+  width: 45%;
+  height: 55%;
+  /* margin-top: -100px;
+  margin-left: 290px; */
   border: none;
   background-color: #ffffff;
-  z-index: 20;
+  z-index: 10;
   border-radius: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -514,10 +535,8 @@ a {
 }
 .dialogueMessageEnvoye {
   position: absolute;
-  width: 580px;
-  height: 250px;
-  margin-top: -100px;
-  margin-left: 390px;
+  width: 40%;
+  height: 30%;
   border: none;
   background-color: #ffffff;
   z-index: 50;
@@ -544,11 +563,17 @@ a {
 
 .bloquage {
   display: flex;
-  width: 90%;
-  background-color: #f3f3f3;
+  width: 38%;
+  background-color: #d8d8d8;
   padding-left: 30px;
-  margin-left: 30px;
+  margin-top: 10px;
 }
+
+.group-message{
+  display: flex;
+  justify-content: center;
+}
+
 .radioBloquer {
   display: flex;
   gap: 10px;
@@ -560,6 +585,21 @@ a {
 #confirmerSuppr {
   text-align: center;
 }
+
+.btn-del{
+  padding: 10px;
+  background-color: rgba(13, 13, 197, 0.8);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-del:hover{
+  background-color: white;
+  color: rgba(13, 13, 197, 0.8);
+  border: 0.5px solid black;
+}
+
 .boutonValiderAnnulerSuppression {
   display: flex;
   justify-content: center;
@@ -574,14 +614,19 @@ a {
   cursor: pointer;
   border-radius: 10px;
 }
+
+.annuler-btn:hover {
+  background-color: rgba(13, 13, 197, 0.8);
+  color: white;
+}
+
 #valider-suppr {
   border-radius: 10px;
 }
 .notificationBlocage {
   background-color: white;
   margin-top: 10px;
-  margin-left: 30px;
-  width: 95%;
+  width: 100%;
   height: 50px;
   padding: 5px;
   align-items: center;
@@ -698,7 +743,7 @@ ul {
   gap: 5px;
 }
 .Nom_proprietaire {
-  font-size: x-large;
+  font-size: 20px;
 }
 .td1,
 .head1 {
@@ -712,9 +757,7 @@ ul {
   margin: 5px 0;
 }
 #onglet1 {
-  width: 96%;
-  margin: auto;
-  margin-top: -10px;
+  width: 95%;
 }
 .geo {
   margin-top: 30px;
@@ -726,6 +769,25 @@ ul {
 }
 
 
+.bold{
+  font-weight: bold;
+  font-size: 13px;
+}
+
+
+/* .container-mat-group{
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+} */
+
+
+/* .tab-group{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  background-color: red;
+} */
 
 @media (max-width: 768px) {
 
@@ -778,6 +840,10 @@ ul {
 
   .droit{
     margin-right: 25px;
+  }
+
+  .discuter {
+    flex-direction: column;
   }
 
 }
