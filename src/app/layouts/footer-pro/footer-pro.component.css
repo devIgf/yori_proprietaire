@@ -40,7 +40,6 @@ p {
   color: white;
 }
 
-/* Media Queries pour la responsivité */
 @media (max-width: 768px) {
   .top {
     flex-direction: column; /* Empile les éléments en colonne sur petits écrans */

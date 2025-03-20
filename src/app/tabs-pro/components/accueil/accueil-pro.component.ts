@@ -71,7 +71,7 @@ export class AccueilProComponent implements OnInit {
       nom: 'Lucie Aubrac',
       statut: 'Tourisme',
       duree: '5 jours',
-      pays: 'RDC',
+      pays: 'Congo',
       type_propriete: '',
       evaluation: 'Mauvais',
       id: 5,

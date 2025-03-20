@@ -216,48 +216,12 @@
     <div class="discuter">
       <div>
         <div>Discuter</div>
-        <div id="input-container">
-          <input
-            type="text"
-            (click)="toogleMessage()"
-            placeholder="Envoyer un message"
-            class="envoi"
-          />
-          <mat-icon>send</mat-icon>
-        </div>
-      </div>
-
-      <div *ngIf="dialogueMessage" class="dialogueMessage">
-        <div class="entete-message">
-          <div>Nouveau message</div>
-          <div class="fermerMessage" (click)="toogleMessage()">X</div>
-        </div>
-        <div class="corpsMessage">
-          <div class="ligne"></div>
-          <input
-            type="text"
-            placeholder="À  Hotel luis viton de sotéga"
-            class="destinataire"
-          />
-          <div class="ligne"></div>
-          <div class="objectif">
-            <p>Objectif</p>
-            <input type="text" placeholder="" class="destinataire" />
-          </div>
-          <div class="ligne"></div>
-          <Textarea class="zoneMessage">
-            Bonjour comment vous allez...
-          </Textarea>
-        </div>
-        <div class="soummettreMessage">
-          <div><i class="fa-solid fa-link" id="logoLien"></i></div>
-
-          <button
-            class="supprimer-btn"
-            id="envoi-btn"
-            (click)="messageenvoye()"
-          >
-            Envoyer
+        <div id="">
+          <button 
+          type="button"
+          (click)="toogleMessage()"
+          class="envoi">
+          Envoyer un message <mat-icon>send</mat-icon>
           </button>
         </div>
       </div>
@@ -265,19 +229,16 @@
       <div>
         <div>Bloquer</div>
         <div>
-          <select
-            name="bloquer"
-            id="bloquer"
-            (click)="estBloqueEtablissement()"
-          >
-            <option value="Temporairement">Temporairement</option>
-          </select>
+          <button class="envoi"
+          (click)="estBloqueEtablissement()">
+          Temporairement <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
         </div>
       </div>
       <div>
         <div>Définitivement</div>
         <div>
-          <button class="supprimer-btn" (click)="estSupprimeEtablissement()">
+          <button class="btn-del" (click)="estSupprimeEtablissement()">
             Supprimer l'établissement
           </button>
         </div>
@@ -355,52 +316,89 @@
       </div>
     </div>
 
-    <div *ngIf="messagebloque" class="notificationBlocage" id="message">
-      <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
-      <p class="notificationBlocageContent">{{ messagebloque }}</p>
-    </div>
-
-    <div *ngIf="dialogueMessageEnvoye" class="dialogueMessageEnvoye">
-      <div class="fermerMessageEnvoye" (click)="fermerMessageenvoye()">X</div>
-      <div class="containerSuccesMesssage">
-        <div><i class="fa-regular fa-circle-check" id="logoCheck"></i></div>
-        <h3>Message envoyé .</h3>
-        <p>Votre message a été envoyé avec succès</p>
-      </div>
-    </div>
-
-    <div class="dialogueMessageEnvoye" *ngIf="estSupprimer" id="confirmerSuppr">
-      <div><i class="fa-solid fa-trash-can" id="logoCheck"></i></div>
-      <h3>SUPPRIMER</h3>
-      <p>
-        « Voulez-vous supprimer cet établissement ? Si oui, appuyez sur
-        "Valider". »
-      </p>
-
-      <div class="boutonValiderAnnulerSuppression">
-        <div>
-          <button class="annuler-btn" (click)="estSupprimeEtablissement()">
-            Annuler
-          </button>
+    <div class="group-message">
+      
+      <div *ngIf="dialogueMessage" class="dialogueMessage">
+        <div class="entete-message">
+          <div>Nouveau message</div>
+          <div class="fermerMessage" (click)="toogleMessage()">X</div>
         </div>
-        <div>
+        <div class="corpsMessage">
+          <div class="ligne"></div>
+          <input
+            type="text"
+            placeholder="À  Hotel luis viton de sotéga"
+            class="destinataire"
+          />
+          <div class="ligne"></div>
+          <div class="objectif">
+            <input type="text" placeholder="Objet:" class="destinataire"/>
+          </div>
+          <div class="ligne"></div>
+          <Textarea class="zoneMessage" placeholder="Entrer votre message">
+          
+          </Textarea>
+        </div>
+        <div class="soummettreMessage">
+          <div><i class="fa-solid fa-link" id="logoLien"></i></div>
+
           <button
             class="supprimer-btn"
-            id="valider-suppr"
-            (click)="afficherNotifSuppr()"
+            id="envoi-btn"
+            (click)="messageenvoye()"
           >
-            Valider
+            Envoyer
           </button>
         </div>
       </div>
-    </div>
 
-    <div class="notificationBlocage" id="notifSuppr" *ngIf="validerSuppr">
-      <i class="fa-solid fa-trash-can" id="logoExclamation"></i>
-      <p>
-        <b>Etablissement supprimé</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; le
-        {{ dateAujourdhui }}
-      </p>
+      <div *ngIf="messagebloque" class="notificationBlocage" id="message">
+        <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
+        <p class="notificationBlocageContent">{{ messagebloque }}</p>
+      </div>
+  
+      <div *ngIf="dialogueMessageEnvoye" class="dialogueMessageEnvoye">
+        <div class="fermerMessageEnvoye" (click)="fermerMessageenvoye()">X</div>
+        <div class="containerSuccesMesssage">
+          <div><i class="fa-regular fa-circle-check" id="logoCheck"></i></div>
+          <h3>Message envoyé .</h3>
+          <p>Votre message a été envoyé avec succès</p>
+        </div>
+      </div>
+  
+      <div class="dialogueMessageEnvoye" *ngIf="estSupprimer" id="confirmerSuppr">
+        <div><i class="fa-solid fa-trash-can" id="logoCheck"></i></div>
+        <h3>SUPPRIMER</h3>
+        <p>
+          « Voulez-vous supprimer cet établissement ? Si oui, appuyez sur
+          "Valider". »
+        </p>
+  
+        <div class="boutonValiderAnnulerSuppression">
+          <div>
+            <button class="annuler-btn" (click)="estSupprimeEtablissement()">
+              Annuler
+            </button>
+          </div>
+          <div>
+            <button
+              class="supprimer-btn"
+              id="valider-suppr"
+              (click)="afficherNotifSuppr()"
+            >
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="notificationBlocage" id="notifSuppr" *ngIf="validerSuppr">
+        <i class="fa-solid fa-trash-can" id="logoExclamation"></i>
+        <p>
+          <b>Etablissement supprimé</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; le
+          {{ dateAujourdhui }}
+        </p>
+      </div>
     </div>
 
     <div>
@@ -412,13 +410,12 @@
           </button>
         </div>
 
-        <div>
+        <div class="container-mat-group">
           <mat-tab-group
-            id="onglet1"
-            class="fixed-width"
+           class="tab-group"
             (selectedTabChange)="onTabChange($event)"
           >
-            <mat-tab label="Information sur l'établissements">
+            <mat-tab label="Information sur l'établissements" class="container-info">
               <div
                 *ngIf="selectedClient.evaluation == 'Mauvais'"
                 class="fact-annulee"
@@ -426,131 +423,120 @@
                 <mat-icon style="color: brown"> error </mat-icon>
                 Fermeture de l'établissement
               </div>
-              <!-- <div *ngIf="selectedClient.evaluation == 'Mauvais'" class="fact-annulee">
-                        <mat-icon style="color: brown;">
-                            error
-                        </mat-icon>
-                        Fermeture de l'établissement
-                    </div> -->
-              <!-- <div *ngIf="selectedClient.evaluation == 'Mauvais'" class="fact-annulee">
-                        <mat-icon style="color: brown;">
-                            error
-                        </mat-icon>
-                        Fermeture de l'établissement
-                    </div> -->
-              <table class="table2">
-                <tr>
-                  <td colspan="3">Nom du propriétaire</td>
-                </tr>
-                <tr>
-                  <td colspan="3">
-                    <!-- <b>ELOKO SAMA JOSPH WILLIAM</b> -->
-                    <b class="Nom_proprietaire">{{ selectedClient.nom }}</b>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3">
-                    <a href="">Information sur le propriétaire</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Nom de l'établissement:</td>
-                  <td>Evaluation :</td>
-                  <td>Quartier :</td>
-                </tr>
-                <tr>
-                  <td>
-                    <b class="Nom_proprietaire">{{ selectedClient.nom }}</b>
-                  </td>
-                  <td
-                    [ngStyle]="{
-                      color:
-                        selectedClient.evaluation === 'Mauvais'
-                          ? 'red'
-                          : 'black'
-                    }"
-                  >
-                    <b class="Nom_proprietaire">{{
-                      selectedClient.evaluation
-                    }}</b>
-                  </td>
-                  <td>Sotéga</td>
-                </tr>
-                <tr>
-                  <td>Service</td>
-                  <td>Nombre d'étoile possedé</td>
-                  <td>Langue(s) parlée(s)</td>
-                </tr>
-                <tr>
-                  <td>
-                    <b class="Nom_proprietaire">{{ selectedClient.statut }}</b>
-                  </td>
-                  <td>
-                    <b class="Nom_proprietaire"
-                      >3 étoiles
-                      <i class="fas fa-star"></i
-                      ><i class="fas fa-star"></i
-                      ><i class="fas fa-star"></i
-                    ></b>
-                  </td>
-                  <td>français, anglais, espagnol</td>
-                </tr>
-                <tr>
-                  <td>Type de propriété</td>
-                  <td>Nombre des offres</td>
-                  <td>Numéro de la structure</td>
-                </tr>
-                <tr>
-                  <td>
-                    <b class="Nom_proprietaire">{{
-                      selectedClient.type_propriete
-                    }}</b>
-                  </td>
-                  <td><b class="Nom_proprietaire">4</b></td>
-                  <td>7407389081</td>
-                </tr>
-                <tr>
-                  <td>Date d'inscription</td>
-                  <td>Pays/Region</td>
-                  <td>Mode de paiement</td>
-                </tr>
-                <tr>
-                  <td><b class="Nom_proprietaire">dim.19 juil 2022</b></td>
-                  <td class="td1" class="pays_structure">
-                    {{ selectedClient.pays }}
-                    <img
-                      [src]="'assets/flags/' + selectedClient.pays + '.png'"
-                      alt="{{ selectedClient.pays }} flag"
-                      class="pays"
-                    />
-                  </td>
-                  <td>
-                    <ul
-                      style="
-                        display: flex;
-                        list-style-type: none;
-                        padding: 0;
-                        margin: 0;
-                        gap: 10px;
-                      "
+              <div class="container-table2">
+                <table class="table2">
+                  <tr>
+                    <td colspan="3">Nom du propriétaire:</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">
+                      <b class="Nom_proprietaire">{{ selectedClient.nom }}</b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="bold">
+                      <a href="">Information sur le propriétaire:</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nom de l'établissement:</td>
+                    <td>Evaluation :</td>
+                    <td>Quartier :</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b class="Nom_proprietaire">{{ selectedClient.nom }}</b>
+                    </td>
+                    <td
+                      [ngStyle]="{
+                        color:
+                          selectedClient.evaluation === 'Mauvais'
+                            ? 'red'
+                            : 'black'
+                      }"
                     >
-                      <li>paysing</li>
-                      <li>paysing</li>
-                      <li>paysing</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Durée sur yori</td>
-                  <td>Ville</td>
-                </tr>
-                <tr>
-                  <td>
-                    <b class="Nom_proprietaire">{{ selectedClient.duree }}</b>
-                  </td>
-                  <td><b>Libreville</b></td>
-                </tr>
-              </table>
+                      <b class="Nom_proprietaire">{{
+                        selectedClient.evaluation
+                      }}</b>
+                    </td>
+                    <td class="bold">Sotéga</td>
+                  </tr>
+                  <tr>
+                    <td>Service:</td>
+                    <td>Nombre d'étoile possedé:</td>
+                    <td>Langue(s) parlée(s):</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b class="Nom_proprietaire">{{ selectedClient.statut }}</b>
+                    </td>
+                    <td>
+                      <b class="Nom_proprietaire"
+                        >3 étoiles
+                        <i class="fas fa-star"></i
+                        ><i class="fas fa-star"></i
+                        ><i class="fas fa-star"></i
+                      ></b>
+                    </td>
+                    <td class="bold">français, anglais, espagnol</td>
+                  </tr>
+                  <tr>
+                    <td>Type de propriété:</td>
+                    <td>Nombre des offres:</td>
+                    <td>Numéro de la structure:</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b class="Nom_proprietaire">{{
+                        selectedClient.type_propriete
+                      }}</b>
+                    </td>
+                    <td><b class="Nom_proprietaire">4</b></td>
+                    <td class="bold">7407389081</td>
+                  </tr>
+                  <tr>
+                    <td>Date d'inscription:</td>
+                    <td>Pays/Region:</td>
+                    <td>Mode de paiement:</td>
+                  </tr>
+                  <tr>
+                    <td><b class="Nom_proprietaire">dim.19 juil 2022</b></td>
+                    <td class="td1" class="pays_structure bold">
+                      {{ selectedClient.pays }}
+                      <img
+                        [src]="'assets/flags/' + selectedClient.pays + '.png'"
+                        alt="{{ selectedClient.pays }} flag"
+                        class="pays"
+                      />
+                    </td>
+                    <td>
+                      <ul
+                        style="
+                          display: flex;
+                          list-style-type: none;
+                          padding: 0;
+                          margin: 0;
+                          gap: 10px;
+                        "
+                      >
+                        <li>paysing</li>
+                        <li>paysing</li>
+                        <li>paysing</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Durée sur yori</td>
+                    <td>Ville</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b class="Nom_proprietaire bold">{{ selectedClient.duree }}</b>
+                    </td>
+                    <td class="bold">Libreville</td>
+                  </tr>
+                </table>
+              </div>
             </mat-tab>
 
             <mat-tab label="Photos">
