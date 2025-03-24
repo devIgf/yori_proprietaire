@@ -1,10 +1,12 @@
-.container {
-  padding: 25px 100px 130px 100px;
-  background-color: rgba(250, 250, 250, 1);
+.container{
+  padding: 20px 60px;
+  /* width: 100%; */
+  background-color: white;
 }
 
+
 .fixed-width {
-  width: 100%; /* Largeur fixe ou souhaitée */
+  width: 905%; /* Largeur fixe ou souhaitée */
 }
 
 .mat-tab-group {
@@ -18,50 +20,50 @@
   min-width: 150px; /* Largeur minimale pour chaque onglet */
 }
 
-.send-message {
-  background-color: white;
-  border: 2px solid lightgray;
-  margin-top: 5px;
-  height: 30px;
+
+
+.send-message{
+  background-color: rgb(250, 250, 250);
+  border: 1px solid #000000;
+  height: 2%;
   display: flex;
   gap: 5px;
+  margin-bottom: 2%;
 }
 
-.send-message span {
+
+.send-message span{
   padding-top: 5px;
 }
 
+
 .btn-send2 {
-  background-color: rgba(
-    13,
-    13,
-    197,
-    0.8
-  ); /* Couleur de fond bleu pour le bouton "Envoyer" */
+  background-color: rgba(13, 13, 197, 0.8); /* Couleur de fond bleu pour le bouton "Envoyer" */
   color: white; /* Texte blanc pour le bouton "Envoyer" */
   margin: 0 20px 0 5px;
   border-radius: 5px;
 }
 
+
+
 .btn-send2:hover {
   background-color: #0056b3; /* Couleur plus foncée au survol du bouton "Envoyer" */
 }
 
+
 .message-preview {
-  display: flex; /* Utilise flexbox pour aligner les éléments sur la même ligne */
-  justify-content: space-between; /* Espace entre le contenu du message et la date */
-  align-items: center; /* Aligne verticalement au centre */
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
   padding: 15px;
   border: 1px solid #ddd;
-  /* border-radius: 5px; */
-  /* margin-bottom: 10px; */
-  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+  cursor: pointer;
   background-color: white;
   transition: background-color 0.3s;
 }
 
 .message-preview:hover {
-  background-color: #d1cfcf; /* Change la couleur d'arrière-plan au survol */
+  background-color: #d1cfcf; 
 }
 
 .message-content {
@@ -71,6 +73,7 @@
 .message-date {
   font-size: 0.9em; /* Taille de police plus petite pour la date */
   color: gray; /* Couleur grise pour la date */
+  margin-right: 2%;
 }
 
 .message-details {
@@ -84,7 +87,7 @@
   color: #666; /* Couleur grise pour la date */
 }
 
-.message-text {
+.message-text{
   border: 0.5px solid #ccc;
   margin: 5px;
   padding: 5px;
@@ -119,6 +122,8 @@
   height: 200px;
 }
 
+
+
 .reply-title {
   display: flex;
   justify-content: space-between;
@@ -143,8 +148,7 @@
   border-radius: 8px 8px 0 0;
 }
 
-.reply-title p,
-.reply-title2 p {
+.reply-title p,  .reply-title2 p{
   padding: 10px;
 }
 
@@ -159,15 +163,15 @@
   font-weight: bold; /* Met le texte en gras */
 }
 
-.reply-textarea {
+.reply-textarea{
   width: calc(100% - 20px); /* Largeur complète en tenant compte du padding */
   padding: 10px; /* Padding interne */
   margin-top: 20px; /* Espace au-dessus des champs */
-  border: none; /* Bordure grise */
+  border:none;/* Bordure grise */
   box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
 }
 
-.reply-input {
+.reply-input{
   border: none;
   border-bottom: 0.2px solid #ccc;
   border-top: 0.2px solid #ccc;
@@ -182,6 +186,7 @@
   height: 100px; /* Hauteur fixe pour la zone de texte */
 }
 
+
 .reply-file-input {
   margin-bottom: 0;
 }
@@ -190,7 +195,6 @@
   justify-content: flex-end;
   display: flex;
   margin-top: 80px;
-  gap: 10px;
 }
 
 .btn {
@@ -200,12 +204,7 @@
 }
 
 .btn-send {
-  background-color: rgba(
-    13,
-    13,
-    197,
-    0.8
-  ); /* Couleur de fond bleu pour le bouton "Envoyer" */
+  background-color: rgba(13, 13, 197, 0.8); /* Couleur de fond bleu pour le bouton "Envoyer" */
   color: white; /* Texte blanc pour le bouton "Envoyer" */
 }
 
@@ -213,19 +212,22 @@
   background-color: #0056b3; /* Couleur plus foncée au survol du bouton "Envoyer" */
 }
 
-.btn-cancel {
-  color: white;
-  background-color: initial;
-  font-size: 20px;
-  font-weight: bold;
+
+.btn-cancel{
+ color: white;
+ background-color: initial;
+ font-size: 20px;
+ font-weight: bold;
 }
 
-.btn-cancel2 {
-  color: rgb(0, 0, 0);
-  background-color: initial;
-  font-size: 15px;
-  font-weight: bold;
+
+.btn-cancel2{
+ color: rgb(0, 0, 0);
+ background-color: initial;
+ font-size: 15px;
+ font-weight: bold;
 }
+
 
 .overlay {
   position: fixed;
@@ -237,56 +239,67 @@
   z-index: 999; /* Juste en dessous du pop-up */
 }
 
-@media (max-width: 768px) {
-  .group {
-    width: 100%;
-  }
+
+ .dropdown-menu {
+  z-index: 1;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 5px;
+  display: none;
 }
 
-.plusMessage {
+.dropdown-menu li {
+  list-style: none;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+
+.dropdown-menu.show {
+  display: block; /* Assurez-vous que cette règle est présente */
+}
+
+
+.dropdown-menu li {
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f2f2f2;
+}
+
+.corner-button{
+  background-color: initial;
   border: none;
-  color: gray;
-  font-size: 20px;
-  cursor: pointer;
+  font-weight: bold;
 }
-.filtreMessage {
-  display: flex;
-  position: absolute;
-  margin-right: 10px;
-  margin-top: -50px;
-  height: 100px;
-}
-.filtreContainer {
-  border: 0.5px solid gray;
-  list-style-type: none; /* Supprime les puces */
-  font-size: small;
-  width: 150px;
-  height: 35px;
-  padding: 10px;
-  margin-top: 0px;
-  background-color: white;
-}
-.filtresCheckboxes {
-  font-size: small;
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid gray;
-  padding: 10px;
-  background-color: white;
-}
-.listeFiltre {
-  margin: 5px;
+
+.message-preview{
   position: relative;
-  padding-right: 20px; /* Espace pour le triangle */
-  cursor: pointer;
 }
-.listeFiltre::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid black; /* Couleur du triangle */
+
+
+
+
+@media (max-width: 768px) {
+  .group{
+    width: 100%;
+  }
 }

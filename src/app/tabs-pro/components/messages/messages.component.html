@@ -1,53 +1,43 @@
-<div class="container">
-  <h2>Boite e-mail yori.com</h2>
+<div class="container"> 
+  <h3>Boite e-mail yori.com</h3>
   <div>
-    <label>Discuter</label><br />
+    <label>Discuter</label><br>
     <button class="send-message" (click)="sendNewMessage()">
-      <span>Envoyer un message</span>
+      <span>Envoyer un message</span> 
       <mat-icon>send</mat-icon>
     </button>
   </div>
   <div>
-    <br /><br />
-
     <mat-tab-group class="fixed-width">
       <mat-tab label="Tous les messages ({{ receivedMessages.length }})">
         <div *ngFor="let message of receivedMessages">
           <div (click)="selectMessage(message)" class="message-preview">
             <div class="message-content">
-              <strong>{{ message.subject }}</strong> -
-              {{ message.content | slice : 0 : 50 }}...
+              <strong>{{ message.subject }}</strong> - {{ message.content | slice:0:50 }}...
             </div>
-            <span class="message-date">{{
-              message.date | date : "dd MMMM yyyy à HH:mm"
-            }}</span>
+            <span class="message-date">{{ message.date | date:'dd MMMM yyyy à HH:mm' }}</span>
+            <button class="corner-button" [class.active]="message.showDropdown" (click)="$event.stopPropagation(); showDropdown(message)">...</button>
+            <ul class="dropdown-menu" [class.show]="message.showDropdown">
+              <li><a href="#" (click)="addToFavorites(message)">
+                <span class="material-symbols-outlined">
+                  star
+                </span>
+              </a></li>
+              <li><a href="#" (click)="addToFavorites(message)"><span class="material-symbols-outlined">
+                delete
+                </span>
+              </a></li>
+            </ul>
           </div>
-
-          <!-- Affiche les détails du message si celui-ci est sélectionné -->
           <div *ngIf="selectedMessage === message" class="message-details">
             <div class="message-text">
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <div style="display: flex">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex;">
                   <div>
-                    <img
-                      src="assets/img/logo_bleu.png"
-                      alt="logo"
-                      width="70"
-                      height="50"
-                    />
+                    <img src="assets/img/logo_bleu.png" alt="logo" width="70" height="50">
                   </div>
-                  <div style="margin-top: -10px">
-                    <p>
-                      Yori.com <br />
-                      {{ selectedMessage.date | date : "dd MMMM yyyy à HH:mm" }}
-                    </p>
-                    <!-- Affiche la date -->
+                  <div style="margin-top: -10px;">
+                    <p>Yori.com <br> {{ selectedMessage.date | date:'dd MMMM yyyy à HH:mm' }}</p>
                   </div>
                 </div>
                 <div>
@@ -59,229 +49,132 @@
               </div>
               <p><strong>Objet :</strong> {{ selectedMessage.subject }}</p>
               <p>{{ selectedMessage.content }}</p>
-            </div>
           </div>
         </div>
-
+        </div>
+        
+  
         <!-- Overlay pour le pop-up -->
-        <div
-          *ngIf="isReplying"
-          class="overlay"
-          (click)="closeReplyPopup()"
-        ></div>
-
+        <div *ngIf="isReplying" class="overlay" (click)="closeReplyPopup()"></div>
         <!-- Pop-up de réponse -->
         <div *ngIf="isReplying" class="reply-popup">
-          <div class="reply-title">
-            <p>Réponse du message</p>
-            <button (click)="closeReplyPopup()" class="btn btn-cancel">
-              X
-            </button>
-          </div>
-          <div class="reply-section">
-            <!-- <label for="subject">Objet :</label> -->
-            <input
-              type="text"
-              id="subject"
-              [(ngModel)]="replySubject"
-              placeholder="Objectif"
-              class="reply-input"
-            />
-            <!-- <label for="body">Corps du message :</label> -->
-            <textarea
-              id="body"
-              [(ngModel)]="replyBody"
-              placeholder="Bonjour comment vous allez..."
-              class="reply-textarea"
-            ></textarea>
-          </div>
-          <div class="reply-buttons">
-            <button class="send-message" (click)="fileInput.click()">
-              <mat-icon>attach_file</mat-icon>
-            </button>
-            <input
-              type="file"
-              #fileInput
-              (change)="onFileSelected($event)"
-              style="display: none"
-            />
-            <button (click)="submitReply()" class="btn btn-send2">
-              Envoyer
-            </button>
-          </div>
+            <div class="reply-title">
+              <p>Réponse du message</p>
+              <button (click)="closeReplyPopup()" class="btn btn-cancel">X</button>
+            </div>
+            <div class="reply-section">
+                <!-- <label for="subject">Objet :</label> -->
+                <input type="text" id="subject" [(ngModel)]="replySubject" placeholder="Objectif" class="reply-input" />
+                <!-- <label for="body">Corps du message :</label> -->
+                <textarea id="body" [(ngModel)]="replyBody" placeholder="Écrivez votre réponse ici" class="reply-textarea"></textarea>
+            </div>
+            <div class="reply-buttons">
+              <button class="send-message" (click)="fileInput.click()"> <mat-icon>attach_file</mat-icon> </button>
+              <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" />
+              <button (click)="submitReply()" class="btn btn-send2">Envoyer</button>
+            </div>
         </div>
+  
+  
       </mat-tab>
       <mat-tab label="Envoyés">
         <div *ngFor="let sentMessage of sentMessages">
           <div (click)="selectMessage(sentMessage)" class="message-preview">
-            <strong>{{ sentMessage.subject }}</strong>
-            <!-- Affiche l'objet du message -->
-            <span class="message-date">{{
-              sentMessage.date | date : "dd MMMM yyyy à HH:mm"
-            }}</span>
+              <strong>{{ sentMessage.subject }}</strong> <!-- Affiche l'objet du message -->
+              <span class="message-date">{{ sentMessage.date | date:'dd MMMM yyyy à HH:mm' }}</span>
           </div>
-
+  
           <!-- Affiche les détails du message si celui-ci est sélectionné -->
           <div *ngIf="selectedMessage === sentMessage" class="message-details">
             <h2>Détails du message</h2>
             <p><strong>Objet :</strong> {{ selectedMessage.subject }}</p>
             <p><strong>Corps :</strong> {{ selectedMessage.content }}</p>
-            <p *ngIf="selectedMessage.file">
-              <strong>Joint :</strong>
-              {{ selectedMessage.file.name }}
-              <a [href]="getFileUrl(selectedMessage.file)" target="_blank"
-                >Télécharger</a
-              >
-
-              <!-- Affichage d'une prévisualisation si c'est une image -->
-              <span *ngIf="isImage(selectedMessage.file)">
-                <img
-                  [src]="getFileUrl(selectedMessage.file)"
-                  alt="Prévisualisation"
-                  style="max-width: 200px; max-height: 200px"
-                />
-              </span>
-            </p>
-            <p>
-              <strong>Date :</strong>
-              {{ selectedMessage.date | date : "dd MMMM yyyy à HH:mm" }}
-            </p>
-            <!-- Affiche la date -->
+            <p *ngIf="selectedMessage.file"><strong>Joint :</strong> 
+                {{ selectedMessage.file.name }} 
+                <a [href]="getFileUrl(selectedMessage.file)" target="_blank">Télécharger</a>
+            
+                <!-- Affichage d'une prévisualisation si c'est une image -->
+                <span *ngIf="isImage(selectedMessage.file)">
+                    <img [src]="getFileUrl(selectedMessage.file)" alt="Prévisualisation" style="max-width: 200px; max-height: 200px;" />
+                </span>
+            </p>    
+            <p><strong>Date :</strong> {{ selectedMessage.date | date:'dd MMMM yyyy à HH:mm' }}</p>
             <button (click)="selectMessage(selectedMessage)">Fermer</button>
+        </div>
+        
+        </div>
+      </mat-tab>
+      <mat-tab label="Suivis">
+        <div *ngFor="let favoriteMessage of favoriteMessagesList">
+          <div class="message-preview" (click)="selectFavoriteMessage(favoriteMessage)">
+            <div class="message-content">
+              <strong>{{ favoriteMessage.subject }}</strong> - {{ favoriteMessage.content | slice:0:50 }}...
+            </div>
+            <span class="message-date">{{ favoriteMessage.date | date:'dd MMMM yyyy à HH:mm' }}</span>
+          </div>
+          <!-- Affiche les détails du message si celui-ci est sélectionné -->
+          <div *ngIf="selectedFavoriteMessage === favoriteMessage" class="message-details">
+            <div class="message-text">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex;">
+                  <div>
+                    <img src="assets/img/logo_bleu.png" alt="logo" width="70" height="50">
+                  </div>
+                  <div style="margin-top: -10px;">
+                    <p>Yori.com <br> {{ selectedFavoriteMessage.date | date:'dd MMMM yyyy à HH:mm' }}</p>
+                  </div>
+                </div>
+                <div>
+                </div>
+              </div>
+              <p><strong>Objet :</strong> {{ selectedFavoriteMessage.subject }}</p>
+              <p>{{ selectedFavoriteMessage.content }}</p>
+            </div>
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Suivis"> Content 3 </mat-tab>
+      
     </mat-tab-group>
   </div>
 
-  <!-- Overlay pour le pop-up -->
-  <div *ngIf="newMessage" class="overlay" (click)="closeReplyPopup()"></div>
 
-  <!-- Pop-up du nouveau message -->
-  <div *ngIf="newMessage" class="reply-popup">
+   <!-- Overlay pour le pop-up -->
+   <div *ngIf="newMessage" class="overlay" (click)="closeReplyPopup()"></div>
+
+   <!-- Pop-up du nouveau message -->
+   <div *ngIf="newMessage" class="reply-popup">
     <div class="reply-title">
-      <p>Nouveau Message</p>
-      <button (click)="closeReplyPopup()" class="btn btn-cancel">X</button>
-    </div>
-    <div class="reply-section">
-      <input
-        type="text"
-        id="subject"
-        [(ngModel)]="replySubject"
-        placeholder="Objectif"
-        class="reply-input"
-      />
-      <textarea
-        id="body"
-        [(ngModel)]="replyBody"
-        placeholder="Bonjour comment vous allez..."
-        class="reply-textarea"
-      ></textarea>
-    </div>
-    <div class="reply-buttons">
-      <!-- Bouton qui ouvre le popup -->
-      <button class="plusMessage" (click)="afficherFiltre($event)">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
-      </button>
-
-      <!-- Bouton pour attacher un fichier -->
-      <button class="send-message" (click)="fileInput.click()">
-        <mat-icon>attach_file</mat-icon>
-      </button>
-      <input
-        type="file"
-        #fileInput
-        (change)="onFileSelected($event)"
-        style="display: none"
-      />
-
-      <!-- Bouton pour envoyer -->
-      <button (click)="submitReply()" class="btn btn-send2">Envoyer</button>
-
-      <!-- Popup -->
-      <div
-        class="filtreMessage"
-        *ngIf="plusMessage"
-        (click)="$event.stopPropagation()"
-      >
-        <ul class="filtreContainer">
-          <li class="listeFiltre" (click)="afficherFiltreHotel()">
-            Hotellerie
-          </li>
-          <li class="listeFiltre" (click)="afficherFiltreTourisme()">
-            Tourisme
-          </li>
-        </ul>
-
-        <!-- Filtres Hôtel -->
-        <div class="filtresCheckboxes" *ngIf="hotelClique">
-          <div>
-            <input type="checkbox" value="Tout selectionner" />
-            <label>Tout sélectionner</label>
-          </div>
-          <div>
-            <input type="checkbox" value="Hotel (s)" />
-            <label>Hotel (s)</label>
-          </div>
-          <div>
-            <input type="checkbox" value="Motel (s)" />
-            <label>Motel (s)</label>
-          </div>
-          <div>
-            <input type="checkbox" value="Appartement (s)" />
-            <label>Appartement (s)</label>
-          </div>
-        </div>
-
-        <!-- Filtres Tourisme -->
-        <div class="filtresCheckboxes" *ngIf="tourismeClique">
-          <div>
-            <input type="checkbox" value="Tout selectionner" />
-            <label>Tout sélectionner</label>
-          </div>
-          <div>
-            <input type="checkbox" value="Randonnées" />
-            <label>Randonnées</label>
-          </div>
-          <div>
-            <input type="checkbox" value="Parcs" />
-            <label>Parcs</label>
-          </div>
-          <div>
-            <input type="checkbox" value="Campings" />
-            <label>Campings</label>
-          </div>
-        </div>
+        <p>Nouveau Message</p>
+        <button (click)="closeReplyPopup()" class="btn btn-cancel">X</button>
       </div>
-    </div>
-  </div>
-
-  <!-- Overlay pour le pop-up -->
-  <div *ngIf="messageSent" class="overlay" (click)="closeReplyPopup()"></div>
-
-  <!-- Pop-up du nouveau message -->
-  <div *ngIf="messageSent" class="reply-popup2">
-    <div class="reply-title2">
-      <button (click)="closeReplyPopup()" class="btn btn-cancel2">X</button>
-    </div>
-    <div class="reply-section">
-      <div>
-        <mat-icon
-          style="
-            padding: 10px;
-            border: 0.5px solid #77b5fe;
-            border-radius: 50%;
-            color: #77b5fe;
-          "
-          >check_small</mat-icon
-        >
+      <div class="reply-section">
+          <!-- <label for="subject">Objet :</label> -->
+          <input type="text" id="subject" [(ngModel)]="replySubject" placeholder="Objectif" class="reply-input" />
+          <!-- <label for="body">Corps du message :</label> -->
+          <textarea id="body" [(ngModel)]="replyBody" placeholder="Écrivez votre réponse ici" class="reply-textarea"></textarea>
       </div>
-      <p>Nous avons bien reçu votre message.</p>
-      <p>
-        Merci de nous avoir contactés ! Nous vous répondrons généralement sous
-        un délai <strong>1 jour</strong>
-      </p>
-    </div>
-  </div>
+      <div class="reply-buttons">
+        <button class="send-message" (click)="fileInput.click()"> <mat-icon>attach_file</mat-icon> </button>
+        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" />
+        <button (click)="submitReply()" class="btn btn-send2">Envoyer</button>
+      </div>
+   </div>
+
+
+   <!-- Overlay pour le pop-up -->
+   <div *ngIf="messageSent" class="overlay" (click)="closeReplyPopup()"></div>
+
+   <!-- Pop-up du nouveau message -->
+   <div *ngIf="messageSent" class="reply-popup2">
+       <div class="reply-title2">
+         <button (click)="closeReplyPopup()" class="btn btn-cancel2">X</button>
+       </div>
+       <div class="reply-section">
+         <div>
+           <mat-icon style="padding: 10px;border: 0.5px solid rgba(13, 13, 197, 0.8); border-radius: 50%; color: rgba(13, 13, 197, 0.8);">check_small</mat-icon>
+         </div>
+          <p>Message envoyé!!!.</p>
+          <!-- <p>Merci de nous avoir contactés ! Nous vous répondrons généralement sous un délai <strong>1 jour</strong></p> -->
+       </div>
+   </div>
 </div>
