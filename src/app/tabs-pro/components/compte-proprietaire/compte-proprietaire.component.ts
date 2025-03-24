@@ -85,7 +85,7 @@ export class CompteProprietaireComponent implements OnInit {
       nom: 'Lucie Aubrac',
       statut: 'Tourisme',
       duree: '5',
-      pays: 'RDC',
+      pays: 'Congo',
       nombre_structure: 5,
       evaluation: 'Mauvais',
       id: 5,

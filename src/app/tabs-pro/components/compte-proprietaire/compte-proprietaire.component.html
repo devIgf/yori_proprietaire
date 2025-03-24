@@ -1,6 +1,6 @@
 <div class="container">
   <div class="first" *ngIf="!showDetails">
-    <div>
+    <div class="top">
       <h2 class="titre">Compte Propriétaire</h2>
       <div class="filtre">
         <div class="inputs">
@@ -42,21 +42,7 @@
               </option>
             </select>
           </div>
-          <!-- <div class="labels">
-            <label for="evaluation">Evaluation</label><br />
-            <select
-              id="evaluation"
-              class="select1"
-              [(ngModel)]="selectedEvaluation"
-            >
-              <option
-                *ngFor="let evaluation of evaluationsFiltres"
-                [value]="evaluation"
-              >
-                {{ evaluation }}
-              </option>
-            </select>
-          </div> -->
+
           <div class="labels">
             <label for="duree">Filtre par année</label><br />
             <select id="duree" class="select1" [(ngModel)]="selectedDuree">
@@ -125,7 +111,7 @@
         </div>
         <button class="printPage" (click)="printPage()">
           <mat-icon> print </mat-icon>
-          Imprimer la liste des comptes propriétaires
+          Imprimer la liste
         </button>
       </div>
     </div>
@@ -138,14 +124,14 @@
             <th class="head1">Pays/region</th>
             <th class="head1">Contact</th>
             <th class="head1">Adresse e-mail</th>
-            <th class="head1">Nombre de structure inscrite(s)</th>
+            <th class="head1">Nombre de structure</th>
             <th class="head1">Durée du compte</th>
             <th class="head1">Plus d'infos</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let client of paginatedClients">
-            <td class="td1" style="color: #77b5fe">{{ client.nom }}</td>
+            <td class="td1 style-5">{{ client.nom }}</td>
             <td class="td1" class="pays_structure">
               {{ client.pays }}
               <img
@@ -162,7 +148,6 @@
             <td class="td1">{{ client.duree }} an(s)</td>
             <td class="td1">
               <a class="open-div2" (click)="afficherDetails(client)">
-                <!-- {{ client.id }} -->
                 voir plus
               </a>
             </td>
@@ -206,74 +191,20 @@
 
   <div *ngIf="showDetails">
     <div class="retour">
+        <button class="revenir" (click)="revenir()">
+          <mat-icon>arrow_back</mat-icon><span class="sapn-retour">Revenir à la synthèse</span>
+        </button>
       <h2 class="">Détails du compte propriétaire</h2>
-      <b>&lt;</b
-      ><button class="revenir" (click)="revenir()">
-        Revenir à la synthèse des comptes propriétaires
-      </button>
+      
     </div>
 
     <div class="discuter">
-      <!-- <div> -->
-      <!-- <div>Discuter</div>
-        <div id="input-container">
-          <input
-            type="text"
-            (click)="toogleMessage()"
-            placeholder="Envoyer un message"
-            class="envoi"
-          />
-          <mat-icon>send</mat-icon>
-        </div>
-      </div> -->
-
-      <!-- <div *ngIf="dialogueMessage" class="dialogueMessage">
-        <div class="entete-message">
-          <div>Nouveau message</div>
-          <div class="fermerMessage" (click)="toogleMessage()">X</div>
-        </div>
-        <div class="corpsMessage">
-          <div class="ligne"></div>
-          <input
-            type="text"
-            placeholder="À  Hotel luis viton de sotéga"
-            class="destinataire"
-          />
-          <div class="ligne"></div>
-          <div class="objectif">
-            <p>Objectif</p>
-            <input type="text" placeholder="" class="destinataire" />
-          </div>
-          <div class="ligne"></div>
-          <Textarea
-            class="zoneMessage"
-            placeholder=" Bonjour comment vous allez..."
-          >
-          </Textarea>
-        </div>
-        <div class="soummettreMessage">
-          <div><i class="fa-solid fa-link" id="logoLien"></i></div>
-
-          <button
-            class="supprimer-btn"
-            id="envoi-btn"
-            (click)="messageenvoye()"
-          >
-            Envoyer
-          </button>
-        </div>
-      </div> -->
-
       <div>
         <div>Bloquer</div>
         <div>
-          <select
-            name="bloquer"
-            id="bloquer"
-            (click)="estBloqueEtablissement()"
-          >
-            <option value="Temporairement">Temporairement</option>
-          </select>
+          <button (click)="estBloqueEtablissement()" class="btn-bloquer">
+            Temporairement <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
         </div>
       </div>
       <div>
@@ -362,41 +293,34 @@
       <p class="notificationBlocageContent">{{ messagebloque }}</p>
     </div>
 
-    <div *ngIf="dialogueMessageEnvoye" class="dialogueMessageEnvoye">
-      <div class="fermerMessageEnvoye" (click)="fermerMessageenvoye()">X</div>
-      <div class="containerSuccesMesssage">
-        <div><i class="fa-regular fa-circle-check" id="logoCheck"></i></div>
-        <h3>Message envoyé .</h3>
-        <p>Votre message a été envoyé avec succès</p>
-      </div>
-    </div>
-
-    <div class="dialogueMessageEnvoye" *ngIf="estSupprimer" id="confirmerSuppr">
-      <div><i class="fa-solid fa-trash-can" id="logoCheck"></i></div>
-      <h3>SUPPRIMER</h3>
-      <p>
-        « Voulez-vous supprimer cet compte propriétaire ? Si oui, appuyez sur
-        "Valider". »
-      </p>
-      <br /><br />
-      <div class="boutonValiderAnnulerSuppression">
-        <div>
-          <button class="annuler-btn" (click)="estSupprimeEtablissement()">
-            Annuler
-          </button>
-        </div>
-        <div>
-          <button
-            class="supprimer-btn"
-            id="valider-suppr"
-            (click)="afficherNotifSuppr()"
-          >
-            Valider
-          </button>
+    <div class="box-pop">
+      <div class="dialogueMessageEnvoye" *ngIf="estSupprimer" id="confirmerSuppr">
+        <div><i class="fa-solid fa-trash-can" id="logoCheck"></i></div>
+        <h3>SUPPRIMER</h3>
+        <p>
+          « Voulez-vous supprimer cet compte propriétaire ? Si oui, appuyez sur
+          "Valider". »
+        </p>
+        <br /><br />
+        <div class="boutonValiderAnnulerSuppression">
+          <div>
+            <button class="annuler-btn" (click)="estSupprimeEtablissement()">
+              Annuler
+            </button>
+          </div>
+          <div>
+            <button
+              class="supprimer-btn"
+              id="valider-suppr"
+              (click)="afficherNotifSuppr()"
+            >
+              Valider
+            </button>
+          </div>
         </div>
       </div>
+  
     </div>
-
     <div class="notificationBlocage" id="notifSuppr" *ngIf="validerSuppr">
       <i class="fa-solid fa-trash-can" id="logoExclamation"></i>
       <p>
@@ -423,7 +347,7 @@
                 class="fact-annulee"
               >
                 <mat-icon style="color: brown"> error </mat-icon>
-                Fermeture de l'établissement
+                Compte propriétaire supprimé
               </div>
 
               <table class="table2">
@@ -494,7 +418,7 @@
             </mat-tab>
 
             <mat-tab label="Liste des structures">
-              <div class="table-responsive">
+              <div class="">
                 <table class="table" id="table-structure">
                   <thead>
                     <tr>
@@ -509,7 +433,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let client of paginatedClients">
-                      <td class="td1" style="color: #77b5fe">
+                      <td class="td1 style-5">
                         {{ client.nom }}
                       </td>
                       <td class="td1" class="pays_structure" id="pays">
@@ -547,7 +471,6 @@
                       </td>
                       <td class="td1">
                         <a class="open-div2" (click)="afficherDetails(client)">
-                          <!-- {{ client.id }} -->
                           voir plus
                         </a>
                       </td>
