@@ -92,3 +92,19 @@
   color: red; /* Couleur rouge pour "Décliné" */
   font-weight: bold; /* Gras */
 }
+
+
+.informations p span.gras {
+  margin-right: 10px; /* Espacement entre le label et la valeur */
+}
+
+.informations p span.gras:not(:last-child) {
+  margin-right: 20px; /* Espacement entre chaque paire de label/valeur */
+}
+
+/* Pour ajuster l'espacement entre les paires de label/valeur */
+.informations p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacement entre chaque paire */
+}

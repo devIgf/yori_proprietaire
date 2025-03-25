@@ -4,26 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EtablissementPopupComponent } from '../etablissement-popup/etablissement-popup.component';
+import { AjoutEtablissement } from '../../../interfaces/AjoutEtablissement';
 
-export interface AjoutEtablissement {
-  title: string;
-  id: number;
-  date: Date;
-  nom: string;
-  prenom: string;
-  telephone: string;
-  email: string;
-  nombreEtablissement: number;
-  pays: string;
-  ville: string;
-  nomEtablissement: string;
-  service: string;
-  typePropriete: string;
-  adresse: string;
-  photos?: { url: string; alt?: string }[];
-  buttonText?: string;
-  examStatus: 'pending' | 'approved' | 'declined' | 'waiting';
-}
+
 
 @Component({
   selector: 'app-notifications',
@@ -121,7 +104,28 @@ export class NotificationsComponent {
       service: 'Hébergement',
       typePropriete: 'Hôtel',
       adresse: 'Route de la forêt, Moukalaba Doudou',
-      photos: [],
+      photos: [
+        {
+          url: 'assets/img/danse.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/danse.png',
+          alt: 'Photo de la faune du parc Loango',
+        },
+        {
+          url: 'assets/img/danse.png',
+          alt: 'Photo de la plage du parc Loango',
+        },
+        {
+          url: 'assets/img/danse.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/danse.png',
+          alt: 'Photo de la faune du parc Loango',
+        }
+      ],
       examStatus: 'pending',
       buttonText: 'Examiner',
     },
@@ -140,7 +144,28 @@ export class NotificationsComponent {
       service: 'Écotourisme',
       typePropriete: 'Parc',
       adresse: 'Avenue des Manguiers, Libreville',
-      photos: [],
+      photos: [
+        {
+          url: 'assets/img/test.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/test.png',
+          alt: 'Photo de la faune du parc Loango',
+        },
+        {
+          url: 'assets/img/test.png',
+          alt: 'Photo de la plage du parc Loango',
+        },
+        {
+          url: 'assets/img/test.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/test.png',
+          alt: 'Photo de la faune du parc Loango',
+        }
+      ],
       examStatus: 'pending',
       buttonText: 'Examiner',
     },
@@ -159,7 +184,28 @@ export class NotificationsComponent {
       service: 'Protection de la nature',
       typePropriete: 'Centre de conservation',
       adresse: 'Plage de Mayumba, Mayumba',
-      photos: [],
+      photos: [
+        {
+          url: 'assets/img/card1.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/card1.png',
+          alt: 'Photo de la faune du parc Loango',
+        },
+        {
+          url: 'assets/img/card1.png',
+          alt: 'Photo de la plage du parc Loango',
+        },
+        {
+          url: 'assets/img/card1.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/card1.png',
+          alt: 'Photo de la faune du parc Loango',
+        }
+      ],
       examStatus: 'pending',
       buttonText: 'Examiner',
     },
@@ -178,7 +224,28 @@ export class NotificationsComponent {
       service: 'Hébergement écologique',
       typePropriete: 'Lodge',
       adresse: 'Route du Parc, Pongara',
-      photos: [],
+      photos: [
+        {
+          url: 'assets/img/chambre.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/chambre.png',
+          alt: 'Photo de la faune du parc Loango',
+        },
+        {
+          url: 'assets/img/chambre.png',
+          alt: 'Photo de la plage du parc Loango',
+        },
+        {
+          url: 'assets/img/chambre.png',
+          alt: 'Photo du parc Loango - Vue panoramique',
+        },
+        {
+          url: 'assets/img/chambre.png',
+          alt: 'Photo de la faune du parc Loango',
+        }
+      ],
       examStatus: 'pending',
       buttonText: 'Examiner',
     },

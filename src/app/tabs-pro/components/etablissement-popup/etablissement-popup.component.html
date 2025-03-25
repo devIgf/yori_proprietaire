@@ -1,43 +1,41 @@
 <div class="container">
-  <h3>Informations du compte propiètaire</h3>
-  <p>
-    <span class="gras">Nom :</span>
-    {{ data.nom }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Prenom:</span>{{ data.prenom }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Numero de téléphone :</span>
-    {{ data.telephone }}
-  </p>
-  <p>
-    <span class="gras">Adresse e-mail: </span>
-    {{ data.email }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Nombre d'établissemnts inscrits : </span>
-    {{ data.nombreEtablissement }}
-  </p>
-  <br />
-  <h3>Informations de l'établissement</h3>
-  <p>
-    <span class="gras">Pays/region :</span>
-    {{ data.pays }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Ville :</span>{{ data.ville }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Nom de établissement :</span>
-    {{ data.nomEtablissement }}
-  </p>
-  <p>
-    <span class="gras">Service :</span>
-    {{ data.service }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Type de proprièté :</span>{{ data.typePropriete }}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="gras">Adresse :</span>
-    {{ data.adresse }}
-  </p>
-  <br />
+  <div class="informations">
+    <h3>Informations du compte propiètaire</h3>
+    <p>
+      <span class="gras">Nom :</span>
+      {{ data.nom }}
+      <span class="gras">Prénom :</span>
+      {{ data.prenom }}
+      <span class="gras">Numéro de téléphone :</span>
+      {{ data.telephone }}
+    </p>
+    <p>
+      <span class="gras">Adresse e-mail :</span>
+      {{ data.email }}
+      <span class="gras">Nombre d'établissements inscrits :</span>
+      {{ data.nombreEtablissement }}
+    </p>
+    <br />
+    <h3>Informations de l'établissement</h3>
+    <p>
+      <span class="gras">Pays/Région :</span>
+      {{ data.pays }}
+      <span class="gras">Ville :</span>
+      {{ data.ville }}
+      <span class="gras">Nom de l'établissement :</span>
+      {{ data.nomEtablissement }}
+    </p>
+    <p>
+      <span class="gras">Service :</span>
+      {{ data.service }}
+      <span class="gras">Type de propriété :</span>
+      {{ data.typePropriete }}
+      <span class="gras">Adresse :</span>
+      {{ data.adresse }}
+    </p>
+    <br />
+  </div>
+  
   <h2>Photos</h2>
   <div
     *ngIf="data.photos && data.photos.length > 0; else noPhotos"
