@@ -19,13 +19,9 @@
             <button class="corner-button" [class.active]="message.showDropdown" (click)="$event.stopPropagation(); showDropdown(message)">...</button>
             <ul class="dropdown-menu" [class.show]="message.showDropdown">
               <li><a href="#" (click)="addToFavorites(message)">
-                <span class="material-symbols-outlined">
-                  star
-                </span>
+                <mat-icon>star</mat-icon>
               </a></li>
-              <li><a href="#" (click)="addToFavorites(message)"><span class="material-symbols-outlined">
-                delete
-                </span>
+              <li><a href="#" (click)="addToFavorites(message)"><mat-icon>delete</mat-icon>
               </a></li>
             </ul>
           </div>

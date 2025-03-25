@@ -20,7 +20,7 @@ export class EtablissementPopupComponent {
     private dialogRef: MatDialogRef<EtablissementPopupComponent>,
     private dialog: MatDialog
   ) {
-    console.log(this.data.examStatus); // Affiche le statut de l'établissement
+    console.log(this.data.examStatus);
   }
 
   approve() {
@@ -29,9 +29,9 @@ export class EtablissementPopupComponent {
 
     // Ouvre le dialogue de validation
     const validationDialogRef = this.dialog.open(ValidationDialogComponent, {
-      width: '600px',  // Vous pouvez ajuster cette valeur
-      height: '200px', // Vous pouvez ajuster cette valeur
-      panelClass: 'custom-dialog-container' // Classe CSS personnalisée (optionnel)
+      width: '600px', 
+      height: '200px',
+      panelClass: 'custom-dialog-container'
     });
 
     // Optionnel : Vous pouvez gérer des actions après la fermeture du dialogue de validation
@@ -44,16 +44,5 @@ export class EtablissementPopupComponent {
   decline() {
       this.dialogRef.close({ status: 'declined' });
   }
-
-  // constructor(private dialog: MatDialog) {}
-
-  openPhotoGallery(remainingPhotos: string[]) {
-    this.dialog.open(PhotoGalleryComponent, {
-      data: { photos: remainingPhotos },
-      width: '80%',
-      height: 'auto',
-    });
-  }
-
 
 }

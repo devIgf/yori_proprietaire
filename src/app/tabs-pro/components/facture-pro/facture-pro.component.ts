@@ -2,46 +2,29 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { Facture } from '../../../interfaces/Facture';
 
-interface Facture {
-  id: number;
-  nom: string;
-  statut: string;
-  dateLimite: string;
-  commission: number;
-  commissionPayee: number;
-  resteAPayer: number;
-  pays: string;
-}
 
 @Component({
   selector: 'app-facture-pro',
   standalone: true,
   imports: [CommonModule, FormsModule, MatTabsModule],
   templateUrl: './facture-pro.component.html',
-  styleUrls: ['./facture-pro.component.css'],
+  styleUrl: './facture-pro.component.css',
 })
 export class FactureProComponent implements OnInit {
   showDetails: boolean = false;
-  selectedStatut: string = "Vue d'ensemble"; // Valeur par défaut
-  statutsFiltres: string[] = ["Vue d'ensemble", 'Hotellerrie', 'Tourisme'];
-  selectedSousStatut: string = ''; // Initialiser comme une chaîne vide
+  selectedType: string = "Vue d'ensemble"; // Valeur par défaut
+  TypesFiltres: string[] = ['Hotellerrie', 'Tourisme'];
+  selectedPaidType: string = "Vue d'ensemble";
+  selectedUnpaidType: string = "Vue d'ensemble";
+  selectedUnavailableType: string = "Vue d'ensemble";
   selectedPays: string = 'Tous les pays'; // Valeur par défaut
   paysFiltres: string[] = ['Tous les pays'];
   paidFactures: Facture[] = [];
   unpaidFactures: Facture[] = [];
   unavailableFactures: Facture[] = [];
-  sousStatuts: { [key: string]: string[] } = {
-    Hotellerrie: ['Hotel (s)', 'Motel (s)', 'Appartement (s)'],
-    Tourisme: [
-      'Autres',
-      'Randonnés',
-      'Parcs',
-      'Campings',
-      'Plages privées',
-      'Maisons traditionnelles',
-    ],
-  };
+
 
   factures: Facture[] = [
     {
@@ -53,6 +36,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 0,
       id: 1,
       pays: 'Senegal',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -63,6 +47,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 30000,
       id: 2,
       pays: 'RDC',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -73,6 +58,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 50000,
       id: 3,
       pays: 'Ivory Coast',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -83,6 +69,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 0,
       id: 4,
       pays: 'Gabon',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -93,6 +80,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 25000,
       id: 5,
       pays: 'Nigeria',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -103,6 +91,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 0,
       id: 6,
       pays: 'Ghana',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -113,6 +102,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 150000,
       id: 7,
       pays: 'Togo',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -123,6 +113,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 100000,
       id: 8,
       pays: 'Mali',
+      type: 'Hotellerrie'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -133,6 +124,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 100000,
       id: 9,
       pays: 'Rwanda',
+      type: 'Tourisme'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -143,6 +135,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 0,
       id: 10,
       pays: 'Ivory Coast',
+      type: 'Tourisme'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -153,6 +146,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 200000,
       id: 11,
       pays: 'Burkina Faso',
+      type: 'Tourisme'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -163,6 +157,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 0,
       id: 12,
       pays: 'South Africa',
+      type: 'Tourisme'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -173,6 +168,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 100000,
       id: 13,
       pays: 'Algeria',
+      type: 'Tourisme'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -183,6 +179,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 150000,
       id: 14,
       pays: 'Guinea-Bissau',
+      type: 'Tourisme'
     },
     {
       nom: 'Hotel Luis vitton de Sotéga',
@@ -193,6 +190,7 @@ export class FactureProComponent implements OnInit {
       resteAPayer: 0,
       id: 15,
       pays: 'Mauritania',
+      type: 'Tourisme'
     },
   ];
 
@@ -202,6 +200,7 @@ export class FactureProComponent implements OnInit {
   itemsPerPage: number = 5; // Nombre d'éléments par page
   itemsPerPageOptions: number[] = [5, 10, 20]; // Options disponibles
   totalPages: number = 1;
+  selectedTab: number = 0;
 
   constructor() {
     // Initialiser le sous-statut en fonction du statut par défaut
@@ -224,9 +223,9 @@ export class FactureProComponent implements OnInit {
   }
 
   onStatutChange() {
-    // Réinitialiser la sélection du sous-statut lorsque le statut change
-    this.selectedSousStatut = this.sousStatuts[this.selectedStatut]?.[0] || '';
+    
   }
+  
 
   initializeCountryFilters() {
     const uniqueCountries = new Set(
@@ -264,10 +263,54 @@ export class FactureProComponent implements OnInit {
     );
   }
 
-  // Méthode appelée lors du changement de pays
-  onCountryChange() {
-    this.filterFacturesByCountry(); // Réappliquer les filtres
+  filterFactures() {
+    this.filterFacturesByType();
+    this.filterFacturesByCountry();
+    this.updateTotalPages();
   }
+
+  filterFacturesByType() {
+    const type = this.selectedType;
+
+    // Filtrer les factures en fonction du type
+    let filteredFactures = this.factures.filter(facture =>
+      type === 'Vue d\'ensemble' || facture.type === type
+    );
+
+    // Réinitialiser la sélection du pays si un type spécifique est sélectionné
+    if (type !== 'Vue d\'ensemble') {
+      this.selectedPays = 'Tous les pays';
+    }
+
+    // Mettre à jour les factures en fonction du statut
+    this.paidFactures = filteredFactures.filter(facture => facture.statut === 'Payée');
+    this.unpaidFactures = filteredFactures.filter(facture => ['En attente', 'Partiellement payée'].includes(facture.statut));
+    this.unavailableFactures = filteredFactures.filter(facture => facture.statut === 'En retard');
+
+    this.updateTotalPages();
+  }
+
+  updateTotalPages(): void {
+    let totalItems: number;
+
+    if (this.selectedTab === 0) {
+      totalItems = this.paidFactures.length;
+    } else if (this.selectedTab === 1) {
+      totalItems = this.unpaidFactures.length;
+    } else {
+      totalItems = this.unavailableFactures.length;
+    }
+
+    this.totalPages = Math.ceil(totalItems / this.itemsPerPage);
+  }
+
+
+  onTabChanged(event: any) {
+    this.selectedTab = event.index;
+    this.updateTotalPages();
+  }
+
+
   getTotalPaid(): number {
     return this.paidFactures.length;
   }

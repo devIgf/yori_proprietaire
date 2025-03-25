@@ -5,32 +5,16 @@
       <div class="filtre">
         <div class="inputs">
           <div class="labels">
-            <label for="statut">Aperçu</label><br />
+            <label for="type">Type</label><br />
             <select
-              id="statut"
+              id="type"
               class="select1"
-              [(ngModel)]="selectedStatut"
-              (change)="onStatutChange()"
+              [(ngModel)]="selectedType"
+              (change)="filterFacturesByType()"
             >
-              <option *ngFor="let statut of statutsFiltres" [value]="statut">
-                {{ statut }}
-              </option>
-            </select>
-            <br />
-
-            <select
-              id="sousStatut"
-              *ngIf="selectedStatut !== 'Vue d\'ensemble'"
-              [(ngModel)]="selectedSousStatut"
-            >
-              <option
-                *ngFor="let sousStatut of sousStatuts[selectedStatut]"
-                [value]="sousStatut"
-              >
-                {{ sousStatut }}
-              </option>
-              <option *ngIf="!sousStatuts[selectedStatut]?.length" disabled>
-                Sélectionnez d'abord un statut
+              <option value="Vue d'ensemble">Vue d'ensemble</option>
+              <option *ngFor="let type of TypesFiltres" [value]="type">
+                {{ type }}
               </option>
             </select>
           </div>
@@ -40,7 +24,7 @@
               id="pays"
               class="select1"
               [(ngModel)]="selectedPays"
-              (change)="onCountryChange()"
+              (change)="filterFacturesByCountry()"
             >
               <option *ngFor="let pays of paysFiltres" [value]="pays">
                 {{ pays }}
@@ -52,7 +36,7 @@
     </div>
     <br /><br />
 
-    <mat-tab-group class="fixed-width" id="menu-comptes">
+    <mat-tab-group class="fixed-width" id="menu-comptes" (selectedTabChange)="onTabChanged($event)">
       <!-- Onglet "Payé" -->
       <mat-tab label="Payé ({{ getTotalPaid() }})">
         <div class="table-responsive">
@@ -71,13 +55,13 @@
             </thead>
             <tbody>
               <tr *ngFor="let facture of getPaginatedFactures(paidFactures)">
-                <td class="td1" style="color: #77b5fe">{{ facture.nom }}</td>
+                <td class="td1">{{ facture.nom }}</td>
                 <td class="td1">{{ facture.pays }}</td>
-                <td class="td1">{{ facture.statut }}</td>
+                <td class="td1">{{ facture.type }}</td>
                 <td class="td1">{{ facture.dateLimite }}</td>
                 <td class="td1">{{ facture.commission }} Fcfa</td>
                 <td class="td1">{{ facture.commissionPayee }} Fcfa</td>
-
+    
                 <td
                   class="td1"
                   [ngStyle]="{
@@ -93,7 +77,7 @@
                 </td>
               </tr>
               <tr>
-                <td class="td1" colspan="10" class="td-pag">
+                <td class="td1" colspan="10">
                   <div>
                     <button
                       class="btn-pag"
@@ -131,11 +115,11 @@
         </div>
         <div class="totalPaye">
           <p class="totalPayeText">
-            Commision payée : {{ getTotalCommissionPaid() | number }} F cfa
+            Commision payée : {{ getTotalCommissionPaid() | number }} F cfa
           </p>
         </div>
       </mat-tab>
-
+    
       <!-- Onglet "Impayé" -->
       <mat-tab label="Impayé ({{ getTotalUnpaid() }})">
         <div class="table-responsive">
@@ -212,13 +196,13 @@
           </table>
         </div>
         <div class="totalPayeText">
-          Commision impayée :
+          Commision impayée :
           <span class="rouge"
-            >{{ getTotalCommissionUnPaid() | number }} F cfa</span
+            >{{ getTotalCommissionUnPaid() | number }} F cfa</span
           >
         </div>
       </mat-tab>
-
+    
       <!-- Onglet "Indisponible" -->
       <mat-tab label="Indisponible ({{ getTotalUnavailable() }})">
         <div class="table-responsive">
@@ -247,7 +231,6 @@
                 <td class="td1">{{ facture.dateLimite }}</td>
                 <td class="td1">{{ facture.commission }} Fcfa</td>
                 <td class="td1">{{ facture.commissionPayee }} Fcfa</td>
-
                 <td
                   class="td1"
                   [ngStyle]="{
@@ -303,13 +286,15 @@
           <p class="totalPayeText">
             Commision indisponible:
             <span class="rouge"
-              >{{ getTotalCommissionUnavailable() | number }} F cfa</span
+              >{{ getTotalCommissionUnavailable() | number }} F cfa</span
             >
           </p>
         </div>
       </mat-tab>
     </mat-tab-group>
   </div>
+
+  
   <div class="details" *ngIf="showDetails">
     <h2>{{ selectedFactureName }}</h2>
     <button class="revenir" (click)="revenir()">
@@ -320,23 +305,34 @@
       <div class="ligne"></div>
 
       <div class="factures_payes">
-        <br />
         <div class="entete1">
           <h2>Factures payées ({{ getTotalPaid() }})</h2>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;le 14 avr. 2024
-        </div>
-
-        <div class="contenu_facture" *ngFor="let facture of paidFactures">
-          <div>{{ facture.dateLimite }}</div>
-          <div>{{ facture.id }}</div>
-          <div>{{ facture.commissionPayee }}</div>
-        </div>
-        <br /><br />
+          <span class="date">le 14 avr. 2024</span>
+        </div>        
+      
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Date Limite</th>
+              <th>ID Facture</th>
+              <th>Commission Payée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let facture of paidFactures">
+              <td>{{ facture.dateLimite }}</td>
+              <td>{{ 1735485657 }}</td>
+              <td>{{ facture.commissionPayee }}</td>
+            </tr>
+          </tbody>
+        </table>
+      
         <div class="payement">
           <p>Paiement par :</p>
           <p>Montant payé: {{ getTotalCommissionPaid() | number }} Fcfa</p>
         </div>
       </div>
+      
       <br />
       <div class="ligne"></div>
       <br />
@@ -346,7 +342,7 @@
         </div>
         <div class="contenu_facture" *ngFor="let facture of unpaidFactures">
           <div style="color: red">{{ facture.dateLimite }}</div>
-          <div>{{ facture.id }}</div>
+          <div>{{ 1735485657 }}</div>
           <div>{{ facture.resteAPayer }}</div>
         </div>
         <div class="aPayer">
