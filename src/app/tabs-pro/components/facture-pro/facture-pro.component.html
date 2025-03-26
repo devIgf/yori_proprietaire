@@ -1,7 +1,7 @@
 <div class="container">
   <div class="first" *ngIf="!showDetails">
     <div>
-      <h2>Factures</h2>
+      <h3>Factures</h3>
       <div class="filtre">
         <div class="inputs">
           <div class="labels">
@@ -55,7 +55,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let facture of getPaginatedFactures(paidFactures)">
-                <td class="td1">{{ facture.nom }}</td>
+                <td class="td1 facture_nom">{{ facture.nom }}</td>
                 <td class="td1">{{ facture.pays }}</td>
                 <td class="td1">{{ facture.type }}</td>
                 <td class="td1">{{ facture.dateLimite }}</td>
@@ -138,7 +138,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let facture of getPaginatedFactures(unpaidFactures)">
-                <td class="td1" style="color: #77b5fe">{{ facture.nom }}</td>
+                <td class="td1 facture_nom">{{ facture.nom }}</td>
                 <td class="td1">{{ facture.pays }}</td>
                 <td class="td1">{{ facture.statut }}</td>
                 <td class="td1">{{ facture.dateLimite }}</td>
@@ -225,7 +225,7 @@
                   let facture of getPaginatedFactures(unavailableFactures)
                 "
               >
-                <td class="td1" style="color: #77b5fe">{{ facture.nom }}</td>
+                <td class="td1 facture_nom">{{ facture.nom }}</td>
                 <td class="td1">{{ facture.pays }}</td>
                 <td class="td1">{{ facture.statut }}</td>
                 <td class="td1">{{ facture.dateLimite }}</td>
@@ -298,26 +298,20 @@
   <div class="details" *ngIf="showDetails">
     <h2>{{ selectedFactureName }}</h2>
     <button class="revenir" (click)="revenir()">
-      Revenir à la synthèse des comptes propriétaires
+      <mat-icon>arrow_back</mat-icon>  
+      <span>Retour</span>
     </button>
     <div class="container_facture">
       <h2>Aperçu des factures</h2>
-      <div class="ligne"></div>
+      <hr>
 
       <div class="factures_payes">
         <div class="entete1">
-          <h2>Factures payées ({{ getTotalPaid() }})</h2>
+          <h3>Factures payées ({{ getTotalPaid() }})</h3>
           <span class="date">le 14 avr. 2024</span>
         </div>        
       
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Date Limite</th>
-              <th>ID Facture</th>
-              <th>Commission Payée</th>
-            </tr>
-          </thead>
+        <table class="table_striped">
           <tbody>
             <tr *ngFor="let facture of paidFactures">
               <td>{{ facture.dateLimite }}</td>
@@ -328,32 +322,38 @@
         </table>
       
         <div class="payement">
-          <p>Paiement par :</p>
-          <p>Montant payé: {{ getTotalCommissionPaid() | number }} Fcfa</p>
-        </div>
-      </div>
-      
-      <br />
-      <div class="ligne"></div>
-      <br />
-      <div class="factures_impayes">
-        <div>
-          <h2>Factures impayées ({{ getTotalUnpaid() }})</h2>
-        </div>
-        <div class="contenu_facture" *ngFor="let facture of unpaidFactures">
-          <div style="color: red">{{ facture.dateLimite }}</div>
-          <div>{{ 1735485657 }}</div>
-          <div>{{ facture.resteAPayer }}</div>
-        </div>
-        <div class="aPayer">
           <p>
-            Montant à payer:
-            <span style="color: red"
-              >{{ getTotalCommissionUnPaid() | number }} Fcfa</span
-            >
+            <b>Paiement par :</b>
+          </p>
+          <p>
+            <b>Montant payé: </b>
+            {{ getTotalCommissionPaid() | number }} Fcfa
           </p>
         </div>
       </div>
+      
+      <hr>
+      <div class="factures_impayes">
+        <div>
+          <h3>Factures impayées ({{ getTotalUnpaid() }})</h3>
+        </div>
+        <table class="table_striped">
+          <tbody>
+            <tr *ngFor="let facture of unpaidFactures">
+              <td data-label="Date Limite" class="date_limite">{{ facture.dateLimite }}</td>
+              <td data-label="ID Facture">{{ 1735485657 }}</td>
+              <td data-label="Reste à Payer">{{ facture.resteAPayer }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="aPayer">
+          <p>
+            <b>Montant à payer: </b>
+            <span class="montant_rouge">{{ getTotalCommissionUnPaid() | number }} Fcfa</span>
+          </p>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
