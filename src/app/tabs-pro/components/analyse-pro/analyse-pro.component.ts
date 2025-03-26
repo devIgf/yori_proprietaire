@@ -4,9 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
-import * as Highcharts from 'highcharts';
 import { Etablissement } from '../../../interfaces/Etablissement';
-import { HighchartsChartModule } from 'highcharts-angular';
+
+
 
 
 
@@ -19,7 +19,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatTab,
     MatTableModule,
     FormsModule,
-    HighchartsChartModule
+    
   ],
   templateUrl: './analyse-pro.component.html',
   styleUrl: './analyse-pro.component.css'
@@ -59,10 +59,8 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
      paysList = ['Gabon', 'Sénégal', 'Kenya', 'RDC'];
 
     private filterSubject = new BehaviorSubject<void>(undefined);
-    
-
-    ngOnInit(): void {
-      this.etablissements = [
+        ngOnInit(): void {
+        this.etablissements = [
         {
             statut: 'hôtellerie',
             nom: 'Hotel Paradis',
@@ -126,9 +124,10 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
             montantReservations:{jour :1200 ,semaine :6000 ,mois :25000 ,annee :300000},
             montantCommissions:{jour :120 ,semaine :600 ,mois :2500 ,annee :30000}
         }
-    ];
+        ];
 
-    this.calculateTotals(); 
+    this.calculateTotals(); // Calcul initial des totaux
+    this.createPerformanceCharts()
     // Écoute les changements dans le sujet de filtre sans délai
     this.filterSubject.subscribe(() => {
         this.calculateTotals();  // Recalcule les totaux immédiatement après chaque changement de filtre
@@ -187,45 +186,44 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
         this.createChart('reservation-annulee', 'Nombre de Réservations Annulées', this.etablissements.map(e => e.nombreReservationsAnnulees));
         this.createChart('montant-reservation', 'Montant des Réservations', this.etablissements.map(e => e.montantReservations));
         this.createChart('montant-commission', 'Montant des Commissions', this.etablissements.map(e => e.montantCommissions));
-    }
-
+      }
     
       
-    createChart(containerId: string, titleText: string, dataArray: any[]): void {
-        
+      createChart(containerId: string, titleText: string, dataArray: any[]): void {
+        // Vérifiez que dataArray contient des objets avec les propriétés appropriées
         const data = [
-            dataArray.map(e => e.jour),     
-            dataArray.map(e => e.semaine),  
-            dataArray.map(e => e.mois),    
-            dataArray.map(e => e.annee) 
+            dataArray.map(e => e.jour),     // Données pour "Jour"
+            dataArray.map(e => e.semaine),  // Données pour "Semaine"
+            dataArray.map(e => e.mois),     // Données pour "Mois"
+            dataArray.map(e => e.annee)     // Données pour "Année"
         ];
     
         // Log des données pour vérifier leur structure
         console.log('Data for chart:', data);
     
-        Highcharts.chart(containerId, {
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: titleText
-            },
-            xAxis: {
-                type: 'category',
-                categories: ['Jour', 'Semaine', 'Mois', 'Année'] 
-            },
-            yAxis: {
-                title: {
-                    text: titleText
-                }
-            },
-            series: [
-                { name: 'Jour', data: data[0] },    
-                { name: 'Semaine', data: data[1] },  
-                { name: 'Mois', data: data[2] },
-                { name: 'Année', data: data[3] }
-            ]
-        } as Highcharts.Options);
+        // Highcharts.chart(containerId, {
+        //     chart: {
+        //         type: 'line'
+        //     },
+        //     title: {
+        //         text: titleText
+        //     },
+        //     xAxis: {
+        //         type: 'category',
+        //         categories: ['Jour', 'Semaine', 'Mois', 'Année'] // Assurez-vous que cela correspond aux données
+        //     },
+        //     yAxis: {
+        //         title: {
+        //             text: titleText
+        //         }
+        //     },
+        //     series: [
+        //         { name: 'Jour', data: data[0] },     // Assurez-vous que data[0] a le bon nombre d'éléments
+        //         { name: 'Semaine', data: data[1] },  // Assurez-vous que data[1] a le bon nombre d'éléments
+        //         { name: 'Mois', data: data[2] },     // Assurez-vous que data[2] a le bon nombre d'éléments
+        //         { name: 'Année', data: data[3] }     // Assurez-vous que data[3] a le bon nombre d'éléments
+        //     ]
+        // } as Highcharts.Options);
     }
     
     
@@ -275,27 +273,28 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
         container.appendChild(chartContainer); // Ajouter le conteneur au conteneur principal
     
         // Créer le graphique de type "pie"
-        Highcharts.chart(chartContainer.id, {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Performances Totales'
-            },
-            series: [{
-                name: 'Totaux',
-                data: performanceData.map(data => ({
-                    name: data.name,
-                    y: data.value
-                })),
-                showInLegend: true, // Afficher la légende
-                dataLabels: {
-                    enabled: true, // Activer les étiquettes de données
-                    format: '{point.name}: <b>{point.y}</b>' // Format d'affichage des étiquettes
-                }
-            }]
-        } as Highcharts.Options);
+        // Highcharts.chart(chartContainer.id, {
+        //     chart: {
+        //         type: 'pie'
+        //     },
+        //     title: {
+        //         text: 'Performances Totales'
+        //     },
+        //     series: [{
+        //         name: 'Totaux',
+        //         data: performanceData.map(data => ({
+        //             name: data.name,
+        //             y: data.value
+        //         })),
+        //         showInLegend: true, // Afficher la légende
+        //         dataLabels: {
+        //             enabled: true, // Activer les étiquettes de données
+        //             format: '{point.name}: <b>{point.y}</b>' // Format d'affichage des étiquettes
+        //         }
+        //     }]
+        // } as Highcharts.Options);
     }
+    
     
     
     // Méthode pour calculer le total d'une propriété spécifique
@@ -311,5 +310,8 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
             return total; // Si la propriété n'est pas un objet ou est null, retourner le total actuel
         }, 0);
     }
+    
+
+
     
 }
