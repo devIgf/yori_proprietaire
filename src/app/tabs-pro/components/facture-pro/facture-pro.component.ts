@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Facture } from '../../../interfaces/Facture';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-facture-pro',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatTabsModule],
+  imports: [CommonModule, FormsModule, MatTabsModule, MatIcon],
   templateUrl: './facture-pro.component.html',
   styleUrl: './facture-pro.component.css',
 })
@@ -28,7 +29,7 @@ export class FactureProComponent implements OnInit {
 
   factures: Facture[] = [
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga1',
       statut: 'Payée',
       dateLimite: '2025-01-31',
       commission: 250000,
@@ -39,7 +40,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga2',
       statut: 'En attente',
       dateLimite: '2025-02-15',
       commission: 100000,
@@ -50,7 +51,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga3',
       statut: 'Partiellement payée',
       dateLimite: '2025-02-01',
       commission: 150000,
@@ -61,7 +62,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga4',
       statut: 'Payée',
       dateLimite: '2025-01-20',
       commission: 120000,
@@ -72,7 +73,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga5',
       statut: 'En retard',
       dateLimite: '2025-01-10',
       commission: 75000,
@@ -83,7 +84,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga6',
       statut: 'Payée',
       dateLimite: '2025-01-05',
       commission: 200000,
@@ -94,7 +95,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga7',
       statut: 'Partiellement payée',
       dateLimite: '2025-02-10',
       commission: 350000,
@@ -105,7 +106,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga8',
       statut: 'En attente',
       dateLimite: '2025-02-28',
       commission: 180000,
@@ -116,7 +117,7 @@ export class FactureProComponent implements OnInit {
       type: 'Hotellerrie'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga9',
       statut: 'En retard',
       dateLimite: '2025-01-25',
       commission: 250000,
@@ -127,7 +128,7 @@ export class FactureProComponent implements OnInit {
       type: 'Tourisme'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga10',
       statut: 'Payée',
       dateLimite: '2025-02-05',
       commission: 400000,
@@ -138,7 +139,7 @@ export class FactureProComponent implements OnInit {
       type: 'Tourisme'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga11',
       statut: 'Partiellement payée',
       dateLimite: '2025-02-15',
       commission: 500000,
@@ -149,7 +150,7 @@ export class FactureProComponent implements OnInit {
       type: 'Tourisme'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga12',
       statut: 'Payée',
       dateLimite: '2025-01-31',
       commission: 150000,
@@ -160,7 +161,7 @@ export class FactureProComponent implements OnInit {
       type: 'Tourisme'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga13',
       statut: 'En attente',
       dateLimite: '2025-03-01',
       commission: 220000,
@@ -171,7 +172,7 @@ export class FactureProComponent implements OnInit {
       type: 'Tourisme'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga14',
       statut: 'En retard',
       dateLimite: '2025-02-10',
       commission: 300000,
@@ -182,7 +183,7 @@ export class FactureProComponent implements OnInit {
       type: 'Tourisme'
     },
     {
-      nom: 'Hotel Luis vitton de Sotéga',
+      nom: 'Hotel Luis vitton de Sotéga15',
       statut: 'Payée',
       dateLimite: '2025-01-31',
       commission: 500000,

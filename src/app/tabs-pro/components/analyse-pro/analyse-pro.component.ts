@@ -5,37 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import * as Highcharts from 'highcharts';
+import { Etablissement } from '../../../interfaces/Etablissement';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
-export interface Etablissement {
-  statut: 'hôtellerie' | 'tourisme';
-  nom: string;
-  pays: 'Gabon' | 'Sénégal' | 'Kenya' | 'RDC';
-  nombreReservations: {
-      jour: number;
-      semaine: number;
-      mois: number;
-      annee: number;
-  };
-  nombreReservationsAnnulees: {
-      jour: number;
-      semaine: number;
-      mois: number;
-      annee: number;
-  };
-  montantReservations: {
-      jour: number;
-      semaine: number;
-      mois: number;
-      annee: number;
-  };
-  montantCommissions: {
-      jour: number;
-      semaine: number;
-      mois: number;
-      annee: number;
-  };
-}
 
 @Component({
   selector: 'app-analyse-pro',
@@ -45,7 +18,8 @@ export interface Etablissement {
     MatTabGroup,
     MatTab,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    HighchartsChartModule
   ],
   templateUrl: './analyse-pro.component.html',
   styleUrl: './analyse-pro.component.css'
@@ -84,8 +58,10 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
      statuts = ['hôtellerie', 'tourisme'];
      paysList = ['Gabon', 'Sénégal', 'Kenya', 'RDC'];
 
-    private filterSubject = new BehaviorSubject<void>(undefined); // BehaviorSubject pour le debounce
-        ngOnInit(): void {
+    private filterSubject = new BehaviorSubject<void>(undefined);
+    
+
+    ngOnInit(): void {
       this.etablissements = [
         {
             statut: 'hôtellerie',
@@ -152,7 +128,7 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
         }
     ];
 
-    this.calculateTotals(); // Calcul initial des totaux
+    this.calculateTotals(); 
     // Écoute les changements dans le sujet de filtre sans délai
     this.filterSubject.subscribe(() => {
         this.calculateTotals();  // Recalcule les totaux immédiatement après chaque changement de filtre
@@ -192,7 +168,7 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
       
 
     
-  applyFilters() {
+    applyFilters() {
     return this.etablissements.filter(etablissement => {
         const matchesStatut = !this.selectedStatut || etablissement.statut === this.selectedStatut;
         const matchesPays = !this.selectedPays || etablissement.pays === this.selectedPays;
@@ -211,16 +187,17 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
         this.createChart('reservation-annulee', 'Nombre de Réservations Annulées', this.etablissements.map(e => e.nombreReservationsAnnulees));
         this.createChart('montant-reservation', 'Montant des Réservations', this.etablissements.map(e => e.montantReservations));
         this.createChart('montant-commission', 'Montant des Commissions', this.etablissements.map(e => e.montantCommissions));
-      }
+    }
+
     
       
-      createChart(containerId: string, titleText: string, dataArray: any[]): void {
-        // Vérifiez que dataArray contient des objets avec les propriétés appropriées
+    createChart(containerId: string, titleText: string, dataArray: any[]): void {
+        
         const data = [
-            dataArray.map(e => e.jour),     // Données pour "Jour"
-            dataArray.map(e => e.semaine),  // Données pour "Semaine"
-            dataArray.map(e => e.mois),     // Données pour "Mois"
-            dataArray.map(e => e.annee)     // Données pour "Année"
+            dataArray.map(e => e.jour),     
+            dataArray.map(e => e.semaine),  
+            dataArray.map(e => e.mois),    
+            dataArray.map(e => e.annee) 
         ];
     
         // Log des données pour vérifier leur structure
@@ -235,7 +212,7 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
             },
             xAxis: {
                 type: 'category',
-                categories: ['Jour', 'Semaine', 'Mois', 'Année'] // Assurez-vous que cela correspond aux données
+                categories: ['Jour', 'Semaine', 'Mois', 'Année'] 
             },
             yAxis: {
                 title: {
@@ -243,10 +220,10 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
                 }
             },
             series: [
-                { name: 'Jour', data: data[0] },     // Assurez-vous que data[0] a le bon nombre d'éléments
-                { name: 'Semaine', data: data[1] },  // Assurez-vous que data[1] a le bon nombre d'éléments
-                { name: 'Mois', data: data[2] },     // Assurez-vous que data[2] a le bon nombre d'éléments
-                { name: 'Année', data: data[3] }     // Assurez-vous que data[3] a le bon nombre d'éléments
+                { name: 'Jour', data: data[0] },    
+                { name: 'Semaine', data: data[1] },  
+                { name: 'Mois', data: data[2] },
+                { name: 'Année', data: data[3] }
             ]
         } as Highcharts.Options);
     }
@@ -319,7 +296,6 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
             }]
         } as Highcharts.Options);
     }
-    
     
     
     // Méthode pour calculer le total d'une propriété spécifique
