@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { Etablissement } from '../../../interfaces/Etablissement';
 
-
+import { registerables } from 'chart.js';
+import { Chart } from 'chart.js';
 
 
 
@@ -21,6 +22,13 @@ import { Etablissement } from '../../../interfaces/Etablissement';
     FormsModule,
     
   ],
+  template:`<div style="width: 400px; height: 400px">
+            <canvas baseChart
+                [data]="chartData"
+                [type]="'bar'"
+                [options]="chartOptions">
+            </canvas>
+            </div>`,
   templateUrl: './analyse-pro.component.html',
   styleUrl: './analyse-pro.component.css'
 })
@@ -126,10 +134,8 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
         }
         ];
 
-    this.calculateTotals(); // Calcul initial des totaux
-    this.createPerformanceCharts()
-    // Écoute les changements dans le sujet de filtre sans délai
-    this.filterSubject.subscribe(() => {
+        this.calculateTotals(); // Calcul initial des totaux
+        this.filterSubject.subscribe(() => {
         this.calculateTotals();  // Recalcule les totaux immédiatement après chaque changement de filtre
         this.cdRef.detectChanges();  // Forcer la détection des changements
       });
@@ -182,6 +188,9 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
 
 
     ngAfterViewInit(): void {
+        this.initChart();
+
+
         this.createChart('reservation', 'Nombre de Réservations', this.etablissements.map(e => e.nombreReservations));
         this.createChart('reservation-annulee', 'Nombre de Réservations Annulées', this.etablissements.map(e => e.nombreReservationsAnnulees));
         this.createChart('montant-reservation', 'Montant des Réservations', this.etablissements.map(e => e.montantReservations));
@@ -242,58 +251,9 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
             case 3:
                 this.createChart('montant-commission', 'Montant des Commissions', this.etablissements.map(e => e.montantCommissions));
                 break;
-            case 4:
-                this.createPerformanceCharts(); // Appel à la méthode pour créer les graphiques de performances
-                break;
         }
     }
 
-
-    createPerformanceCharts(): void {
-        const container = document.getElementById('performances');
-        if (!container) {
-            console.error('Le conteneur pour les performances est introuvable.');
-            return;
-        }
-    
-        // Exemple de données pour les performances
-        const performanceData = [
-            { name: 'Total Réservations', value: this.calculateTotal('nombreReservations') },
-            { name: 'Total Réservations Annulées', value: this.calculateTotal('nombreReservationsAnnulees') },
-            { name: 'Total Montant des Réservations', value: this.calculateTotal('montantReservations') },
-            { name: 'Total Montant des Commissions', value: this.calculateTotal('montantCommissions') }
-        ];
-    
-        // Créer un conteneur unique pour le graphique
-        const chartContainer = document.createElement('div');
-        chartContainer.id = 'performance-chart';
-        chartContainer.style.width = '100%';
-        chartContainer.style.height = '400px'; // Ajustez la hauteur selon vos besoins
-    
-        container.appendChild(chartContainer); // Ajouter le conteneur au conteneur principal
-    
-        // Créer le graphique de type "pie"
-        // Highcharts.chart(chartContainer.id, {
-        //     chart: {
-        //         type: 'pie'
-        //     },
-        //     title: {
-        //         text: 'Performances Totales'
-        //     },
-        //     series: [{
-        //         name: 'Totaux',
-        //         data: performanceData.map(data => ({
-        //             name: data.name,
-        //             y: data.value
-        //         })),
-        //         showInLegend: true, // Afficher la légende
-        //         dataLabels: {
-        //             enabled: true, // Activer les étiquettes de données
-        //             format: '{point.name}: <b>{point.y}</b>' // Format d'affichage des étiquettes
-        //         }
-        //     }]
-        // } as Highcharts.Options);
-    }
     
     
     
@@ -312,6 +272,85 @@ export class AnalyseProComponent implements OnInit, AfterViewInit{
     }
     
 
+    @ViewChild('chartCanvas') private chartCanvas!: ElementRef<HTMLCanvasElement>;
 
+
+    private initChart(): void {
+        // Données d'origine (exemple)
+        const performanceData = [
+            { name: 'Total Réservations', value: this.calculateTotal('nombreReservations') },
+            { name: 'Total Réservations Annulées', value: this.calculateTotal('nombreReservationsAnnulees') },
+            { name: 'Total Montant des Réservations', value: this.calculateTotal('montantReservations') },
+            { name: 'Total Montant des Commissions', value: this.calculateTotal('montantCommissions') }
+        ];
+    
+        Chart.register(...registerables);
+    
+        new Chart(this.chartCanvas.nativeElement, {
+            type: 'bar',
+            data: {
+                labels: performanceData.map(item => item.name),
+                datasets: [{
+                    label: 'Performances Totales',
+                    data: performanceData.map(item => item.value),
+                    backgroundColor: this.generateBarColors(performanceData.length),
+                    borderColor: '#ffffff',
+                    borderWidth: 1,
+                    borderRadius: 4 // Bords arrondis pour le style moderne
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false // Masque la légende pour les barres (optionnel)
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => `${context.label}: ${context.raw}`
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false // Désactive les grilles verticales
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    // Génère des couleurs dynamiquement
+    private generateBarColors(count: number): string[] {
+        const baseColors = [
+            '#3b82f6', '#10b981', '#f59e0b', '#ef4444',
+            '#8b5cf6', '#ec4899', '#14b8a6', '#f97316'
+        ];
+    
+        return Array.from({ length: count }, (_, i) => {
+            const baseColor = baseColors[i % baseColors.length];
+            return this.adjustBrightness(baseColor, i / baseColors.length * 10);
+        });
+    }
+    
+    // Assombrit légèrement les couleurs répétées
+    private adjustBrightness(hex: string, percent: number): string {
+        const num = parseInt(hex.replace('#', ''), 16);
+        const amt = Math.round(2.55 * percent);
+        
+        const r = Math.max(0, Math.min(255, (num >> 16) - amt));
+        const g = Math.max(0, Math.min(255, (num >> 8 & 0x00FF) - amt));
+        const b = Math.max(0, Math.min(255, (num & 0x0000FF) - amt));
+        
+        return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)}`;
+    }
     
 }

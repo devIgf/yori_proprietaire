@@ -93,9 +93,7 @@
   height: 20px; /* Définir une hauteur spécifique pour les lignes */
 }
 
-.retour {
-  margin-left: 30px;
-}
+
 
 .span {
   margin-left: 420px;
@@ -119,8 +117,18 @@
 }
 
 .revenir {
-  border: none;
-  text-decoration: underline;
+  display: flex;
+  cursor: pointer;
+}
+
+.revenir:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgba(13, 13, 197, 0.8);
+  border: 2px solid rgba(13, 13, 197, 0.8);
+}
+
+.sapn-retour{
+  margin-top: 5px;
 }
 
 .fact-annulee {
@@ -856,4 +864,14 @@ ul {
     overflow-y: auto; 
   }
 
+}
+
+
+
+
+#map {
+  display: block; /* Assurez que le composant occupe tout l'espace */
+  height: 43vh;
+  width: 100%;
+  border-radius: 5px;
 }
