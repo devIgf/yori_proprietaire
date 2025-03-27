@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatTab, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
@@ -9,6 +9,8 @@ import { ClaudelComponent } from '../claudel/claudel.component';
 import { FransdaComponent } from '../fransda/fransda.component';
 import { Client } from '../../../interfaces/Client';
 import { Comment } from '../../../interfaces/Comment';
+import { GoogleMapComponent } from "../google-map/google-map.component";
+import { LiasonsMapComponent } from "../liasonsMap/liasonsMap.component";
 
 
 
@@ -21,8 +23,10 @@ import { Comment } from '../../../interfaces/Comment';
     MatIcon,
     MatTabGroup,
     MatTab,
-    MatTabsModule
-],
+    MatTabsModule,
+    LiasonsMapComponent,
+    GoogleMapComponent
+], 
   templateUrl: './accueil-pro.component.html',
   styleUrl: './accueil-pro.component.css',
 })
@@ -437,9 +441,14 @@ export class AccueilProComponent implements OnInit {
   }
 
   // Méthode appelée lors du clic sur le lien
+  @ViewChild(Component)
+  mapComponent!: GoogleMapComponent;
   afficherDetails(client: Client) {
     this.selectedClient = client;
-    this.showDetails = true; // On affiche la div conditionnée
+    this.showDetails = true; 
+    setTimeout(() => {
+      this.mapComponent.initMap(); // Appeler initMap après un court délai
+    }, 1000);
   }
 
   afficherTelephone() {

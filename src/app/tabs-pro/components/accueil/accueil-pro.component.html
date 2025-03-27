@@ -1,4 +1,8 @@
 <div class="container">
+  <div>
+    <app-liasonsMap></app-liasonsMap>
+  </div>
+  
   <div class="first" *ngIf="!showDetails">
     <div class="top">
       <h2 class="titre">Accueil</h2>
@@ -558,7 +562,9 @@
             </mat-tab>
 
             <mat-tab label="Géolocalisation">
-              <div></div>
+              <div>
+                <app-google-map></app-google-map>
+              </div>
             </mat-tab>
 
             <mat-tab label="Avis">

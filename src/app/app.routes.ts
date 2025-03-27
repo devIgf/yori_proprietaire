@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LiaisonComponent } from './layouts/liaison/liaison.component';
-import { GoogleMapComponent } from './tabs-pro/components/google-map/google-map.component';
+import { LiasonsMapComponent } from './tabs-pro/components/liasonsMap/liasonsMap.component';
 
 export const routes: Routes = [
     {
@@ -10,6 +10,6 @@ export const routes: Routes = [
 
     {
         path:"map",
-        component: GoogleMapComponent
+        component: LiasonsMapComponent
     }
 ];
