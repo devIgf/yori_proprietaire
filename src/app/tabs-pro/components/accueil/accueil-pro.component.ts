@@ -1,15 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
-import { MatTab, MatTabChangeEvent, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
+import { MatTab, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { InelComponent } from '../inel/inel.component';
 import { AmourComponent } from '../amour/amour.component';
 import { ClaudelComponent } from '../claudel/claudel.component';
 import { FransdaComponent } from '../fransda/fransda.component';
 import { Client } from '../../../interfaces/Client';
 import { Comment } from '../../../interfaces/Comment';
-import { GoogleMapComponent } from '../google-map/google-map.component';
 
 
 
@@ -22,13 +21,13 @@ import { GoogleMapComponent } from '../google-map/google-map.component';
     MatIcon,
     MatTabGroup,
     MatTab,
-    MatTabsModule,
-    GoogleMapComponent
-  ],
+    MatTabsModule
+],
   templateUrl: './accueil-pro.component.html',
   styleUrl: './accueil-pro.component.css',
 })
 export class AccueilProComponent implements OnInit {
+  
   clients: Client[] = [
     {
       nom: 'Jean Dupont',
@@ -359,21 +358,6 @@ export class AccueilProComponent implements OnInit {
       return matchesPays && matchesEvaluation && matchesDuree && matchesStatut && matchesSousStatut;
     });
   }
-
-
-  @ViewChild(GoogleMapComponent)
-  mapComponent!: GoogleMapComponent;
-
-  onTabChange(event: MatTabChangeEvent) {
-    if (event.tab.textLabel === 'Géolocalisation') {
-      // Attendez un court délai pour que l'onglet soit rendu visible
-      setTimeout(() => {
-        this.mapComponent.initMap();
-      }, 0);
-    }
-  }
-  
-
 
   selectedSousStatut: string ="";  // Initialiser comme une chaîne vide
   filterPays: string = ''; // Propriété pour le filtre
