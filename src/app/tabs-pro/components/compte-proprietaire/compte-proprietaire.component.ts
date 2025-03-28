@@ -3,19 +3,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatTabGroup, MatTab, MatTabsModule } from '@angular/material/tabs';
+import { SharedTabService } from '../../../services/shared-tab.service';
+import { Client } from '../../../interfaces/Client';
 
-interface Client {
-  id: number;
-  nom: string;
-  pays: string;
-  contact: string;
-  email: string;
-  statut: string;
-  nombre_structure: number;
-  duree: string;
-  evaluation: string;
-  statut_structure: string;
-}
+// interface Client {
+//   id: number;
+//   nom: string;
+//   pays: string;
+//   contact: string;
+//   email: string;
+//   statut: string;
+//   nombre_structure: number;
+//   duree: string;
+//   evaluation: string;
+//   statut_structure: string;
+// }
 
 @Component({
   selector: 'app-compte-proprietaire',
@@ -44,6 +46,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00010',
       email: 'yor@infogmail.com',
       statut_structure: 'Fermé',
+      type_propriete: ''
     },
     {
       nom: 'Marie Curie',
@@ -56,6 +59,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00009',
       email: 'yor@infogmail.com',
       statut_structure: 'Supprimé',
+      type_propriete: ''
     },
     {
       nom: 'Pierre Martin',
@@ -68,6 +72,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00008',
       email: 'yor@infogmail.com',
       statut_structure: 'Bloqué temporairement',
+      type_propriete: ''
     },
     {
       nom: 'Sophie Germain',
@@ -80,6 +85,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00007',
       email: 'yor@infogmail.com',
       statut_structure: 'Bloqué \n temporairement',
+      type_propriete: ''
     },
     {
       nom: 'Lucie Aubrac',
@@ -92,6 +98,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '000006',
       email: 'yor@infogmail.com',
       statut_structure: 'Actif',
+      type_propriete: ''
     },
     {
       nom: 'Antoine Doinel',
@@ -104,6 +111,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00005',
       email: 'yor@infogmail.com',
       statut_structure: 'Actif',
+      type_propriete: ''
     },
     {
       nom: 'Clara Zetkin',
@@ -116,6 +124,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00004',
       email: 'yor@infogmail.com',
       statut_structure: 'Actif',
+      type_propriete: ''
     },
     {
       nom: 'Gabriel Garcia',
@@ -128,6 +137,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00003',
       email: 'yor@infogmail.com',
       statut_structure: 'Fermé',
+      type_propriete: ''
     },
     {
       nom: 'Nina Simone',
@@ -140,6 +150,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00002',
       email: 'yor@infogmail.com',
       statut_structure: 'Supprimé',
+      type_propriete: ''
     },
     {
       nom: 'Albert Camus',
@@ -152,6 +163,7 @@ export class CompteProprietaireComponent implements OnInit {
       contact: '00001',
       email: 'yor@infogmail.com',
       statut_structure: 'Fermé',
+      type_propriete: ''
     },
   ];
 
@@ -213,12 +225,21 @@ export class CompteProprietaireComponent implements OnInit {
   validerSuppr: boolean = false;
   dateAujourdhui: string = '';
 
-  constructor() {
+  constructor(private sharedTabService: SharedTabService) {
     // Initialiser le sous-statut en fonction du statut par défaut
     this.onStatutChange();
     this.initializeCountryFilters();
     this.initializeDurationFilters();
   }
+
+  ouvrirDetailsClient(client: Client) {
+    // Étape 1 : Envoyer le client sélectionné au service
+    this.sharedTabService.selectClient(client);
+    
+    // Étape 2 : Demander l'ouverture de l'onglet Accueil
+    this.sharedTabService.openAccueilTab();
+  }
+  
 
   onStatutChange() {
     // Réinitialiser la sélection du sous-statut lorsque le statut change

@@ -9,6 +9,7 @@ import { CompteProprietaireComponent } from './components/compte-proprietaire/co
 import { FactureProComponent } from './components/facture-pro/facture-pro.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { SharedTabService } from '../services/shared-tab.service';
 
 
 
@@ -75,6 +76,14 @@ export class TabsProComponent{
   openSelect(select: HTMLSelectElement) {
     select.focus();
     select.click(); // Ouvre le sélecteur
+  }
+
+
+
+  constructor(private sharedTabService: SharedTabService) {
+    this.sharedTabService.openAccueilTab$.subscribe(open => {
+      if (open) this.tabGroup.selectedIndex = 0; // Ouvre l'onglet Accueil
+    });
   }
 
 
