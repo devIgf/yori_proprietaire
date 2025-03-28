@@ -6,18 +6,6 @@ import { MatTabGroup, MatTab, MatTabsModule } from '@angular/material/tabs';
 import { SharedTabService } from '../../../services/shared-tab.service';
 import { Client } from '../../../interfaces/Client';
 
-// interface Client {
-//   id: number;
-//   nom: string;
-//   pays: string;
-//   contact: string;
-//   email: string;
-//   statut: string;
-//   nombre_structure: number;
-//   duree: string;
-//   evaluation: string;
-//   statut_structure: string;
-// }
 
 @Component({
   selector: 'app-compte-proprietaire',
