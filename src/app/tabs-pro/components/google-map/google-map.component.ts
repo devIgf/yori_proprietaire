@@ -54,12 +54,12 @@ export class GoogleMapComponent implements AfterViewInit, OnDestroy {
       { name: 'Paris', lngLat: [2.3522, 48.8566], color: '#FF0000', description: 'La ville lumière' },
       { name: 'New York', lngLat: [-74.006, 40.7128], color: '#0000FF', description: 'The Big Apple' },
       { name: 'Tokyo', lngLat: [139.6917, 35.6895], color: '#FFA500', description: 'Capitale du Japon' },
-      { name: 'Libreville', lngLat: [9.4673, 0.4162], color: '#00FF00', description: 'Perle de l\'Afrique !' }
+      { name: 'Libreville', lngLat: [9.4673, 0.4162], color: '#00FF00', description: 'El Dorado de l\'Afrique !' }
     ];
   
     cities.forEach(city => {
       new maplibregl.Marker({ color: city.color })
-        .setLngLat(city.lngLat) // Maintenant typé comme [number, number]
+        .setLngLat(city.lngLat)
         .setPopup(new maplibregl.Popup().setHTML(`
           <b>${city.name}</b><br>${city.description}
         `))
