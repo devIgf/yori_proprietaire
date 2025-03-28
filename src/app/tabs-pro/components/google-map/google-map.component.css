@@ -1,6 +1,5 @@
-#map {
-    display: block; /* Assurez que le composant occupe tout l'espace */
-    height: 43vh;
+.map-container {
+    height: 400px; /* Hauteur obligatoire */
     width: 100%;
-    border-radius: 5px;
-}
+    background-color: #f0f0f0; /* Temporaire pour débogage */
+  }

@@ -10,7 +10,6 @@ import { FransdaComponent } from '../fransda/fransda.component';
 import { Client } from '../../../interfaces/Client';
 import { Comment } from '../../../interfaces/Comment';
 import { GoogleMapComponent } from "../google-map/google-map.component";
-import { LiasonsMapComponent } from "../liasonsMap/liasonsMap.component";
 
 
 
@@ -24,7 +23,6 @@ import { LiasonsMapComponent } from "../liasonsMap/liasonsMap.component";
     MatTabGroup,
     MatTab,
     MatTabsModule,
-    LiasonsMapComponent,
     GoogleMapComponent
 ], 
   templateUrl: './accueil-pro.component.html',
@@ -446,9 +444,6 @@ export class AccueilProComponent implements OnInit {
   afficherDetails(client: Client) {
     this.selectedClient = client;
     this.showDetails = true; 
-    setTimeout(() => {
-      this.mapComponent.initMap(); // Appeler initMap après un court délai
-    }, 1000);
   }
 
   afficherTelephone() {
