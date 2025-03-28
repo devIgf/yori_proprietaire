@@ -10,6 +10,7 @@ import { FransdaComponent } from '../fransda/fransda.component';
 import { Client } from '../../../interfaces/Client';
 import { Comment } from '../../../interfaces/Comment';
 import { GoogleMapComponent } from "../google-map/google-map.component";
+import { SharedTabService } from '../../../services/shared-tab.service';
 
 
 
@@ -39,6 +40,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: 'Hotel',
       evaluation: 'Très bon',
       id: 1,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Marie Curie',
@@ -48,6 +53,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: 'Très bon',
       id: 2,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Pierre Martin',
@@ -57,6 +66,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: 'bon',
       id: 3,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Sophie Germain',
@@ -66,6 +79,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: 'Moins bon',
       id: 4,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Lucie Aubrac',
@@ -75,6 +92,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: 'Mauvais',
       id: 5,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Antoine Doinel',
@@ -84,6 +105,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: '',
       id: 6,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Clara Zetkin',
@@ -93,6 +118,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: '',
       id: 7,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Gabriel Garcia',
@@ -102,6 +131,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: '',
       id: 8,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Nina Simone',
@@ -111,6 +144,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: '',
       id: 9,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
     {
       nom: 'Albert Camus',
@@ -120,6 +157,10 @@ export class AccueilProComponent implements OnInit {
       type_propriete: '',
       evaluation: '',
       id: 10,
+      contact: '',
+      email: '',
+      nombre_structure: 0,
+      statut_structure: ''
     },
   ];
 
@@ -249,6 +290,11 @@ export class AccueilProComponent implements OnInit {
     this.setActiveComponentItems2(this.selectedTabItems2); // Initialiser le composant actif pour items2
 
     this.dateAujourdhui = new Date().toLocaleDateString();
+
+    this.sharedTabService.selectedClient$.subscribe(client => {
+      this.selectedClient = client;
+      this.showDetails = !!client; 
+    });
   }
 
   // Méthodes pour gérer les items
@@ -312,7 +358,7 @@ export class AccueilProComponent implements OnInit {
   validerSuppr: boolean = false;
   dateAujourdhui: string = '';
 
-  constructor() {
+  constructor(private sharedTabService: SharedTabService) {
     // Initialiser le sous-statut en fonction du statut par défaut
     this.onStatutChange();
     this.initializeCountryFilters();
@@ -517,5 +563,11 @@ export class AccueilProComponent implements OnInit {
     this.validerSuppr = !this.validerSuppr;
     this.estSupprimer = !this.estSupprimer;
   }
+
+
+
+
+
+  
 
 }

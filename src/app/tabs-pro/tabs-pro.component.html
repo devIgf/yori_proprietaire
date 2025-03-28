@@ -1,5 +1,5 @@
     <div class="tab-container"> 
-      <mat-tab-group [(selectedIndex)]="activeTabIndex" (selectedTabChange)="onTabChange($event)">
+      <mat-tab-group [(selectedIndex)]="activeTabIndex" (selectedTabChange)="onTabChange($event)" #tabGroup>
         <mat-tab>
           <ng-template mat-tab-label class="ng-template">
             <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 0 }">
