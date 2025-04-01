@@ -189,11 +189,6 @@ a {
   color: rgba(13, 13, 197, 0.8);
 }
 
-.custom-select {
-  position: relative;
-  display: inline-block;
-  width: 300px;
-}
 
 .checkbox-item {
   display: flex;

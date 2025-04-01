@@ -1,0 +1,5 @@
+/* Définition des variables CSS */
+:root {
+  --primary-color: rgba(13, 13, 197, 0.8);
+  --light-gray: lightgray;
+}

@@ -1,3 +1,5 @@
+@import "../../../../../public/assets/styles/allStyle.css";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -5,7 +7,7 @@
   background-color: rgba(250, 250, 250, 1);
 }
 
-.top{
+.top {
   width: 93%;
 }
 
@@ -17,17 +19,15 @@
   text-align: center;
 }
 
-
-
 .titre {
   text-align: left;
   width: 100%;
 }
 
 .inputs {
-  display: flex; 
-  gap: 20px; 
-  margin-top: 10px; 
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
@@ -52,22 +52,19 @@
   cursor: pointer;
 }
 
-.voir:hover{
+.voir:hover {
   background-color: rgb(255, 255, 255);
   color: rgba(13, 13, 197, 0.8);
 }
 
 .table {
   border-collapse: collapse;
-  /* margin-left: 35px; */
   font-size: 0.9em;
   border: 2px solid lightgray;
   background-color: white;
-  /* overflow-x: auto; */
-  /* table-layout: auto; */
 }
 
-.container-table2{
+.container-table2 {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -75,25 +72,23 @@
 
 .table2 {
   border: 1px solid rgb(0, 0, 0);
-  border-collapse: collapse; 
+  border-collapse: collapse;
   width: 100%;
   margin-top: 10px;
   background-color: rgb(255, 255, 255);
 }
 
 .table2 td {
-  padding: 5px; /* Réduire le padding des cellules */
+  padding: 5px;
   padding-left: 20px;
-  font-size: 12px; /* Réduire la taille de la police */
-  line-height: 1.2; /* Ajuster la hauteur des lignes */
-  vertical-align: top; /* Aligner le contenu en haut de la cellule */
+  font-size: 12px;
+  line-height: 1.2;
+  vertical-align: top;
 }
 
 .table2 tr {
-  height: 20px; /* Définir une hauteur spécifique pour les lignes */
+  height: 20px;
 }
-
-
 
 .span {
   margin-left: 420px;
@@ -101,19 +96,19 @@
 
 .printPage,
 .printPage2 {
-  display: inline-flex; /* Utilise flexbox pour aligner horizontalement */
-  align-items: center; /* Aligne verticalement l'icône et le texte */
-  background-color: initial; /* Exemple de couleur de fond pour le bouton */
-  padding: 8px 10px; /* Espacement interne du bouton */
-  border: none; /* Enlève la bordure du bouton */
-  cursor: pointer; /* Change le curseur lorsque la souris est dessus */
+  display: inline-flex;
+  align-items: center;
+  background-color: initial;
+  padding: 8px 10px;
+  border: none;
+  cursor: pointer;
   text-decoration: underline;
 }
 
 .printPage mat-icon,
 .printPage2 mat-icon {
-  font-size: 20px; /* Taille de l'icône */
-  margin-right: 5px; /* Espace entre l'icône et le texte */
+  font-size: 20px;
+  margin-right: 5px;
 }
 
 .revenir {
@@ -121,13 +116,13 @@
   cursor: pointer;
 }
 
-.revenir:hover{
+.revenir:hover {
   color: rgb(255, 255, 255);
   background-color: rgba(13, 13, 197, 0.8);
   border: 2px solid rgba(13, 13, 197, 0.8);
 }
 
-.sapn-retour{
+.sapn-retour {
   margin-top: 5px;
 }
 
@@ -144,12 +139,12 @@
 
 .table th,
 .table td {
-  padding-left: 0.5%; /* Ajoute un espacement interne */
-  text-align: left; /* Aligne le texte à gauche */
+  padding-left: 0.5%;
+  text-align: left;
 }
 
 .table th {
-  width: 15%; /* Ajustez la largeur selon vos besoins */
+  width: 15%;
 }
 
 .table tr {
@@ -157,8 +152,8 @@
 }
 
 .table-responsive {
-  overflow-x: auto; /* Permet le défilement horizontal */
-  width: 93%; 
+  overflow-x: auto;
+  width: 93%;
 }
 
 .open-div2 {
@@ -216,9 +211,9 @@ a {
 }
 
 .checkbox-item {
-  display: flex; 
-  align-items: center; 
-  margin-bottom: 10px; 
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
   justify-content: flex-start;
 }
 
@@ -231,7 +226,7 @@ a {
   cursor: pointer;
 }
 
-.select:hover{
+.select:hover {
   color: rgb(255, 255, 255);
   background-color: rgba(13, 13, 197, 0.8);
 }
@@ -259,7 +254,7 @@ a {
 .checkbox-container {
   background-color: initial;
   display: block;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 15px;
   justify-content: flex-start;
   width: 20%;
@@ -280,9 +275,8 @@ a {
 }
 
 .checkbox-item input[type="checkbox"] {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
-
 
 .fact-annulee {
   background-color: #ffeded;
@@ -308,10 +302,8 @@ a {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   padding: 16px;
-  max-height: calc(
-    5 * (100px + 16px)
-  ); 
-  overflow-y: auto; 
+  max-height: calc(5 * (100px + 16px));
+  overflow-y: auto;
 }
 
 .image-gallery1 img {
@@ -347,34 +339,29 @@ a {
 }
 
 .circle {
-  width: 10px; /* Ajustez la taille selon vos besoins */
-  height: 10px; /* Ajustez la taille selon vos besoins */
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  margin-right: 5px; /* Espacement entre les cercles */
+  margin-right: 5px;
 }
 
 .filled {
-  background-color: green; /* Couleur verte pour les cercles remplis */
+  background-color: green;
 }
 
 .outline {
-  background-color: rgb(
-    255,
-    255,
-    255
-  ); /* Fond blanc pour les cercles non remplis */
-  border: 2px solid green; /* Contour vert pour les cercles non remplis */
+  background-color: rgb(255, 255, 255);
+  border: 2px solid green;
 }
 
 .rating-text {
-  margin-top: 5px; /* Ajoute un espacement entre les cercles et le texte */
-  font-size: 14px; /* Ajustez la taille de la police selon vos besoins */
+  margin-top: 5px;
+  font-size: 14px;
   font-weight: 500;
   font-size: 16.85px;
   color: rgba(13, 13, 197, 0.8);
 }
 
-/* moa */
 .comment-content {
   position: relative;
   margin: 20px 0;
@@ -383,32 +370,32 @@ a {
 .commentaire {
   background-color: white;
   width: 100%;
-  height: auto; /* Hauteur automatique */
+  height: auto;
   display: inline-block;
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
   word-wrap: break-word;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-  position: relative; /* Nécessaire pour positionner le pseudo-élément */
+  position: relative;
 }
 
 .commentaire::after {
   content: ""; /* Nécessaire pour afficher un pseudo-élément */
   position: absolute;
-  bottom: -10px; /* Place le triangle en bas du commentaire */
-  right: 20px; /* Ajuste la position horizontale */
+  bottom: -10px;
+  right: 20px;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 20px 20px 0 20px; /* Dimensions du triangle (base, côtés, haut) */
-  border-color: white transparent transparent transparent; /* Couleur du triangle */
+  border-width: 20px 20px 0 20px;
+  border-color: white transparent transparent transparent;
 }
 
 .profile-icon {
-  width: 30px; /* Ajustez la taille selon vos besoins */
-  height: 30px; /* Ajustez la taille selon vos besoins */
-  border-radius: 50%; /* Pour rendre l'icône ronde */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .comment-header {
@@ -421,11 +408,11 @@ a {
   align-items: center;
 }
 
-.fas{
-  font-size: 15px;color: yellow
+.fas {
+  font-size: 15px;
+  color: yellow;
 }
 
-/* ---------------- */
 .discuter {
   display: flex;
   justify-content: space-between;
@@ -446,23 +433,22 @@ a {
   cursor: pointer;
 }
 
-
 .envoi {
   padding: 6px;
   display: flex;
   align-items: center;
-  background-color:white;
+  background-color: white;
   border: 0.5px solid black;
   cursor: pointer;
 }
 
-.envoi:hover{
+.envoi:hover {
   background-color: rgba(13, 13, 197, 0.8);
   color: white;
 }
 
 .envoi mat-icon {
-  margin-left: 5px; /* Ajuste l'espace entre le texte et l'icône */
+  margin-left: 5px;
 }
 
 .supprimer-btn {
@@ -473,7 +459,7 @@ a {
   cursor: pointer;
 }
 
-.supprimer-btn:hover{
+.supprimer-btn:hover {
   color: rgba(13, 13, 197, 0.8);
   background-color: white;
   border: 0.5px solid rgba(13, 13, 197, 0.8);
@@ -483,8 +469,7 @@ a {
   position: absolute;
   width: 45%;
   height: 55%;
-  /* margin-top: -100px;
-  margin-left: 290px; */
+
   border: none;
   background-color: #ffffff;
   z-index: 10;
@@ -568,7 +553,6 @@ a {
   color: rgba(13, 13, 197, 0.8);
 }
 
-
 .bloquage {
   display: flex;
   width: 38%;
@@ -577,7 +561,7 @@ a {
   margin-top: 10px;
 }
 
-.group-message{
+.group-message {
   display: flex;
   justify-content: center;
 }
@@ -594,7 +578,7 @@ a {
   text-align: center;
 }
 
-.btn-del{
+.btn-del {
   padding: 10px;
   background-color: rgba(13, 13, 197, 0.8);
   color: white;
@@ -602,7 +586,7 @@ a {
   cursor: pointer;
 }
 
-.btn-del:hover{
+.btn-del:hover {
   background-color: white;
   color: rgba(13, 13, 197, 0.8);
   border: 0.5px solid black;
@@ -673,9 +657,9 @@ a {
 }
 
 ul {
-  list-style-type: none; /* Retire les puces */
-  padding: 0; /* Supprime le remplissage par défaut */
-  margin: 0; /* Supprime la marge par défaut */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 .sidenav-nav .sidenav-nav-item .sidenav-nav-link {
   display: flex;
@@ -701,16 +685,16 @@ ul {
 
 .sidenav-nav-link:hover {
   cursor: pointer;
-  background-color: #f0f0f0; /* Couleur de fond au survol */
+  background-color: #f0f0f0;
 }
 
 .sidenav-nav-link.active {
-  background-color: #bebebe; /* Couleur de fond pour l'élément actif */
-  color: white; /* Couleur du texte pour l'élément actif */
+  background-color: #bebebe;
+  color: white;
 }
 
 .sidenav-link-icon {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .active {
@@ -755,9 +739,9 @@ ul {
 }
 .td1,
 .head1 {
-  height: 50px; /* Ajuste la hauteur des cellules */
-  line-height: 50px; /* Centrer verticalement le texte si nécessaire */
-  text-align: center; /* Centrer le contenu horizontalement */
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
 }
 .pagination {
   display: flex;
@@ -771,64 +755,43 @@ ul {
   margin-top: 30px;
 }
 
-
-.gauche{
+.gauche {
   display: flex;
 }
 
-
-.bold{
+.bold {
   font-weight: bold;
   font-size: 13px;
 }
 
-
-/* .container-mat-group{
-  display: flex;
-  justify-content: center;
-  background-color: blue;
-} */
-
-
-/* .tab-group{
-  display: flex;
-  justify-content: center;
-  width: 80%;
-  background-color: red;
-} */
-
 @media (max-width: 768px) {
-
-  .top{
+  .top {
     width: 103%;
   }
 
   .table-responsive {
-    overflow-x: auto; /* Permet le défilement horizontal */
-    width: 103%; 
-  }  
+    overflow-x: auto;
+    width: 103%;
+  }
 
-  .table{
+  .table {
     width: 100%;
     font-size: 12px;
   }
 
-
-  .btn-pag{
+  .btn-pag {
     font-size: 10px;
   }
 
-
   .table th,
   .table td {
-    padding-left: 2%; /* Ajoute un espacement interne */
+    padding-left: 2%;
   }
 
   .inputs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
   }
-
 
   .printPage2 {
     padding-left: 30px;
@@ -846,7 +809,7 @@ ul {
     display: flex;
   }
 
-  .droit{
+  .droit {
     margin-right: 25px;
   }
 
@@ -858,20 +821,7 @@ ul {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     padding: 8px;
-    max-height: calc(
-      3 * (100px + 16px)
-    ); 
-    overflow-y: auto; 
+    max-height: calc(3 * (100px + 16px));
+    overflow-y: auto;
   }
-
-}
-
-
-
-
-#map {
-  display: block; /* Assurez que le composant occupe tout l'espace */
-  height: 43vh;
-  width: 100%;
-  border-radius: 5px;
 }
