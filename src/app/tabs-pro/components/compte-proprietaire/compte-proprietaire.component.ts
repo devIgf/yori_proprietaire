@@ -230,9 +230,10 @@ export class CompteProprietaireComponent implements OnInit {
   
 
   onStatutChange() {
-    // Réinitialiser la sélection du sous-statut lorsque le statut change
-    this.selectedSousStatut = this.sousStatuts[this.selectedStatut]?.[0] || '';
+    
   }
+  
+  
 
   initializeCountryFilters() {
     const uniqueCountries = new Set(this.clients.map((client) => client.pays));
@@ -255,11 +256,14 @@ export class CompteProprietaireComponent implements OnInit {
       const matchesDuree =
         this.selectedDuree === 'Tous les années' ||
         client.duree === this.selectedDuree;
-
-      return matchesPays && matchesEvaluation && matchesDuree;
-      // return matchesPays && matchesEvaluation;
+      const matchesStatut =
+        this.selectedStatut === '' ||
+        client.statut === this.selectedStatut;
+  
+      return matchesPays && matchesEvaluation && matchesDuree && matchesStatut;
     });
   }
+  
 
   selectedSousStatut: string = ''; // Initialiser comme une chaîne vide
   filterPays: string = ''; // Propriété pour le filtre
