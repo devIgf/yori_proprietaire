@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 25px 50px 100px 50px;
-  background-color: rgba(250, 250, 250, 1);
+  background-color: var(--with-color);
 }
 
 .top {
@@ -39,22 +39,22 @@
   text-align: left;
 }
 
-.style-5 {
-  color: rgba(13, 13, 197, 0.8);
+.style-5,
+.voir {
+  color: var(--primary-color);
 }
 
 .voir {
-  background-color: rgba(13, 13, 197, 0.8);
-  color: white;
-  border: solid rgba(13, 13, 197, 0.8);
+  background-color: var(--primary-color);
+  color: var(--with-color);
+  border: solid var(--primary-color);
   height: 30px;
 }
 
-.box-pop{
+.box-pop {
   justify-content: center;
-   text-align: center;
+  text-align: center;
 }
-
 
 .table {
   border-collapse: collapse;
@@ -62,24 +62,24 @@
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
-  border: 2px solid lightgray;
-  background: white;
+  border: 2px solid var(--light-gray);
+  background: var(--with-color);
   width: 100%;
   height: auto;
   overflow-x: auto;
   table-layout: auto;
 }
 
-.table-compte{
+.table-compte {
   width: 100%;
 }
 
 .table2 {
-  border: 2px solid lightgray;
+  border: 2px solid var(--light-gray);
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--with-color);
 }
 
 .table2 td {
@@ -120,17 +120,15 @@
   cursor: pointer;
 }
 
-.revenir:hover{
-  color: rgb(255, 255, 255);
-  background-color: rgba(13, 13, 197, 0.8);
-  border: 2px solid rgba(13, 13, 197, 0.8);
+.revenir:hover {
+  color: var(--with-color);
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
-
-.sapn-retour{
+.sapn-retour {
   margin-top: 5px;
 }
-
 
 .table th,
 .table td {
@@ -143,7 +141,7 @@
 }
 
 .table tr {
-  border: 2px solid lightgray;
+  border: 2px solid var(--light-gray);
 }
 
 .table-responsive {
@@ -152,7 +150,7 @@
 }
 
 .open-div2 {
-  color: rgba(13, 13, 197, 0.8);
+  color: var(--primary-color);
   text-decoration: underline;
   cursor: pointer;
 }
@@ -164,13 +162,13 @@
 }
 
 .btn-pag {
-  color: rgba(13, 13, 197, 0.8);
+  color: var(--primary-color);
   border: none;
   background-color: initial;
 }
 
 .btn-pag [disabled] {
-  color: lightgray;
+  color: var(--light-gray);
 }
 
 #itemsPerPage {
@@ -182,13 +180,12 @@
   cursor: pointer;
   width: 101px;
   height: 15px;
-  color: rgba(13, 13, 197, 0.8);
+  color: var(--primary-color);
 }
 
 a {
-  color: rgba(13, 13, 197, 0.8);
+  color: var(--primary-color);
 }
-
 
 .checkbox-item {
   display: flex;
@@ -197,9 +194,9 @@ a {
 }
 
 .select {
-  border: 0.5px solid rgba(13, 13, 197, 0.8);
-  color: rgba(13, 13, 197, 0.8);
-  background-color: white;
+  border: 0.5px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: var(--with-color);
   width: 129px;
   height: 30px;
 }
@@ -207,15 +204,15 @@ a {
 .select1 {
   width: 129px;
   height: 30px;
-  border: 2px solid lightgray;
+  border: 2px solid var(--light-gray);
 }
 
 .checkbox {
   display: flex;
   margin-top: 10px;
   width: 100%;
-  background-color: white;
-  border: 2px solid lightgray;
+  background-color: var(--with-color);
+  border: 2px solid var(--light-gray);
   margin-left: -30px;
 }
 
@@ -252,8 +249,6 @@ a {
   margin-right: 8px;
 }
 
-
-
 .fact-annulee {
   background-color: #ffeded;
   border: 1px solid #ff9797;
@@ -263,13 +258,13 @@ a {
 }
 
 .section {
-  background-color: white;
+  background-color: var(--with-color);
   text-align: center;
   justify-content: center;
 }
 
 .image-gallery {
-  background-color: white;
+  background-color: var(--with-color);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
@@ -295,13 +290,13 @@ a {
 }
 
 .containerAvis {
-  background-color: white;
+  background-color: var(--with-color);
   padding: 50px 80px 50px 50px;
 }
 
 .comment {
   width: 100%;
-  background-color: white;
+  background-color: var(--with-color);
 }
 
 .comment-rating {
@@ -320,7 +315,7 @@ a {
 }
 
 .outline {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--with-color);
   border: 2px solid green;
 }
 
@@ -329,7 +324,7 @@ a {
   font-size: 14px;
   font-weight: 500;
   font-size: 16.85px;
-  color: rgba(13, 13, 197, 0.8);
+  color: var(--primary-color);
 }
 
 .comment-content {
@@ -338,13 +333,13 @@ a {
 }
 
 .commentaire {
-  background-color: rgb(224, 224, 224);
+  background-color: var(--light-gray);
   width: 100%;
   height: auto;
   display: inline-block;
   padding: 10px;
   margin: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--light-gray);
   border-radius: 5px;
   word-wrap: break-word;
 }
@@ -397,14 +392,14 @@ a {
   padding: 6px;
   display: flex;
   align-items: center;
-  background-color:white;
+  background-color: var(--with-color);
   border: 0.5px solid black;
   cursor: pointer;
 }
 
-.btn-bloquer:hover{
-  background-color: rgba(13, 13, 197, 0.8);
-  color: white;
+.btn-bloquer:hover {
+  background-color: var(--primary-color);
+  color: var(--with-color);
 }
 
 #bloquer {
@@ -414,8 +409,8 @@ a {
 
 .supprimer-btn {
   padding: 10px;
-  background-color: rgba(13, 13, 197, 0.8);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--with-color);
   border: none;
   cursor: pointer;
 }
@@ -427,7 +422,7 @@ a {
   margin-top: -50px;
   margin-left: 290px;
   border: none;
-  background-color: #ffffff;
+  background-color: var(--with-color);
   z-index: 20;
   border-radius: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -437,8 +432,8 @@ a {
 .entete-message {
   display: flex;
   justify-content: space-between;
-  color: white;
-  background-color: rgba(13, 13, 197, 0.8);
+  color: var(--with-color);
+  background-color: var(--primary-color);
   padding: 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -475,7 +470,7 @@ a {
   width: 100%;
   height: 150px;
   border: none;
-  background-color: #ffffff;
+  background-color: var(--with-color);
 }
 
 .soummettreMessage {
@@ -494,7 +489,7 @@ a {
   position: absolute;
   width: 40%;
   height: 30%;
-  background-color: #ffffff;
+  background-color: var(--with-color);
   z-index: 50;
   margin-left: 30%;
   border-radius: 20px;
@@ -502,7 +497,6 @@ a {
   overflow: hidden;
   padding: 15px;
 }
-
 
 .fermerMessageEnvoye {
   text-align: end;
@@ -515,13 +509,13 @@ a {
 
 #logoCheck {
   font-size: 50px;
-  color: rgba(13, 13, 197, 0.8);
+  color: var(--primary-color);
 }
 
 .bloquage {
   display: flex;
   width: 90%;
-  background-color: #f3f3f3;
+  background-color: var(--light-gray);
   padding-left: 30px;
   margin-left: 30px;
 }
@@ -549,9 +543,9 @@ a {
 
 .annuler-btn {
   padding: 10px;
-  background-color: white;
-  color: rgba(13, 13, 197, 0.8);
-  border: 1px solid rgba(13, 13, 197, 0.8);
+  background-color: var(--with-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   cursor: pointer;
   border-radius: 10px;
 }
@@ -561,7 +555,7 @@ a {
 }
 
 .notificationBlocage {
-  background-color: white;
+  background-color: var(--with-color);
   margin-top: 10px;
   margin-left: 30px;
   width: 95%;
@@ -573,18 +567,18 @@ a {
 }
 
 .div2 {
-  background: #fff;
+  background: var(--with-color);
 }
 
 .sidenav {
-  background: #fff;
+  background: var(--with-color);
   z-index: 1;
   top: 0;
   width: 17rem;
 }
 
 .container-sid {
-  border-right: 0.1px solid #d2d2d2;
+  border-right: 0.1px solid var(--light-gray);
 }
 
 .sidenav-nav {
@@ -640,7 +634,7 @@ ul {
 
 .sidenav-nav-link.active {
   background-color: #bebebe;
-  color: white;
+  color: var(--with-color);
 }
 
 .sidenav-link-icon {
@@ -658,7 +652,7 @@ ul {
 
 #logoChrono {
   font-size: 25px;
-  color: gray;
+  color: var(--light-gray);
 }
 
 #logoExclamation {
@@ -674,7 +668,7 @@ ul {
 
 #logoLien {
   font-size: 25px;
-  color: gray;
+  color: var(--light-gray);
 }
 
 .retour {
@@ -738,7 +732,6 @@ ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-
 
   .span {
     margin: 0;
