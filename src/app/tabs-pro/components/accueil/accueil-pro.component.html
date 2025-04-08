@@ -22,7 +22,6 @@
             *ngIf="selectedStatut !== 'Vue d\'ensemble'"
             [(ngModel)]="selectedSousStatut"
           >
-            <!-- <option value="Tous les types">Tous les types</option> -->
             <option *ngFor="let sousStatut of sousStatuts[selectedStatut]" [value]="sousStatut">
               {{ sousStatut }}
             </option>
@@ -161,41 +160,39 @@
             </td>
           </tr>
           <tr>
-            <td colspan="10" class="td-pag">
-              <div class="pagination">
-                <div class="gauche">
-                  <button
+           <td colspan="7">
+           <div class="bottom-pagination">
+            <div style="display: flex;">
+              <button
                   class="btn-pag"
-                  (click)="goToPage(currentPage - 1)"
+                  (click)="previousPage()"
                   [disabled]="currentPage === 1"
                 >
-                  Précédent</button
-                >|
-                <span>Page</span>
-                |<button
+                  &lt; Précédent
+                </button>
+                |<span>Page {{ currentPage }} / {{ totalPages }}</span>|<button
                   class="btn-pag"
-                  (click)="goToPage(currentPage + 1)"
+                  (click)="nextPage()"
                   [disabled]="currentPage === totalPages"
                 >
-                  Suivant
+                  Suivant &gt;
                 </button>
-                </div>
-
-                <div class="droit">
-                  <select
-                  id="itemsPerPage"
-                  (change)="onItemsPerPageChange($event)"
+             </div>
+             <div>
+              <select
+                id=""
+                (change)="onItemsPerPageChange($event)"
+              >
+                <option
+                  *ngFor="let option of itemsPerPageOptions"
+                  [value]="option"
                 >
-                  <option
-                    *ngFor="let option of itemsPerPageOptions"
-                    [value]="option"
-                  >
-                    Afficher {{ option }} réservations
-                  </option>
-                </select>
-                </div>
-              </div>
-            </td>
+                  Afficher {{ option }} réservations
+                </option>
+              </select>
+             </div>
+           </div>
+           </td>
           </tr>
         </tbody>
       </table>

@@ -7,15 +7,15 @@
           <div class="labels">
             <label for="statut">Aperçu</label><br />
             <select
-  id="statut"
-  class="select1"
-  [(ngModel)]="selectedStatut"
-  (change)="onStatutChange()"
->
-  <option *ngFor="let statut of statutsFiltres" [value]="statut">
-    {{ statut }}
-  </option>
-</select>
+              id="statut"
+              class="select1"
+              [(ngModel)]="selectedStatut"
+              (change)="onStatutChange()"
+            >
+              <option *ngFor="let statut of statutsFiltres" [value]="statut">
+                {{ statut }}
+              </option>
+            </select>
           </div>
           <div class="labels">
             <label for="pays">Région</label><br />
@@ -112,7 +112,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let client of filteredClients">
+          <tr *ngFor="let client of paginatedClients">
             <td class="td1 style-5">{{ client.nom }}</td>
             <td class="td1" class="pays_structure">
               {{ client.pays }}
@@ -135,38 +135,42 @@
             </td>
           </tr>
           <tr>
-            <td class="td1" colspan="10" class="td-pag">
-              <div>
-                <button
-                  class="btn-pag"
-                  (click)="goToPage(currentPage - 1)"
-                  [disabled]="currentPage === 1"
-                >
-                  &lt; Précédent</button
-                >|
-                <span>Page</span>
-                |<button
-                  class="btn-pag"
-                  (click)="goToPage(currentPage + 1)"
-                  [disabled]="currentPage === totalPages"
-                >
-                  Suivant &gt;
-                </button>
-                <select
-                  id="itemsPerPage"
-                  (change)="onItemsPerPageChange($event)"
-                >
-                  <option
-                    *ngFor="let option of itemsPerPageOptions"
-                    [value]="option"
-                  >
-                    Afficher {{ option }} réservations
-                  </option>
-                </select>
+            <td colspan="7">
+            <div class="bottom-pagination">
+             <div style="display: flex;">
+               <button
+                   class="btn-pag"
+                   (click)="previousPage()"
+                   [disabled]="currentPage === 1"
+                 >
+                   &lt; Précédent
+                 </button>
+                 |<span>Page {{ currentPage }} / {{ totalPages }}</span>|<button
+                   class="btn-pag"
+                   (click)="nextPage()"
+                   [disabled]="currentPage === totalPages"
+                 >
+                   Suivant &gt;
+                 </button>
               </div>
+              <div>
+               <select
+                 id=""
+                 (change)="onItemsPerPageChange($event)"
+               >
+                 <option
+                   *ngFor="let option of itemsPerPageOptions"
+                   [value]="option"
+                 >
+                   Afficher {{ option }} réservations
+                 </option>
+               </select>
+              </div>
+            </div>
             </td>
-          </tr>
+           </tr>
         </tbody>
+        
       </table>
     </div>
   </div>
