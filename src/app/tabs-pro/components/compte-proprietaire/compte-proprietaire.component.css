@@ -70,6 +70,12 @@
   table-layout: auto;
 }
 
+.bottom-pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
 .table-compte {
   width: 100%;
 }

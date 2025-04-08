@@ -178,17 +178,7 @@ export class CompteProprietaireComponent implements OnInit {
     this.dateAujourdhui = new Date().toLocaleDateString();
   }
 
-  sousStatuts: { [key: string]: string[] } = {
-    Hotellerrie: ['Hotel (s)', 'Motel (s)', 'Appartement (s)'],
-    Tourisme: [
-      'Autres',
-      'Randonnés',
-      'Parcs',
-      'Campings',
-      'Plages privées',
-      'Maisons traditionnelles',
-    ],
-  };
+
 
   // Liste des évaluations pour le filtre
   evaluationsFiltres: string[] = [
@@ -257,7 +247,7 @@ export class CompteProprietaireComponent implements OnInit {
         this.selectedDuree === 'Tous les années' ||
         client.duree === this.selectedDuree;
       const matchesStatut =
-        this.selectedStatut === '' ||
+        this.selectedStatut === 'Vue d\'ensemble' || // Inclut le cas "Vue d'ensemble"
         client.statut === this.selectedStatut;
   
       return matchesPays && matchesEvaluation && matchesDuree && matchesStatut;
@@ -321,13 +311,16 @@ export class CompteProprietaireComponent implements OnInit {
     console.log(this.selectedStatuts); // Pour déboguer et voir les statuts sélectionnés
   }
 
+
   get paginatedClients() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
-    return this.filteredClients.slice(start, start + this.itemsPerPage); // Appliquer le filtrage ici
+    const end = start + this.itemsPerPage;
+    return this.filteredClients.slice(start, end);
   }
 
+
   get totalPages() {
-    return Math.ceil(this.getClientsFiltres().length / this.itemsPerPage);
+    return Math.ceil(this.filteredClients.length / this.itemsPerPage);
   }
 
   goToPage(page: number) {
@@ -336,11 +329,23 @@ export class CompteProprietaireComponent implements OnInit {
     }
   }
 
-  onItemsPerPageChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    this.itemsPerPage = Number(selectElement.value);
-    this.currentPage = 1; // Réinitialiser à la première page
+  onItemsPerPageChange(event: any) {
+    this.itemsPerPage = parseInt(event.target.value, 10);
+    this.currentPage = 1; // Revenir à la première page après changement
   }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+  
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
 
   // Méthode appelée lors du clic sur le lien
   afficherDetails(client: Client) {
