@@ -1,3 +1,4 @@
+import { GestionComptesComponent } from './components/gestion-comptes/gestion-comptes.component';
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
@@ -28,7 +29,8 @@ import { SharedTabService } from '../services/shared-tab.service';
     MessagesComponent,
     NotificationsComponent,
     FactureProComponent,
-    AnalyseProComponent
+    AnalyseProComponent,
+    GestionComptesComponent,
 ],
   templateUrl: './tabs-pro.component.html',
   styleUrl: './tabs-pro.component.css',

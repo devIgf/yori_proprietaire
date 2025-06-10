@@ -26,7 +26,7 @@
               {{ sousStatut }}
             </option>
           </select>
-          
+
           </div>
           <div class="labels">
             <label for="pays">Région</label><br />
@@ -81,9 +81,9 @@
               <label for="">Statut des établissements</label>
             </div>
             <label class="checkbox-item" *ngFor="let statut of statutsOptions">
-              <input 
-                type="checkbox" 
-                [id]="statut.id" 
+              <input
+                type="checkbox"
+                [id]="statut.id"
                 [checked]="selectedStatuts.includes(statut.id)"
                 (change)="toggleStatut(statut.id)"
               />
@@ -113,7 +113,7 @@
         <div>
           <button class="printPage" (click)="printPage()">
             <mat-icon> print </mat-icon>
-            Imprimer 
+            Imprimer
           </button>
         </div>
       </div>
@@ -211,7 +211,7 @@
       <div>
         <div>Discuter</div>
         <div id="">
-          <button 
+          <button
           type="button"
           (click)="toogleMessage()"
           class="envoi">
@@ -311,7 +311,7 @@
     </div>
 
     <div class="group-message">
-      
+
       <div *ngIf="dialogueMessage" class="dialogueMessage">
         <div class="entete-message">
           <div>Nouveau message</div>
@@ -330,7 +330,7 @@
           </div>
           <div class="ligne"></div>
           <Textarea class="zoneMessage" placeholder="Entrer votre message">
-          
+
           </Textarea>
         </div>
         <div class="soummettreMessage">
@@ -350,7 +350,7 @@
         <i class="fa-solid fa-stopwatch-20" id="logoChrono"></i>
         <p class="notificationBlocageContent">{{ messagebloque }}</p>
       </div>
-  
+
       <div *ngIf="dialogueMessageEnvoye" class="dialogueMessageEnvoye">
         <div class="fermerMessageEnvoye" (click)="fermerMessageenvoye()">X</div>
         <div class="containerSuccesMesssage">
@@ -359,7 +359,7 @@
           <p>Votre message a été envoyé avec succès</p>
         </div>
       </div>
-  
+
       <div class="dialogueMessageEnvoye" *ngIf="estSupprimer" id="confirmerSuppr">
         <div><i class="fa-solid fa-trash-can" id="logoCheck"></i></div>
         <h3>SUPPRIMER</h3>
@@ -367,7 +367,7 @@
           « Voulez-vous supprimer cet établissement ? Si oui, appuyez sur
           "Valider". »
         </p>
-  
+
         <div class="boutonValiderAnnulerSuppression">
           <div>
             <button class="annuler-btn" (click)="estSupprimeEtablissement()">
@@ -385,7 +385,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="notificationBlocage" id="notifSuppr" *ngIf="validerSuppr">
         <i class="fa-solid fa-trash-can" id="logoExclamation"></i>
         <p>
@@ -405,9 +405,9 @@
         </div>
 
         <div class="container-mat-group">
-          <mat-tab-group 
+          <mat-tab-group
            class="tab-group"
-            
+
           >
             <mat-tab label="Information sur l'établissements" class="container-info">
               <div
