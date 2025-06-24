@@ -1,0 +1,15 @@
+<div class="flex flex-row h-screen bg-white">
+  <!-- Sidebar -->
+  <div class="w-64 flex-shrink-0">
+    <app-side-bar-gestion-user></app-side-bar-gestion-user>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="flex-grow p-4 overflow-y-auto">
+    <app-gestion-permissions></app-gestion-permissions  >
+  </div>
+  <div>
+        <router-outlet></router-outlet>
+
+  </div>
+</div>
