@@ -11,6 +11,8 @@ import { FactureProComponent } from './components/facture-pro/facture-pro.compon
 import { MessagesComponent } from './components/messages/messages.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SharedTabService } from '../services/shared-tab.service';
+import { SideBarGestionUserComponent } from "./components/side-bar-gestion-user/side-bar-gestion-user.component";
+import { LayoutSideBarComponent } from "../layouts/layout-side-bar/layout-side-bar.component";
 
 
 
@@ -31,6 +33,8 @@ import { SharedTabService } from '../services/shared-tab.service';
     FactureProComponent,
     AnalyseProComponent,
     GestionComptesComponent,
+    SideBarGestionUserComponent,
+    LayoutSideBarComponent
 ],
   templateUrl: './tabs-pro.component.html',
   styleUrl: './tabs-pro.component.css',
