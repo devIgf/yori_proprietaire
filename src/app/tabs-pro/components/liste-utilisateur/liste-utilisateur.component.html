@@ -1,1 +1,197 @@
-<p>liste-utilisateur works!</p>
+<div class="first">
+  <div class="top">
+    <div class="inputs">
+      <div class="labels">
+        <label for="statut">Aperçu</label><br />
+        <select
+          id="statut"
+          class="select1"
+          [(ngModel)]="selectedStatut"
+          (change)="onStatutChange()"
+        >
+          <option *ngFor="let statut of statutsFiltres" [value]="statut">
+            {{ statut }}
+          </option>
+        </select>
+        <br />
+
+        <select
+          id="sousStatut"
+          *ngIf="selectedStatut !== 'Vue d\'ensemble'"
+          [(ngModel)]="selectedSousStatut"
+        >
+          <option
+            *ngFor="let sousStatut of sousStatuts[selectedStatut]"
+            [value]="sousStatut"
+          >
+            {{ sousStatut }}
+          </option>
+        </select>
+      </div>
+      <div class="labels">
+        <label for="pays">Région</label><br />
+        <select id="pays" class="select1" [(ngModel)]="selectedPays">
+          <option *ngFor="let pays of paysFiltres" [value]="pays">
+            {{ pays }}
+          </option>
+        </select>
+      </div>
+      <div class="labels">
+        <label for="evaluation">Evaluation</label><br />
+        <select
+          id="evaluation"
+          class="select1"
+          [(ngModel)]="selectedEvaluation"
+        >
+          <option
+            *ngFor="let evaluation of evaluationsFiltres"
+            [value]="evaluation"
+          >
+            {{ evaluation }}
+          </option>
+        </select>
+      </div>
+      <div class="labels">
+        <label for="duree">Filtre par année</label><br />
+        <select id="duree" class="select1" [(ngModel)]="selectedDuree">
+          <option *ngFor="let duree of dureesFiltres" [value]="duree">
+            {{ duree }}
+          </option>
+        </select>
+      </div>
+      <div class="labels">
+        <label for="plus_filtre" class="style-5">Filtre</label><br />
+        <button
+          type="button"
+          id="plus_filtre"
+          class="select"
+          (click)="afficherFiltre()"
+        >
+          Plus de filtres
+        </button>
+      </div>
+      <div class="labels">
+        <label for=""></label><br />
+        <button type="button" class="voir">Voir les résultats</button>
+      </div>
+    </div>
+    <div *ngIf="openFiltre" class="checkbox">
+      <div class="checkbox-container">
+        <div class="title">
+          <label for="">Statut des établissements</label>
+        </div>
+        <label class="checkbox-item" *ngFor="let statut of statutsOptions">
+          <input
+            type="checkbox"
+            [id]="statut.id"
+            [checked]="selectedStatuts.includes(statut.id)"
+            (change)="toggleStatut(statut.id)"
+          />
+          {{ statut.label }}
+        </label>
+      </div>
+      <div class="all-search">
+        <div>
+          <label for="search">Mots-clés</label>
+        </div>
+        <div>
+          <input
+            type="search"
+            name="search"
+            class="input-search"
+            placeholder="Mots-clés (facultatif)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="resultats-info">
+      <div>
+        {{ selectedStatut }}
+        ({{ getClientsFiltres().length }})
+      </div>
+      <div>
+        <button class="printPage" (click)="printPage()">
+          <mat-icon> print </mat-icon>
+          Imprimer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="head1">Nom Complet</th>
+          <th class="head1">Genre</th>
+          <th class="head1">Date de Naissance</th>
+          <th class="head1">Téléphone</th>
+          <th class="head1">Rôle</th>
+          <th class="head1">Adresse mail</th>
+          <th class="head1">Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of paginatedClients">
+          <td class="td1 style-5">{{ client.nom }}</td>
+          <td class="td1" id="pays_structure">
+            {{ client.pays }}
+            <img
+              [src]="'assets/flags/' + client.pays + '.png'"
+              alt="{{ client.pays }} flag"
+              class="pays"
+            />
+          </td>
+          <td>{{ client.statut }}</td>
+          <td>{{ client.type_propriete }}</td>
+          <td>{{ client.duree }}</td>
+          <td
+            [ngStyle]="{
+              color: client.evaluation === 'Mauvais' ? 'red' : 'black'
+            }"
+          >
+            <b>{{ client.evaluation }}</b>
+          </td>
+          <td>
+            <span class="material-icons">edit</span>
+            <span class="material-icons">delete</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <div class="bottom-pagination">
+              <div style="display: flex">
+                <button
+                  class="btn-pag"
+                  (click)="previousPage()"
+                  [disabled]="currentPage === 1"
+                >
+                  &lt; Précédent
+                </button>
+                |<span>Page {{ currentPage }} / {{ totalPages }}</span
+                >|<button
+                  class="btn-pag"
+                  (click)="nextPage()"
+                  [disabled]="currentPage === totalPages"
+                >
+                  Suivant &gt;
+                </button>
+              </div>
+              <div>
+                <select id="" (change)="onItemsPerPageChange($event)">
+                  <option
+                    *ngFor="let option of itemsPerPageOptions"
+                    [value]="option"
+                  >
+                    Afficher {{ option }} réservations
+                  </option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

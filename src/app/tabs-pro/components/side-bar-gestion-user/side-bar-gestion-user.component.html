@@ -8,8 +8,8 @@
 
   <!-- Navigation -->
   <nav class="flex flex-col space-y-2">
-    <a routerLink="gestion-comptes"
-     routerLinkActive="bg-blue-100 border-l-4 border-blue-500"
+    <a routerLink="/gestion-comptes"
+     routerLinkActive="active border-l-4 border-blue-500"
       class="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 p-2 rounded-md transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
         stroke="currentColor">
@@ -19,7 +19,7 @@
     </a>
 
     <a  routerLink="liste-utilisateurs"
-     routerLinkActive="bg-blue-100 border-l-4 border-blue-500"class="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 p-2 rounded-md transition-colors">
+     routerLinkActive="active border-l-4 border-blue-500"class="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 p-2 rounded-md transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
         stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +30,7 @@
     </a>
 
     <a  routerLink="gestion-permissions"
-     routerLinkActive="bg-blue-100 border-l-4 border-blue-500" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 p-2 rounded-md transition-colors">
+     routerLinkActive="active border-l-4 border-blue-500" class="flex items-center space-x-3 text-gray-700 hover:bg-gray-100 p-2 rounded-md transition-colors">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
         stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -68,6 +68,4 @@
       </div>
     </div>
   </div>
-  <router-outlet />
-
 </div>
