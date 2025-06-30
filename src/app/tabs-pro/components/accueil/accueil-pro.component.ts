@@ -9,10 +9,8 @@ import { ClaudelComponent } from '../claudel/claudel.component';
 import { FransdaComponent } from '../fransda/fransda.component';
 import { Client } from '../../../interfaces/Client';
 import { Comment } from '../../../interfaces/Comment';
-import { GoogleMapComponent } from "../google-map/google-map.component";
+import { GoogleMapComponent } from '../google-map/google-map.component';
 import { SharedTabService } from '../../../services/shared-tab.service';
-
-
 
 @Component({
   selector: 'app-accueil-pro',
@@ -24,13 +22,12 @@ import { SharedTabService } from '../../../services/shared-tab.service';
     MatTabGroup,
     MatTab,
     MatTabsModule,
-    GoogleMapComponent
-], 
+    GoogleMapComponent,
+  ],
   templateUrl: './accueil-pro.component.html',
   styleUrl: './accueil-pro.component.css',
 })
 export class AccueilProComponent implements OnInit {
-  
   clients: Client[] = [
     {
       nom: 'Jean Dupont',
@@ -43,7 +40,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Marie Curie',
@@ -56,7 +53,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Pierre Martin',
@@ -69,7 +66,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Sophie Germain',
@@ -82,7 +79,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Lucie Aubrac',
@@ -95,7 +92,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Antoine Doinel',
@@ -108,7 +105,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Clara Zetkin',
@@ -121,7 +118,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Gabriel Garcia',
@@ -134,7 +131,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Nina Simone',
@@ -147,7 +144,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
     {
       nom: 'Albert Camus',
@@ -160,7 +157,7 @@ export class AccueilProComponent implements OnInit {
       contact: '',
       email: '',
       nombre_structure: 0,
-      statut_structure: ''
+      statut_structure: '',
     },
   ];
 
@@ -227,18 +224,18 @@ export class AccueilProComponent implements OnInit {
     { id: 'reservation', label: 'Ancien(s)' },
     { id: 'arrivees', label: 'Suspendu(s) temporairement' },
     { id: 'departures', label: 'Supprimé(s) définitivement' },
-    { id: 'sejour-en-cours', label: 'Fermé(s)' }
+    { id: 'sejour-en-cours', label: 'Fermé(s)' },
   ];
 
   toggleStatut(statutId: string): void {
     if (this.selectedStatuts.includes(statutId)) {
-      this.selectedStatuts = this.selectedStatuts.filter(id => id !== statutId);
+      this.selectedStatuts = this.selectedStatuts.filter(
+        (id) => id !== statutId
+      );
     } else {
       this.selectedStatuts.push(statutId);
     }
   }
-  
-  
 
   statutsFiltres: string[] = ["Vue d'ensemble", 'Hotellerrie', 'Tourisme'];
   selectedStatut: string = "Vue d'ensemble"; // Valeur par défaut
@@ -291,9 +288,9 @@ export class AccueilProComponent implements OnInit {
 
     this.dateAujourdhui = new Date().toLocaleDateString();
 
-    this.sharedTabService.selectedClient$.subscribe(client => {
+    this.sharedTabService.selectedClient$.subscribe((client) => {
       this.selectedClient = client;
-      this.showDetails = !!client; 
+      this.showDetails = !!client;
     });
   }
 
@@ -324,7 +321,7 @@ export class AccueilProComponent implements OnInit {
   }
 
   sousStatuts: { [key: string]: string[] } = {
-    Hotellerrie: ['Tous les types','Hotel', 'Motel', 'Appartement'],
+    Hotellerrie: ['Tous les types', 'Hotel', 'Motel', 'Appartement'],
     Tourisme: [
       'Tous les types',
       'Randonnés',
@@ -367,12 +364,12 @@ export class AccueilProComponent implements OnInit {
 
   onStatutChange(): void {
     if (this.selectedStatut === "Vue d'ensemble") {
-      this.selectedSousStatut = "";
+      this.selectedSousStatut = '';
     } else {
-      this.selectedSousStatut = "Tous les types"; // Valeur par défaut
+      this.selectedSousStatut = 'Tous les types'; // Valeur par défaut
     }
   }
-  
+
   initializeCountryFilters() {
     const uniqueCountries = new Set(this.clients.map((client) => client.pays));
     this.paysFiltres.push(...Array.from(uniqueCountries));
@@ -386,28 +383,37 @@ export class AccueilProComponent implements OnInit {
   get filteredClients() {
     return this.clients.filter((client) => {
       const matchesPays =
-        this.selectedPays === 'Tous les pays' || client.pays === this.selectedPays;
+        this.selectedPays === 'Tous les pays' ||
+        client.pays === this.selectedPays;
       const matchesEvaluation =
-        this.selectedEvaluation === 'Tout grouper' || client.evaluation === this.selectedEvaluation;
+        this.selectedEvaluation === 'Tout grouper' ||
+        client.evaluation === this.selectedEvaluation;
       const matchesDuree =
-        this.selectedDuree === 'Tous les années' || client.duree === this.selectedDuree;
-      
-       // Filtre par statut
-      const matchesStatut = 
-        this.selectedStatut === "Vue d'ensemble" || 
+        this.selectedDuree === 'Tous les années' ||
+        client.duree === this.selectedDuree;
+
+      // Filtre par statut
+      const matchesStatut =
+        this.selectedStatut === "Vue d'ensemble" ||
         client.statut === this.selectedStatut;
-  
+
       // Filtre par sous-statut (UNIQUEMENT si un statut spécifique est sélectionné)
-      const matchesSousStatut = 
+      const matchesSousStatut =
         this.selectedStatut === "Vue d'ensemble" || // Ignore si "Vue d'ensemble"
-        this.selectedSousStatut === "Tous les types" || 
+        this.selectedSousStatut === 'Tous les types' ||
         client.type_propriete === this.selectedSousStatut;
-  
-      return matchesPays && matchesEvaluation && matchesDuree && matchesStatut && matchesSousStatut;
+
+      return (
+        matchesPays &&
+        matchesEvaluation &&
+        matchesDuree &&
+        matchesStatut &&
+        matchesSousStatut
+      );
     });
   }
 
-  selectedSousStatut: string ="";  // Initialiser comme une chaîne vide
+  selectedSousStatut: string = ''; // Initialiser comme une chaîne vide
   filterPays: string = ''; // Propriété pour le filtre
   dateDebut: string = '';
   dateFin: string = '';
@@ -489,7 +495,7 @@ export class AccueilProComponent implements OnInit {
       this.currentPage--;
     }
   }
-  
+
   nextPage() {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
@@ -499,9 +505,11 @@ export class AccueilProComponent implements OnInit {
   // Méthode appelée lors du clic sur le lien
   @ViewChild(Component)
   mapComponent!: GoogleMapComponent;
+
+  
   afficherDetails(client: Client) {
     this.selectedClient = client;
-    this.showDetails = true; 
+    this.showDetails = true;
   }
 
   afficherTelephone() {
@@ -575,11 +583,4 @@ export class AccueilProComponent implements OnInit {
     this.validerSuppr = !this.validerSuppr;
     this.estSupprimer = !this.estSupprimer;
   }
-
-
-
-
-
-  
-
 }

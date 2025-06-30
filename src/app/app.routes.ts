@@ -6,25 +6,40 @@ import { Component } from '@angular/core';
 import { GestionComptesComponent } from './tabs-pro/components/gestion-comptes/gestion-comptes.component';
 import { ListeUtilisateurComponent } from './tabs-pro/components/liste-utilisateur/liste-utilisateur.component';
 import { GestionPermissionsComponent } from './tabs-pro/components/gestion-permissions/gestion-permissions.component';
+import { AccueilProComponent } from './tabs-pro/components/accueil/accueil-pro.component';
+import { MessagesComponent } from './tabs-pro/components/messages/messages.component';
+import { NotificationsComponent } from './tabs-pro/components/notifications/notifications.component';
+import { FactureProComponent } from './tabs-pro/components/facture-pro/facture-pro.component';
+import { AnalyseProComponent } from './tabs-pro/components/analyse-pro/analyse-pro.component';
 
 export const routes: Routes = [
-    {
-        path:"",
-        component: LiaisonComponent
-    },
-
-    {
-        path:"map",
-        component: LiasonsMapComponent
-    },
-    {
-  path: "layout-side-bar",
-  component: LayoutSideBarComponent,
+{
+  path: '',
+  component: LiaisonComponent,
   children: [
-    { path: "gestion-comptes", component: GestionComptesComponent },
-    { path: "liste-utilisateurs", component: ListeUtilisateurComponent }, // Notez le "s"
-    { path: "gestion-permissions", component: GestionPermissionsComponent },
-    { path: "", redirectTo: "gestion-comptes", pathMatch: "full" } // Route par défaut
-  ]
+    {
+      path: '',
+      component: LayoutSideBarComponent,
+      children: [
+        { path: 'Accueil', component: AccueilProComponent },
+        { path: 'Comptes-propriétaires', component: GestionComptesComponent },
+        { path: 'Boite-reception', component: MessagesComponent },
+        { path: 'Notifications', component: NotificationsComponent },
+        { path: 'Factures', component: FactureProComponent },
+        { path: 'Analyse', component: AnalyseProComponent },
+
+        { path: 'gestion-comptes', component: GestionComptesComponent },
+        { path: 'liste-utilisateurs', component: ListeUtilisateurComponent },
+        { path: 'gestion-permissions', component: GestionPermissionsComponent },
+
+        { path: '', redirectTo: 'Accueil', pathMatch: 'full' },
+      ],
+    },
+  ],
 }
+,
+  {
+    path: 'map',
+    component: LiasonsMapComponent,
+  },
 ];

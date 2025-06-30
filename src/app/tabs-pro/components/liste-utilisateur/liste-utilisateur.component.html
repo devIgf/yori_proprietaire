@@ -1,1 +1,140 @@
-<p>liste-utilisateur works!</p>
+<div class="first">
+  <div class="top">
+    <div class="inputs">
+      <div class="labels">
+        <label for="plus_filtre" class="style-5">Filtre</label><br />
+        <button
+          type="button"
+          id="plus_filtre"
+          class="select"
+          (click)="afficherFiltre()"
+        >
+          Plus de filtres
+        </button>
+      </div>
+      <div class="labels">
+        <label for=""></label><br />
+        <button type="button" class="voir">Voir les résultats</button>
+      </div>
+    </div>
+    <div *ngIf="openFiltre" class="checkbox">
+      <div class="checkbox-container">
+        <div class="title">
+          <label for="">Statut des établissements</label>
+        </div>
+        <!-- Filtres par rôle -->
+        <div class="filters">
+          <label class="checkbox-item" *ngFor="let statut of statutsOptions">
+            <input
+              type="checkbox"
+              [id]="statut.id"
+              [checked]="selectedStatuts.includes(statut.id)"
+              (change)="toggleStatut(statut.id)"
+            />
+            {{ statut.label }}
+          </label>
+        </div>
+      </div>
+      <div class="all-search">
+        <div>
+          <label for="search">Mots-clés</label>
+        </div>
+        <div>
+          <input
+            type="search"
+            name="search"
+            class="input-search"
+            placeholder="Mots-clés (facultatif)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="resultats-info">
+      <div>
+        <button class="printPage" (click)="printPage()">
+          <mat-icon> print </mat-icon>
+          Imprimer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="head1">
+            Nom <br />
+            Complet
+          </th>
+          <th class="head1">Genre</th>
+          <th class="head1">
+            Date de <br />
+            Naissance
+          </th>
+          <th class="head1">Téléphone</th>
+          <th class="head1">Rôle</th>
+          <th class="head1">Adresse mail</th>
+          <th class="head1">Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of paginatedClients">
+          <td class="td1 style-5">{{ client.nom }}</td>
+          <td class="td1" id="pays_structure">
+            {{ client.genre }}
+          </td>
+          <td>{{ client.dateNaissance }}</td>
+          <td>{{ client.telephone }}</td>
+          <td
+            [ngStyle]="{
+              'background-color': getColorForRole(client.role),
+              color: 'white'
+            }"
+          >
+            {{ client.role }}
+          </td>
+          <td>{{ client.email }}</td>
+          <td>
+            <span class="material-icons">edit</span>
+            <span class="material-icons">delete</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <div class="bottom-pagination">
+              <div style="display: flex">
+                <button
+                  class="btn-pag"
+                  (click)="previousPage()"
+                  [disabled]="currentPage === 1"
+                >
+                  &lt; Précédent
+                </button>
+                |<span>Page {{ currentPage }} / {{ totalPages }}</span
+                >|<button
+                  class="btn-pag"
+                  (click)="nextPage()"
+                  [disabled]="currentPage === totalPages"
+                >
+                  Suivant &gt;
+                </button>
+              </div>
+              <div>
+                <select id="" (change)="onItemsPerPageChange($event)">
+                  <option
+                    *ngFor="let option of itemsPerPageOptions"
+                    [value]="option"
+                  >
+                    Afficher {{ option }} réservations
+                  </option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,6 +1,5 @@
-import { GestionComptesComponent } from './components/gestion-comptes/gestion-comptes.component';
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatTab, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { FooterProComponent } from '../layouts/footer-pro/footer-pro.component';
@@ -10,9 +9,8 @@ import { CompteProprietaireComponent } from './components/compte-proprietaire/co
 import { FactureProComponent } from './components/facture-pro/facture-pro.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-import { SharedTabService } from '../services/shared-tab.service';
-import { SideBarGestionUserComponent } from "./components/side-bar-gestion-user/side-bar-gestion-user.component";
-import { LayoutSideBarComponent } from "../layouts/layout-side-bar/layout-side-bar.component";
+import { filter } from 'rxjs/operators';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 
 
 
@@ -32,65 +30,56 @@ import { LayoutSideBarComponent } from "../layouts/layout-side-bar/layout-side-b
     NotificationsComponent,
     FactureProComponent,
     AnalyseProComponent,
-    GestionComptesComponent,
-    SideBarGestionUserComponent,
-    LayoutSideBarComponent
+    RouterOutlet
 ],
   templateUrl: './tabs-pro.component.html',
   styleUrl: './tabs-pro.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class TabsProComponent{
-
-  activeTabIndex: number = 0; // Index par défaut pour les onglets
-  currentComponent: string | null = null; // Composant actuellement sélectionné
-
-  ngOnInit() {
-    // Récupérer l'index de l'onglet actif et le composant sélectionné depuis le sessionStorage
-    const storedIndex = sessionStorage.getItem('activeTabIndex');
-    const storedComponent = sessionStorage.getItem('currentComponent');
-
-    if (storedIndex) {
-      this.activeTabIndex = +storedIndex; // Convertir en nombre
-    }
-
-    if (storedComponent) {
-      this.currentComponent = storedComponent; // Récupérer le composant sélectionné
-    }
-  }
-
-  onTabChange(event: any) {
-    this.activeTabIndex = event.index; // Mettre à jour l'index actif
-    sessionStorage.setItem('activeTabIndex', this.activeTabIndex.toString()); // Sauvegarder dans le sessionStorage
-  }
-
-  showComponent(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    this.currentComponent = selectElement.value;
-    sessionStorage.setItem('currentComponent', this.currentComponent);
-  }
-
+export class TabsProComponent implements OnInit {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
 
+  activeTabIndex: number = 0;
 
-  isMenuOpen = false;
+  // Tableau des routes correspondant à chaque onglet (7 routes, index 0 à 6)
+  tabRoutes = [
+    '/Accueil',
+    '/Comptes-propriétaires',
+    '/Boite-reception',
+    '/Notifications',
+    '/Factures',
+    '/Analyse',
+    '/gestion-comptes'  // 7ème onglet (index 6)
+  ];
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
+  constructor(private router: Router) {}
 
-  openSelect(select: HTMLSelectElement) {
-    select.focus();
-    select.click(); // Ouvre le sélecteur
-  }
+  ngOnInit() {
+    const storedIndex = sessionStorage.getItem('activeTabIndex');
+    if (storedIndex) {
+      this.activeTabIndex = +storedIndex;
+      this.router.navigateByUrl(this.tabRoutes[this.activeTabIndex]);
+    }
 
-
-
-  constructor(private sharedTabService: SharedTabService) {
-    this.sharedTabService.openAccueilTab$.subscribe(open => {
-      if (open) this.tabGroup.selectedIndex = 0; // Ouvre l'onglet Accueil
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      const url = event.urlAfterRedirects;
+      const index = this.tabRoutes.findIndex(route => url.startsWith(route));
+      if (index !== -1 && index !== this.activeTabIndex) {
+        this.activeTabIndex = index;
+        if (this.tabGroup) {
+          this.tabGroup.selectedIndex = index;
+        }
+        sessionStorage.setItem('activeTabIndex', index.toString());
+      }
     });
   }
 
-
+  onTabChange(event: any) {
+    this.activeTabIndex = event.index;
+    sessionStorage.setItem('activeTabIndex', this.activeTabIndex.toString());
+    this.router.navigateByUrl(this.tabRoutes[this.activeTabIndex]);
+  }
 }
+

@@ -1,6 +1,6 @@
 <div class="tab-container">
   <mat-tab-group [(selectedIndex)]="activeTabIndex" (selectedTabChange)="onTabChange($event)" #tabGroup>
-    <mat-tab>
+    <mat-tab label="Accueil">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 0 }">
           <div class="circle"><mat-icon>home</mat-icon></div>
@@ -10,7 +10,7 @@
       <app-accueil-pro></app-accueil-pro>
     </mat-tab>
 
-    <mat-tab>
+    <mat-tab label="Comptes-propriétaires">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 1 }">
           <div class="circle"><mat-icon> description</mat-icon></div>
@@ -20,7 +20,7 @@
       <app-compte-proprietaire></app-compte-proprietaire>
     </mat-tab>
 
-    <mat-tab>
+    <mat-tab label="Boite-reception">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 2 }">
           <div class="circle">
@@ -32,7 +32,7 @@
       <app-messages></app-messages>
     </mat-tab>
 
-    <mat-tab>
+    <mat-tab label="Notifications">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 3 }">
           <div class="circle">
@@ -44,7 +44,7 @@
       <app-notifications></app-notifications>
     </mat-tab>
 
-    <mat-tab>
+    <mat-tab label="Factures">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 4 }">
           <div class="circle"><mat-icon>receipt_long</mat-icon></div>
@@ -53,7 +53,7 @@
       </ng-template>
       <app-facture-pro></app-facture-pro>
     </mat-tab>
-    <mat-tab>
+    <mat-tab label="Analyse">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 5 }">
           <div class="circle"><mat-icon>trending_up</mat-icon></div>
@@ -61,18 +61,18 @@
         </div>
       </ng-template>
       <app-analyse-pro>
-
       </app-analyse-pro>
     </mat-tab>
-    <mat-tab>
+    <mat-tab label="Gestion-comptes">
       <ng-template mat-tab-label class="ng-template">
         <div class="circle-container" [ngClass]="{ 'active': activeTabIndex === 6 }">
           <div class="circle"><mat-icon>manage_accounts</mat-icon></div>
           <div class="circle-title">Gestion de comptes</div>
         </div>
       </ng-template>
-      <app-layout-side-bar>
-      </app-layout-side-bar>
+      <!-- <app-layout-side-bar>
+      </app-layout-side-bar> -->
+      <router-outlet></router-outlet>
     </mat-tab>
   </mat-tab-group>
   <div>
