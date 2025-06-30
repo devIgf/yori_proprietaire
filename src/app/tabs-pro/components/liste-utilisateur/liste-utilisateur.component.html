@@ -2,64 +2,6 @@
   <div class="top">
     <div class="inputs">
       <div class="labels">
-        <label for="statut">Aperçu</label><br />
-        <select
-          id="statut"
-          class="select1"
-          [(ngModel)]="selectedStatut"
-          (change)="onStatutChange()"
-        >
-          <option *ngFor="let statut of statutsFiltres" [value]="statut">
-            {{ statut }}
-          </option>
-        </select>
-        <br />
-
-        <select
-          id="sousStatut"
-          *ngIf="selectedStatut !== 'Vue d\'ensemble'"
-          [(ngModel)]="selectedSousStatut"
-        >
-          <option
-            *ngFor="let sousStatut of sousStatuts[selectedStatut]"
-            [value]="sousStatut"
-          >
-            {{ sousStatut }}
-          </option>
-        </select>
-      </div>
-      <div class="labels">
-        <label for="pays">Région</label><br />
-        <select id="pays" class="select1" [(ngModel)]="selectedPays">
-          <option *ngFor="let pays of paysFiltres" [value]="pays">
-            {{ pays }}
-          </option>
-        </select>
-      </div>
-      <div class="labels">
-        <label for="evaluation">Evaluation</label><br />
-        <select
-          id="evaluation"
-          class="select1"
-          [(ngModel)]="selectedEvaluation"
-        >
-          <option
-            *ngFor="let evaluation of evaluationsFiltres"
-            [value]="evaluation"
-          >
-            {{ evaluation }}
-          </option>
-        </select>
-      </div>
-      <div class="labels">
-        <label for="duree">Filtre par année</label><br />
-        <select id="duree" class="select1" [(ngModel)]="selectedDuree">
-          <option *ngFor="let duree of dureesFiltres" [value]="duree">
-            {{ duree }}
-          </option>
-        </select>
-      </div>
-      <div class="labels">
         <label for="plus_filtre" class="style-5">Filtre</label><br />
         <button
           type="button"
@@ -80,15 +22,18 @@
         <div class="title">
           <label for="">Statut des établissements</label>
         </div>
-        <label class="checkbox-item" *ngFor="let statut of statutsOptions">
-          <input
-            type="checkbox"
-            [id]="statut.id"
-            [checked]="selectedStatuts.includes(statut.id)"
-            (change)="toggleStatut(statut.id)"
-          />
-          {{ statut.label }}
-        </label>
+        <!-- Filtres par rôle -->
+        <div class="filters">
+          <label class="checkbox-item" *ngFor="let statut of statutsOptions">
+            <input
+              type="checkbox"
+              [id]="statut.id"
+              [checked]="selectedStatuts.includes(statut.id)"
+              (change)="toggleStatut(statut.id)"
+            />
+            {{ statut.label }}
+          </label>
+        </div>
       </div>
       <div class="all-search">
         <div>
@@ -107,10 +52,6 @@
 
     <div class="resultats-info">
       <div>
-        {{ selectedStatut }}
-        ({{ getClientsFiltres().length }})
-      </div>
-      <div>
         <button class="printPage" (click)="printPage()">
           <mat-icon> print </mat-icon>
           Imprimer
@@ -123,9 +64,15 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="head1">Nom Complet</th>
+          <th class="head1">
+            Nom <br />
+            Complet
+          </th>
           <th class="head1">Genre</th>
-          <th class="head1">Date de Naissance</th>
+          <th class="head1">
+            Date de <br />
+            Naissance
+          </th>
           <th class="head1">Téléphone</th>
           <th class="head1">Rôle</th>
           <th class="head1">Adresse mail</th>
@@ -136,23 +83,19 @@
         <tr *ngFor="let client of paginatedClients">
           <td class="td1 style-5">{{ client.nom }}</td>
           <td class="td1" id="pays_structure">
-            {{ client.pays }}
-            <img
-              [src]="'assets/flags/' + client.pays + '.png'"
-              alt="{{ client.pays }} flag"
-              class="pays"
-            />
+            {{ client.genre }}
           </td>
-          <td>{{ client.statut }}</td>
-          <td>{{ client.type_propriete }}</td>
-          <td>{{ client.duree }}</td>
+          <td>{{ client.dateNaissance }}</td>
+          <td>{{ client.telephone }}</td>
           <td
             [ngStyle]="{
-              color: client.evaluation === 'Mauvais' ? 'red' : 'black'
+              'background-color': getColorForRole(client.role),
+              color: 'white'
             }"
           >
-            <b>{{ client.evaluation }}</b>
+            {{ client.role }}
           </td>
+          <td>{{ client.email }}</td>
           <td>
             <span class="material-icons">edit</span>
             <span class="material-icons">delete</span>

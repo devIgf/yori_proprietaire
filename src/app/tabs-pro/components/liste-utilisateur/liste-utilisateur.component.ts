@@ -1,3 +1,4 @@
+import { Utilisateurs } from './../../../interfaces/Utilisateurs';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,153 +13,104 @@ import { SharedTabService } from '../../../services/shared-tab.service';
   styleUrl: './liste-utilisateur.component.css',
 })
 export class ListeUtilisateurComponent {
-  clients: Client[] = [
+  clients: Utilisateurs[] = [
     {
-      nom: 'Jean Dupont',
-      statut: 'Hotellerrie',
-      duree: '45 jours',
-      pays: 'Gabon',
-      type_propriete: 'Hotel',
-      evaluation: 'Très bon',
       id: 1,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Jean-Hilaire Aubame',
+      genre: 'Homme',
+      dateNaissance: '1912-11-10',
+      telephone: '+241 77 12 34 56',
+      role: 'Super administrateurs',
+      email: 'jean.aubame@historique.ga',
     },
     {
-      nom: 'Marie Curie',
-      statut: 'Tourisme',
-      duree: '5 jours',
-      pays: 'Gabon',
-      type_propriete: '',
-      evaluation: 'Très bon',
       id: 2,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Rose Francine Rogombe',
+      genre: 'Femme',
+      dateNaissance: '1942-09-20',
+      telephone: '+241 66 23 45 67',
+      role: 'Gestion de propriétés',
+      email: 'rose.rogombe@justice.ga',
     },
     {
-      nom: 'Pierre Martin',
-      statut: 'Hotellerrie',
-      duree: '5 jours',
-      pays: 'Sénégal',
-      type_propriete: '',
-      evaluation: 'bon',
       id: 3,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Pierre Savorgnan de Brazza',
+      genre: 'Homme',
+      dateNaissance: '1852-01-26',
+      telephone: '+241 74 56 78 90',
+      role: 'Gestion de statistiques',
+      email: 'pierre.brazza@exploration.ga',
     },
     {
-      nom: 'Sophie Germain',
-      statut: 'Hotellerrie',
-      duree: '5 jours',
-      pays: 'Bénin',
-      type_propriete: '',
-      evaluation: 'Moins bon',
       id: 4,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Annie-Flore Batchiellilys',
+      genre: 'Femme',
+      dateNaissance: '1967-04-10',
+      telephone: '+241 65 34 56 78',
+      role: 'Gestion de paiements',
+      email: 'annie.batchiellilys@culture.ga',
     },
     {
-      nom: 'Lucie Aubrac',
-      statut: 'Tourisme',
-      duree: '5 jours',
-      pays: 'Congo',
-      type_propriete: '',
-      evaluation: 'Mauvais',
       id: 5,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Philippe Mory',
+      genre: 'Homme',
+      dateNaissance: '1935-03-15',
+      telephone: '+241 77 45 67 89',
+      role: 'Modérateur de contenu',
+      email: 'philippe.mory@cinema.ga',
     },
     {
-      nom: 'Antoine Doinel',
-      statut: '2024-11-02',
-      duree: '5 jours',
-      pays: '',
-      type_propriete: '',
-      evaluation: '',
       id: 6,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Sandrine Bessora',
+      genre: 'Femme',
+      dateNaissance: '1968-09-23',
+      telephone: '+241 66 78 90 12',
+      role: 'Super administrateurs',
+      email: 'sandrine.bessora@litterature.ga',
     },
     {
-      nom: 'Clara Zetkin',
-      statut: '2024-11-11',
-      duree: '3 jours',
-      pays: '',
-      type_propriete: '',
-      evaluation: '',
       id: 7,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Paul Gondjout',
+      genre: 'Homme',
+      dateNaissance: '1912-06-14',
+      telephone: '+241 74 23 45 67',
+      role: 'Gestion de propriétés',
+      email: 'paul.gondjout@parlement.ga',
     },
     {
-      nom: 'Gabriel Garcia',
-      statut: '2024-10-30',
-      duree: '3 jours',
-      pays: '',
-      type_propriete: '',
-      evaluation: '',
       id: 8,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Eloi Chambrier',
+      genre: 'Homme',
+      dateNaissance: '1920-07-01',
+      telephone: '+241 77 89 01 23',
+      role: 'Gestion de statistiques',
+      email: 'eloi.chambrier@sante.ga',
     },
     {
-      nom: 'Nina Simone',
-      statut: '2024-11-03',
-      duree: '3 jours',
-      pays: '',
-      type_propriete: '',
-      evaluation: '',
       id: 9,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'Victor de Compiègne',
+      genre: 'Homme',
+      dateNaissance: '1846-02-10',
+      telephone: '+241 65 12 34 56',
+      role: 'Gestion de paiements',
+      email: 'victor.compiegne@exploration.ga',
     },
     {
-      nom: 'Albert Camus',
-      statut: '2024-11-12',
-      duree: '7 jours',
-      pays: '',
-      type_propriete: '',
-      evaluation: '',
       id: 10,
-      contact: '',
-      email: '',
-      nombre_structure: 0,
-      statut_structure: '',
+      nom: 'André Gustave Anguilé',
+      genre: 'Homme',
+      dateNaissance: '1920-04-22',
+      telephone: '+241 74 67 89 01',
+      role: 'Modérateur de contenu',
+      email: 'andre.anguile@gouvernement.ga',
     },
   ];
 
-  constructor(private sharedTabService: SharedTabService) {
-    // Initialiser le sous-statut en fonction du statut par défaut
-    this.onStatutChange();
-    this.initializeCountryFilters();
-    this.initializeDurationFilters();
-  }
+  constructor(private sharedTabService: SharedTabService) {}
   statutsFiltres: string[] = ["Vue d'ensemble", 'Hotellerrie', 'Tourisme'];
   selectedStatut: string = "Vue d'ensemble";
   selectedSousStatut: string = '';
-  paysFiltres: string[] = ['Tous les pays'];
-  selectedPays: string = 'Tous les pays'; //
-  selectedEvaluation: string = 'Tout grouper';
   dureesFiltres: string[] = ['Tous les années'];
-  selectedDuree: string = 'Tous les années'; //
   openFiltre: boolean = false;
   selectedStatuts: string[] = [];
   dateDebut: string = '';
@@ -168,6 +120,7 @@ export class ListeUtilisateurComponent {
   selectedClient: any = null;
   showDetails: boolean = false;
   itemsPerPageOptions: number[] = [5, 10, 50];
+  filteredClients: Utilisateurs[] = this.clients; // Liste des clients filtrés
 
   sousStatuts: { [key: string]: string[] } = {
     Hotellerrie: ['Tous les types', 'Hotel', 'Motel', 'Appartement'],
@@ -181,43 +134,34 @@ export class ListeUtilisateurComponent {
     ],
   };
   statutsOptions = [
-    { id: 'tous', label: 'Nouveau(x)' },
-    { id: 'reservation', label: 'Ancien(s)' },
-    { id: 'arrivees', label: 'Suspendu(s) temporairement' },
-    { id: 'departures', label: 'Supprimé(s) définitivement' },
-    { id: 'sejour-en-cours', label: 'Fermé(s)' },
-  ];
-  evaluationsFiltres: string[] = [
-    'Tout grouper',
-    'Très bon',
-    'Bon',
-    'Moyen',
-    'Mauvais',
+    { id: 'super_administrateurs', label: 'Super administrateurs', color: '#F90808' },
+    { id: 'gestion_de_proprietes', label: 'Gestion de propriétés', color: '#0D0DC5' },
+    { id: 'gestion_de_statistiques', label: 'Gestion de statistiques', color: '#1D9605' },
+    { id: 'gestion_de_paiements', label: 'Gestion de paiements', color: '#00B2F3' },
+    { id: 'moderateur_de_contenu', label: 'Modérateur de contenu', color: '#F37900' },
   ];
 
-  initializeCountryFilters() {
-    const uniqueCountries = new Set(this.clients.map((client) => client.pays));
-    this.paysFiltres.push(...Array.from(uniqueCountries));
-  }
-
-  initializeDurationFilters() {
-    const uniqueDurations = new Set(this.clients.map((client) => client.duree));
-    this.dureesFiltres.push(...Array.from(uniqueDurations)); // Ajoute "Tous" et les durées uniques
-  }
-
-  onStatutChange(): void {
-    if (this.selectedStatut === "Vue d'ensemble") {
-      this.selectedSousStatut = '';
-    } else {
-      this.selectedSousStatut = 'Tous les types'; // Valeur par défaut
-    }
+    // Récupérer la couleur pour un rôle donné
+  getColorForRole(role: string): string {
+    const normalizedRole = this.normalizeString(role);
+    const statut = this.statutsOptions.find(s => s.id === normalizedRole);
+    return statut ? statut.color : '#FFFFFF'; // Couleur par défaut (blanc) si aucun statut ne correspond
   }
 
   afficherFiltre() {
     this.openFiltre = !this.openFiltre;
   }
 
-  toggleStatut(statutId: string): void {
+  // Normaliser les chaînes pour gérer les accents
+  normalizeString(str: string): string {
+    return str
+      .normalize('NFD') // Décomposer les caractères accentués
+      .replace(/[\u0300-\u036f]/g, '') // Supprimer les accents
+      .toLowerCase()
+      .replace(/\s+/g, '_'); // Remplacer les espaces par des underscores
+  }
+
+  toggleStatut(statutId: string) {
     if (this.selectedStatuts.includes(statutId)) {
       this.selectedStatuts = this.selectedStatuts.filter(
         (id) => id !== statutId
@@ -225,23 +169,17 @@ export class ListeUtilisateurComponent {
     } else {
       this.selectedStatuts.push(statutId);
     }
+    this.applyFilter();
   }
 
-  getClientsFiltres() {
-    return this.clients.filter((client) => {
-      const dateArrivee = new Date(client.statut);
-      const dateDebutObj = new Date(this.dateDebut);
-      const dateFinObj = new Date(this.dateFin);
-
-      const isStatutValide =
-        this.selectedStatut === "Vue d'ensemble" ||
-        client.statut === this.selectedStatut;
-      const isDateValide =
-        (!this.dateDebut || dateArrivee >= dateDebutObj) &&
-        (!this.dateFin || dateArrivee <= dateFinObj);
-
-      return isStatutValide && isDateValide;
-    });
+  applyFilter() {
+    if (this.selectedStatuts.length === 0) {
+      this.filteredClients = this.clients;
+    } else {
+      this.filteredClients = this.clients.filter((client) =>
+        this.selectedStatuts.includes(this.normalizeString(client.role))
+      );
+    }
   }
 
   printPage() {
@@ -254,38 +192,26 @@ export class ListeUtilisateurComponent {
     return this.filteredClients.slice(start, end);
   }
 
-  get filteredClients() {
-    return this.clients.filter((client) => {
-      const matchesPays =
-        this.selectedPays === 'Tous les pays' ||
-        client.pays === this.selectedPays;
-      const matchesEvaluation =
-        this.selectedEvaluation === 'Tout grouper' ||
-        client.evaluation === this.selectedEvaluation;
-      const matchesDuree =
-        this.selectedDuree === 'Tous les années' ||
-        client.duree === this.selectedDuree;
+  // get filteredClients() {
+  //   return this.clients.filter((utilisateurs) => {
 
-      // Filtre par statut
-      const matchesStatut =
-        this.selectedStatut === "Vue d'ensemble" ||
-        client.statut === this.selectedStatut;
+  //     // Filtre par statut
+  //     const matchesStatut =
+  //       this.selectedStatut === "Vue d'ensemble" ||
+  //       utilisateurs.role === this.selectedStatut;
 
-      // Filtre par sous-statut (UNIQUEMENT si un statut spécifique est sélectionné)
-      const matchesSousStatut =
-        this.selectedStatut === "Vue d'ensemble" || // Ignore si "Vue d'ensemble"
-        this.selectedSousStatut === 'Tous les types' ||
-        client.type_propriete === this.selectedSousStatut;
+  //     // Filtre par sous-statut (UNIQUEMENT si un statut spécifique est sélectionné)
+  //     const matchesSousStatut =
+  //       this.selectedStatut === "Vue d'ensemble" || // Ignore si "Vue d'ensemble"
+  //       this.selectedSousStatut === 'Tous les types' ||
+  //       utilisateurs.role === this.selectedSousStatut;
 
-      return (
-        matchesPays &&
-        matchesEvaluation &&
-        matchesDuree &&
-        matchesStatut &&
-        matchesSousStatut
-      );
-    });
-  }
+  //     return (
+  //       matchesStatut &&
+  //       matchesSousStatut
+  //     );
+  //   });
+  // }
 
   afficherDetails(client: Client) {
     this.selectedClient = client;
