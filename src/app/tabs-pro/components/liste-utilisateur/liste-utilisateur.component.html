@@ -90,15 +90,16 @@
           <td
             [ngStyle]="{
               'background-color': getColorForRole(client.role),
-              color: 'white'
+              color: 'white',
+              'border-radius': '5px',
             }"
           >
             {{ client.role }}
           </td>
           <td>{{ client.email }}</td>
-          <td>
-            <span class="material-icons">edit</span>
-            <span class="material-icons">delete</span>
+          <td class="">
+            <a href=""><span class="material-icons text-blue-800">edit</span></a>
+            <a href=""><span class="material-icons text-red-600">delete</span></a>
           </td>
         </tr>
         <tr>
