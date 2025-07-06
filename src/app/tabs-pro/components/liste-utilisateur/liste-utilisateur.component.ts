@@ -122,29 +122,38 @@ export class ListeUtilisateurComponent {
   itemsPerPageOptions: number[] = [5, 10, 50];
   filteredClients: Utilisateurs[] = this.clients; // Liste des clients filtrés
 
-  sousStatuts: { [key: string]: string[] } = {
-    Hotellerrie: ['Tous les types', 'Hotel', 'Motel', 'Appartement'],
-    Tourisme: [
-      'Tous les types',
-      'Randonnés',
-      'Parcs',
-      'Campings',
-      'Plages privées',
-      'Maisons traditionnelles',
-    ],
-  };
   statutsOptions = [
-    { id: 'super_administrateurs', label: 'Super administrateurs', color: '#F90808' },
-    { id: 'gestion_de_proprietes', label: 'Gestion de propriétés', color: '#0D0DC5' },
-    { id: 'gestion_de_statistiques', label: 'Gestion de statistiques', color: '#1D9605' },
-    { id: 'gestion_de_paiements', label: 'Gestion de paiements', color: '#00B2F3' },
-    { id: 'moderateur_de_contenu', label: 'Modérateur de contenu', color: '#F37900' },
+    {
+      id: 'super_administrateurs',
+      label: 'Super administrateurs',
+      color: '#F90808',
+    },
+    {
+      id: 'gestion_de_proprietes',
+      label: 'Gestion de propriétés',
+      color: '#0D0DC5',
+    },
+    {
+      id: 'gestion_de_statistiques',
+      label: 'Gestion de statistiques',
+      color: '#1D9605',
+    },
+    {
+      id: 'gestion_de_paiements',
+      label: 'Gestion de paiements',
+      color: '#00B2F3',
+    },
+    {
+      id: 'moderateur_de_contenu',
+      label: 'Modérateur de contenu',
+      color: '#F37900',
+    },
   ];
 
-    // Récupérer la couleur pour un rôle donné
+  // Récupérer la couleur pour un rôle donné
   getColorForRole(role: string): string {
     const normalizedRole = this.normalizeString(role);
-    const statut = this.statutsOptions.find(s => s.id === normalizedRole);
+    const statut = this.statutsOptions.find((s) => s.id === normalizedRole);
     return statut ? statut.color : '#FFFFFF'; // Couleur par défaut (blanc) si aucun statut ne correspond
   }
 

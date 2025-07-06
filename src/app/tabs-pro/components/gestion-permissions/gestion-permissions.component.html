@@ -1,5 +1,7 @@
 <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-md">
-  <h2 class="text-2xl font-bold mb-6 text-gray-800 underline">Gestion des accès</h2>
+  <h2 class="text-2xl font-bold mb-6 text-gray-800 underline">
+    Gestion des accès
+  </h2>
 
   <!-- Tableau d’accès -->
   <div class="overflow-x-auto">
@@ -15,106 +17,290 @@
         <!-- Super Administrateur -->
         <tr>
           <td class="px-4 py-3">
-            <span class="inline-block px-3 py-1 text-white bg-red-600 rounded-full text-xs font-semibold">Super
-              Administrateur</span>
+            <span
+              class="inline-block px-3 py-1 text-white bg-red-600 rounded-full text-xs font-semibold"
+              >Super Administrateur</span
+            >
+          </td>
+          <td class="px-4 py-3 relative">
+            <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdownAdministrateur = !showDropdownAdministrateur"
+            >
+              Sélectionnez des vues
+            </button>
+            <div
+              class="absolute z-10 bg-red-600 border border-gray-300 rounded-md mt-1 w-[92%]"
+              *ngIf="showDropdownAdministrateur"
+            >
+              <div *ngFor="let vue of vues" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="vue.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ vue.nom }}
+                </label>
+              </div>
+            </div>
           </td>
           <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>sélectionnez des vues</option>
-                            <option>sélectionnez des vues</option>
-              <option>sélectionnez des vues</option>
-
-            </select>
-          </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>choisir une</option>
-              <option>choisir une</option>
-              <option>choisir une</option>
-
-            </select>
+           <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdown = !showDropdown"
+            >
+              choisir une
+            </button>
+            <div
+              class="absolute z-0 bg-red-600 border border-gray-300 rounded-md mt-1 w-[16%]"
+              *ngIf="showDropdown"
+            >
+              <div *ngFor="let permission of permissions" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="permission.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ permission.nom }}
+                </label>
+              </div>
+            </div>
           </td>
         </tr>
 
         <!-- Gestion de Propriétés -->
         <tr>
           <td class="px-4 py-3">
-            <span class="inline-block px-3 py-1 text-white bg-blue-700 rounded-full text-xs font-semibold">Gestion de
-              Propriétés</span>
+            <span
+              class="inline-block px-3 py-1 text-white bg-blue-700 rounded-full text-xs font-semibold"
+              >Gestion de Propriétés</span
+            >
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>sélectionnez des vues</option>
-            </select>
+           <td class="px-4 py-3 relative">
+            <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdownProprietes = !showDropdownProprietes"
+            >
+              Sélectionnez des vues
+            </button>
+            <div
+              class="absolute z-10 bg-blue-700 border border-gray-300 rounded-md mt-1 w-[92%]"
+              *ngIf="showDropdownProprietes"
+            >
+              <div *ngFor="let vue of vues" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="vue.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ vue.nom }}
+                </label>
+              </div>
+            </div>
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>choisir une</option>
-              <option>choisir une</option>
-              <option>choisir une</option>
-
-            </select>
+                   <td class="px-4 py-3">
+           <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdown2 = !showDropdown2"
+            >
+              choisir une
+            </button>
+            <div
+              class="absolute z-0 bg-blue-700 border border-gray-300 rounded-md mt-1 w-[16%]"
+              *ngIf="showDropdown2"
+            >
+              <div *ngFor="let permission of permissions" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="permission.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ permission.nom }}
+                </label>
+              </div>
+            </div>
           </td>
         </tr>
 
         <!-- Gestion de Statistiques -->
         <tr>
           <td class="px-4 py-3">
-            <span class="inline-block px-3 py-1 text-white bg-green-600 rounded-full text-xs font-semibold">Gestion de
-              Statistiques</span>
+            <span
+              class="inline-block px-3 py-1 text-white bg-green-600 rounded-full text-xs font-semibold"
+              >Gestion de Statistiques</span
+            >
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>sélectionnez des vues</option>
-            </select>
+          <td class="px-4 py-3 relative">
+            <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdownStatistiques = !showDropdownStatistiques"
+            >
+              Sélectionnez des vues
+            </button>
+            <div
+              class="absolute z-10 bg-green-600 border border-gray-300 rounded-md mt-1 w-[92%]"
+              *ngIf="showDropdownStatistiques"
+            >
+              <div *ngFor="let vue of vues" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="vue.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ vue.nom }}
+                </label>
+              </div>
+            </div>
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>choisir une</option>
-              <option>choisir une</option>
-              <option>choisir une</option>
-              <option>choisir une</option>
-
-            </select>
+                    <td class="px-4 py-3">
+           <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdown3 = !showDropdown3"
+            >
+              choisir une
+            </button>
+            <div
+              class="absolute z-0 bg-green-600 border border-gray-300 rounded-md mt-1 w-[16%]"
+              *ngIf="showDropdown3"
+            >
+              <div *ngFor="let permission of permissions" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="permission.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ permission.nom }}
+                </label>
+              </div>
+            </div>
           </td>
         </tr>
 
         <!-- Gestion de Paiements -->
         <tr>
           <td class="px-4 py-3">
-            <span class="inline-block px-3 py-1 text-white bg-cyan-500 rounded-full text-xs font-semibold">Gestion de
-              Paiements</span>
+            <span
+              class="inline-block px-3 py-1 text-white bg-cyan-500 rounded-full text-xs font-semibold"
+              >Gestion de Paiements</span
+            >
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>sélectionnez des champs</option>
-            </select>
+           <td class="px-4 py-3 relative">
+            <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdownPaiements = !showDropdownPaiements"
+            >
+              Sélectionnez des vues
+            </button>
+            <div
+              class="absolute z-10 bg-cyan-500 border-gray-300 rounded-md mt-1 w-[92%]"
+              *ngIf="showDropdownPaiements"
+            >
+              <div *ngFor="let vue of vues" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="vue.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ vue.nom }}
+                </label>
+              </div>
+            </div>
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>choisir une</option>
-              <option>choisir une</option>
-              <option>choisir une</option>
-
-            </select>
+                    <td class="px-4 py-3">
+           <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdown4 = !showDropdown4"
+            >
+              choisir une
+            </button>
+            <div
+              class="absolute z-0 bg-cyan-500 border border-gray-300 rounded-md mt-1 w-[16%]"
+              *ngIf="showDropdown4"
+            >
+              <div *ngFor="let permission of permissions" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="permission.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ permission.nom }}
+                </label>
+              </div>
+            </div>
           </td>
         </tr>
 
         <!-- Modérateur de Contenu -->
         <tr>
           <td class="px-4 py-3">
-            <span class="inline-block px-3 py-1 text-white bg-orange-500 rounded-full text-xs font-semibold">Modérateur
-              de Contenu</span>
+            <span
+              class="inline-block px-3 py-1 text-white bg-orange-500 rounded-full text-xs font-semibold"
+              >Modérateur de Contenu</span
+            >
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>sélectionnez des vues</option>
-            </select>
+           <td class="px-4 py-3 relative">
+            <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdownModerateur = !showDropdownModerateur"
+            >
+              Sélectionnez des vues
+            </button>
+            <div
+              class="absolute z-10 bg-orange-500 border border-gray-300 rounded-md mt-1 w-[92%]"
+              *ngIf="showDropdownModerateur"
+            >
+              <div *ngFor="let vue of vues" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="vue.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ vue.nom }}
+                </label>
+              </div>
+            </div>
           </td>
-          <td class="px-4 py-3">
-            <select class="w-full border border-gray-300 rounded-md p-2">
-              <option>choisir une</option>
-            </select>
+                    <td class="px-4 py-3">
+           <button
+              class="w-full border border-gray-300 rounded-md p-2 text-left"
+              (click)="showDropdown1 = !showDropdown1"
+            >
+              choisir une
+            </button>
+            <div
+              class="absolute z-0 bg-orange-500 border border-gray-300 rounded-md mt-1 w-[16%]"
+              *ngIf="showDropdown1"
+            >
+              <div *ngFor="let permission of permissions" class="p-2 hover:bg-gray-100">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="mr-2"
+                    [(ngModel)]="permission.selected"
+                    (change)="updateSelection()"
+                  />
+                  {{ permission.nom }}
+                </label>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -123,7 +309,9 @@
 
   <!-- Bouton Enregistrer -->
   <div class="flex justify-center mt-6">
-    <button class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-6 rounded-md transition duration-300">
+    <button
+      class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-6 rounded-md transition duration-300"
+    >
       Enregistrer
     </button>
   </div>
